@@ -19,21 +19,22 @@ class CategorySeeder extends Seeder
             [
                 'name' => 'Matcha Drink',
                 'description' => 'Refreshing beverages made with premium green tea.Enjoy hot or iced options crafted to perfection.',
-                'image' => 'default.png',
+                'image' => 'drink.png',
             ],
             [
                 'name' => 'Matcha Dessert',
                 'description' => 'Sweet treats infused with rich green tea flavor.Taste delicious cakes, pastries, and ice cream.',
-                'image' => 'default.png', 
+                'image' => 'dessert.png', 
             ],
             [
                 'name' => 'Matcha Powder',
                 'description' => 'High-quality green tea powder for your daily brewing.Choose from ceremonial or culinary grades.',
-                'image' => 'default.png',
+                'image' => 'powder.png',
             ],
             [
                 'name' => 'Accessories',
-                'description' => 'Esssential tools to prepare your favorite tea. Find bamboo whisks, bowls, and scoops.'
+                'description' => 'Esssential tools to prepare your favorite tea. Find bamboo whisks, bowls, and scoops.',
+                'image' => 'chasen.jpg'
             ],
         ];
 

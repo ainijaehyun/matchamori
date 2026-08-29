@@ -18,19 +18,24 @@ class UserSeeder extends Seeder
                 'name' => 'Administrator',
                 'email' => 'admin@gmail.com',
                 'password' => bcrypt(config('app.admin_password')),
-                'role' => 'admin'
+                'role' => 'admin',
+                'phone' => '088902853640',
+                'address' => 'Purbalingga',
             ],
             [
                 'name' => 'Customer Matcha Mori',
                 'email' => 'customer@gmail.com',
                 'password' => bcrypt(config('app.customer_password')),
-                'role' => 'customer'
+                'role' => 'customer',
+                'phone' => '089887345768',
+                'address' => 'Banyumas',
             ]
         ];
 
          foreach ($users as $user) {
             User::firstOrCreate(
                 ['email' => $user['email']],
+                $user
             );
         }
 

@@ -52,7 +52,7 @@ class ProductSeeder extends Seeder
         ];
 
         foreach ($products as $product) {
-            $category = Category::where('name', $product['category'])->first();
+            $category = Category::where('name', $product['category_id'])->first();
 
             Product::firstOrCreate(
                 ['name' => $product['name']],
@@ -61,7 +61,7 @@ class ProductSeeder extends Seeder
                     'description' => $product['description'],
                     'price' => $product['price'],
                     'stock' => $product['stock'],
-                    'image' => 'default.png',
+                    'image' => $product['image'],
                 ]
             );
         }
