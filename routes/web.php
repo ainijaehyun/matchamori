@@ -16,6 +16,10 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::get('/admin/login', function () {
+    return view('auth.adminlogin');
+})->name('admin.login');
+
 // Admin
 Route::group([
     'prefix' => 'admin',
@@ -25,6 +29,10 @@ Route::group([
 
     Route::get('/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
 
+    // Profile Admin
+    Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'edit'])->name('profile');
+    Route::patch('/profile', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
+    
     Route::resource('/categories', App\Http\Controllers\Admin\CategoryController::class);
     Route::resource('/products', App\Http\Controllers\Admin\ProductController::class);
     Route::get('/orders', [App\Http\Controllers\Admin\OrderController::class, 'index'])->name('orders.index');
@@ -35,6 +43,10 @@ Route::group([
     Route::get('/reports', [App\Http\Controllers\Admin\ReportController::class, 'index'])->name('reports.index');
 });
 
+Route::get('/customer/login', function () {
+    return view('auth.login');
+})->name('customer.login');
+
 // Customer
 Route::group([
     'prefix' => 'customer',
@@ -42,9 +54,12 @@ Route::group([
     'middleware' => ['auth', 'role:customer'],
 ], function () {
 
-    Route::get('/dashboard', [App\Http\Controllers\Customer\DashboardController::class, 'index'])
-        ->name('dashboard');
+    Route::get('/dashboard', [App\Http\Controllers\Customer\DashboardController::class, 'index'])->name('dashboard');
 
+    // Profile Customer
+    Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'edit'])->name('profile');
+    Route::patch('/profile', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
+    
     Route::get('/products', [App\Http\Controllers\Customer\ProductController::class, 'index'])->name('products.index');
     Route::get('/products/{id}', [App\Http\Controllers\Customer\ProductController::class, 'show'])->name('products.show');
 
@@ -57,7 +72,3 @@ Route::group([
     Route::post('/checkout', [App\Http\Controllers\Customer\OrderController::class, 'store'])->name('checkout.store');
 });
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
-});

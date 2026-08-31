@@ -12,9 +12,13 @@ class ProfileController extends Controller
     //menampilkan form edit profil (bisa dipakai admin/customer)
     public function edit()
     {
-        $user = Auth::use();
+        $user = Auth::user();
 
-        return view('profile.edit', compact('user'));
+        if ($user->role === 'admin') {
+            return view('admin.profile.edit', compact('user'));
+        }
+
+        return view('customers.profile.edit', compact('user'));
     }
 
     public function update(Request $request)
@@ -40,6 +44,6 @@ class ProfileController extends Controller
 
         $user->save();
 
-        return back()->with('success'. 'Profile Updated Successfully.');
+        return back()->with('success', 'Profile Updated Successfully.');
     }
 }

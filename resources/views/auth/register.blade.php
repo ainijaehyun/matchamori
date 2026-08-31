@@ -1,16 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.auth')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+@section('title', 'Register Customer - Matcha Mori')
 
-    <title>Register Customer - Matcha Mori</title>
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet"
-        href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}">
-
+@section('content')
     <style>
         * {
             box-sizing: border-box;
@@ -21,7 +13,7 @@
             padding: 30px 0 80px;
             min-height: 100vh;
             font-family: Arial, sans-serif;
-            background: #eef8df;
+            background: #dcebd2 !important;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -46,7 +38,7 @@
         .register-card {
             width: 480px;
             max-width: 92%;
-            background: #f4ffe8;
+            background: #eef5e8;
             border-radius: 24px;
             padding: 30px 55px 40px;
             box-shadow: 0 5px 20px rgba(60, 90, 40, 0.15);
@@ -146,17 +138,31 @@
             position: absolute;
             right: 12px;
             top: 50%;
+
             transform: translateY(-50%);
+
             border: none;
-            background: transparant;
+            background: transparent;
+
             cursor: pointer;
-            color: #999;
+
+            color: #222;
+
             z-index: 3;
             padding: 5px;
         }
 
+        .password-toggle i {
+            font-size: 16px;
+            color: #222;
+        }
+
         .password-toggle:hover {
-            color: #8aaa7b
+            color: #315c32;
+        }
+
+        .password-toggle:hover i {
+            color: #315c32;
         }
 
         /*ERROR */
@@ -211,38 +217,6 @@
             text-decoration: underline;
         }
 
-        /*register*/
-        .register-container {
-            width: 850px;
-            max-width: 90%;
-            min-height: 500px;
-            margin: 80px auto;
-            display: flex;
-            background: #fff;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-        }
-
-        /* Bagian foto */
-        .register-image {
-            width: 40%;
-            overflow: hidden;
-        }
-
-        .register-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        /* Bagian form */
-        .register-form {
-            width: 60%;
-            padding: 40px;
-        }
-
         /*RESPONSIVE */
 
         @media (max-width: 600px) {
@@ -266,9 +240,6 @@
             }
         }
     </style>
-</head>
-
-<body>
 
 
     <!-- Register Card -->
@@ -506,7 +477,4 @@
         }
 
     </script>
-
-</body>
-
-</html>
+    @endsection
