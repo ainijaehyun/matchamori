@@ -8,7 +8,6 @@
 
     /* AREA DASHBOARD */
     .dashboard-page {
-        margin-left: 250px;
         padding: 35px 40px;
         background: #f7f8fb;
         min-height: calc(100vh - 70px);

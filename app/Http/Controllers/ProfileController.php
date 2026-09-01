@@ -9,6 +9,18 @@ use Illuminate\Validation\Rule;
 
 class ProfileController extends Controller
 {
+    //menampilkan form profile
+    public function show()
+    {
+        $user = Auth::user();
+
+        if ($user->role === 'admin') {
+            return view('admin.profile.profile', compact('user'));
+        }
+
+        return view('customers.profile.profile', compact('user'));
+    }
+
     //menampilkan form edit profil (bisa dipakai admin/customer)
     public function edit()
     {

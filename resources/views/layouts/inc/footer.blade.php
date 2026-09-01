@@ -1,6 +1,6 @@
 <style>
     .custom-footer {
-        margin-left: 250px;
+        margin-left: 120px;
         width: calc(100% - 250px);
         background: white;
         text-align: center;

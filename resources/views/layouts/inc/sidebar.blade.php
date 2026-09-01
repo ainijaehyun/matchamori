@@ -1,16 +1,13 @@
 <style>
     .custom-sidebar {
         width: 250px;
+        min-width: 250px;
         min-height: 100vh;
         background: rgb(0, 85, 0);
-        position: fixed;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        z-index: 1000;
+        position: relative;
         padding: 25px 12px;
         box-sizing: border-box;
-        overflow: visible;
+        flex-shrink: 0;
         
     }
 
