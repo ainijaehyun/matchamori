@@ -51,18 +51,20 @@
 
     height: 75px;
 
-    background: #ffffff;
+    background: #b9df9f;
 
     display: flex;
 
     align-items: center;
 
-    justify-content: space-between;
+    justify-content: flex-end;
 
-    padding: 0 30px;
+    padding: 0 25px;
+    margin-left: 250px;
 
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-
+    position: relative;
+    z-index: 900;
 }
 
 

@@ -2,13 +2,15 @@
     .custom-sidebar {
         width: 250px;
         min-height: 100vh;
-        background: #005500;
+        background: rgb(0, 85, 0);
         position: fixed;
         top: 0;
         left: 0;
+        bottom: 0;
         z-index: 1000;
         padding: 25px 12px;
         box-sizing: border-box;
+        overflow: visible;
         
     }
 
@@ -26,6 +28,7 @@
         width: 55px;
         height: 55px;
         object-fit: contain;
+        flex-shrink: 0;
     }
 
     .custom-sidebar-logo span {
@@ -75,12 +78,18 @@
         width: 22px;
         text-align: center;
         font-size: 18px;
+        flex-shrink: 0;
     }
 
     .custom-divider {
         border: 0;
         border-top: 1px solid rgba(255,255,255,0.25);
         margin: 18px 12px;
+    }
+
+    .page-wrapper {
+        position: relative;
+        min-height: 100vh;
     }
 </style>
 

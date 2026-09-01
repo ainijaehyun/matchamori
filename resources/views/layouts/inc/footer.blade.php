@@ -1,7 +1,19 @@
-<footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2026</span>
-                    </div>
-                </div>
-            </footer>
+<style>
+    .custom-footer {
+        margin-left: 250px;
+        width: calc(100% - 250px);
+        background: white;
+        text-align: center;
+        padding: 20px 0;
+        box-sizing: border-box;
+    }
+
+    .custom-footer span {
+        color: #777;
+        font-size: 14px;
+    }
+</style>
+
+<footer class="custom-footer">
+    <span>Copyright &copy; Matcha Mori {{ date('Y') }}</span>
+</footer>
