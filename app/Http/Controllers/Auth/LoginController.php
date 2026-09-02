@@ -26,7 +26,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/customer/dashboard';
 
 
     protected function authenticated(Request $request, $user)

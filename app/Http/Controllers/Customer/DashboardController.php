@@ -21,6 +21,6 @@ class DashboardController extends Controller
         $bestSellers = Product::whereIn('id', $bestSellerIds)->get();
     
 
-        return view('customer.dashboard', compact('categories', 'bestSellers'));
+        return view('customers.dashboard', compact('categories', 'bestSellers'));
     }
 }
