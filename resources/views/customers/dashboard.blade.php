@@ -8,7 +8,7 @@
 
         {{-- foto navbar --}}
         <div class="hero-picture">
-            <img src="{{ asset('img/matcha1.jpg') }}" alt="Matcha Mori">
+            <img src="{{ asset('img/matchanav1.png') }}" alt="Matcha Mori">
         </div>
 
         <div class="hero-text">
