@@ -22,8 +22,8 @@
     }
 
     .custom-sidebar-logo img {
-        width: 55px;
-        height: 55px;
+        width: 60px;
+        height: 60px;
         object-fit: contain;
         flex-shrink: 0;
     }

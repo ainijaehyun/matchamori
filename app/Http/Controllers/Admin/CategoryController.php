@@ -34,7 +34,7 @@ class CategoryController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:128',
-            'dscription' => 'nullable|string',
+            'description' => 'nullable|string',
             'image' => 'required|file|mimes:jpg,jpeg,png|max:2048',
         ]);
 
