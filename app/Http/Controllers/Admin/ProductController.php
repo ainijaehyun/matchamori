@@ -84,7 +84,7 @@ class ProductController extends Controller
             'description' => 'nullable|string',
             'price' => 'required|numeric|min:0',
             'stock' => 'required|integer|min:0',
-            'image' => 'required|file|mimes:jpg,jpeg,png|max:2048',
+            'image' => 'nullable|file|mimes:jpg,jpeg,png|max:2048',
         ]);
 
         $product = Product::findOrFail($id);
