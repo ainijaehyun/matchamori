@@ -3,6 +3,47 @@
 @section('title', 'Profile Admin')
 
 @section('content')
+
+<div class="profile-page">
+    <div class="profile-title">
+        Profile Admin
+    </div>
+
+    <div class="profile-card">
+        <div class="profile-icon">
+            <i class="far fa-user"></i>
+        </div>
+
+        <div class="profile-name">
+            {{ $user->name }}
+        </div>
+
+        <div class="profile-info">
+            {{ $user->email }}
+        </div>
+
+        <div class="profile-info">
+            {{ $user->phone ?? '-' }}
+        </div>
+
+        <div class="profile-info">
+            {{ $user->address ?? '-' }}
+        </div>
+
+        <div class="profile-buttons">
+            <a href="{{ route('admin.dashboard') }}" class="profile-button">
+                Back
+            </a>
+            <a href="{{ route('admin.profile.edit') }}" class="profile-button">
+                Update Profile
+            </a>
+        </div>
+    </div>
+</div>
+
+
+@endsection
+
 <style>
     .profile-page {
         padding: 35px 40px;
@@ -18,7 +59,7 @@
     }
 
     .profile-card {
-        width: 500px;
+        width: 450px;
         background: white;
         border-radius: 30px;
         padding: 40px;
@@ -70,43 +111,3 @@
         text-decoration: none;
     }
 </style>  
-
-<div class="profile-page">
-    <div class="profile-title">
-        Profile Admin
-    </div>
-
-    <div class="profile-card">
-        <div class="profile-icon">
-            <i class="far fa-user"></i>
-        </div>
-
-        <div class="profile-name">
-            {{ $user->name }}
-        </div>
-
-        <div class="profile-info">
-            {{ $user->email }}
-        </div>
-
-        <div class="profile-info">
-            {{ $user->phone ?? '-' }}
-        </div>
-
-        <div class="profile-info">
-            {{ $user->address ?? '-' }}
-        </div>
-
-        <div class="profile-buttons">
-            <a href="{{ route('admin.dashboard') }}" class="profile-button">
-                Back
-            </a>
-            <a href="{{ route('admin.profile.edit') }}" class="profile-button">
-                Update Profile
-            </a>
-        </div>
-    </div>
-</div>
-
-
-@endsection
