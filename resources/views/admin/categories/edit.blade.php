@@ -6,7 +6,6 @@
 
 <div class="category-edit-page">
     <div class="category-edit-card">
-
         <h1 class="category-edit-title">Edit Category</h1>
 
         <form action="{{ route('admin.categories.update', $category->id) }}" method="POST" enctype="multipart/form-data">
@@ -116,12 +115,14 @@
 
 <style>
     .category-edit-page {
-        padding: 15px 25px;
+        padding: 10px 20px;
         background: #f7f8fb;
         min-height: calc(100vh - 70px);
         box-sizing: border-box;
     }
     .category-edit-card {
+        width: 50%;
+        max-width: 800px;
         background: #ffffff;
         border-radius: 14px;
         padding: 20px 30px 35px;

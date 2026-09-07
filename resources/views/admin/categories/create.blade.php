@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
-@section('title', 'Add Category')
+@section('title', 'Create Category')
 
 @section('content')
 <div class="category-create-page">
     <div class="category-create-card">
-        <h1 class="category-create-title">Add Category</h1>
+        <h1 class="category-create-title">Create Category</h1>
         <form action="{{ route('admin.categories.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
@@ -15,7 +15,6 @@
 
             <div class="input-wrapper">
                 <i class="fas fa-th-large"></i>
-
                 <input type="text" id="name" name="name" value="{{ old('name') }}" placeholder="Enter category name">
 
                 @error('name')
@@ -85,12 +84,14 @@
 
 <style>
     .category-create-page {
-        padding: 15px 25px;
+        padding: 10px 20px;
         background: #f7f8fb;
         min-height: calc(100vh - 70px);
         box-sizing: border-box;
     }
     .category-create-card {
+        width: 50%;
+        max-width: 800px;
         background: #ffffff;
         border-radius: 14px;
         padding: 20px 30px 35px;

@@ -4,7 +4,7 @@
 
 @section('content')
 
-<div class="container py-4">
+<div class="category-page">
     <div class="category-header">
         <div class="category-title">
             Category Page
@@ -16,9 +16,8 @@
         @endif
 
         <a href="{{ route('admin.categories.create') }}" class="add-category">
-            <i class="fas fa-plus">
-                Add Category
-            </i>
+            <i class="fas fa-plus"></i>
+            Add Category
         </a>
     </div>
     
@@ -142,13 +141,17 @@
     }
     .category-table-wrapper {
         background: white;
-        border-radius: 20px;
+        border-radius: 0;
         overflow: hidden;
         box-shadow: 0 3px 8px rgba(0,0,0,0.10);
     }
     .category-table {
         width: 100%;
         border-collapse: collapse;
+    }
+    .category-table th,
+    .category-table td {
+        border: 1px solid #275a2f;
     }
     .category-table th {
         background: #b9df9f;
@@ -160,7 +163,6 @@
     .category-table td {
         padding: 13px 15px;
         text-align: center;
-        border-top: 1px solid #ddd;
         font-size: 15px;
         color: #111;
     }

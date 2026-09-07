@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
-@section('title', 'Add Product')
+@section('title', 'Create Product')
 
 @section('content')
 
 <div class="product-create-page">
     <div class="product-create-card">
-        <h1 class="product-create-title">Add Product</h1>
+        <h1 class="product-create-title">Create Product</h1>
         <form action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
@@ -127,6 +127,8 @@
     });
 </script>
 @endsection
+
+
 <style>
     .product-create-page {
         padding: 10px 20px;

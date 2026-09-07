@@ -5,12 +5,9 @@
 @section('content')
 
 <div class="category-show-page">
-
     <h1 class="category-show-title">Category Detail</h1>
-
     <div class="category-detail-card">
-
-        {{-- Category Name --}}
+    
         <div class="detail-row">
             <div class="detail-label">
                 Category Name
@@ -22,7 +19,6 @@
         </div>
 
 
-        {{-- Description --}}
         <div class="detail-row description-row">
             <div class="detail-label">
                 Description
@@ -34,7 +30,7 @@
         </div>
 
 
-        {{-- Image --}}
+    
         <div class="detail-row image-row">
             <div class="detail-label">
                 Image
@@ -50,7 +46,6 @@
         </div>
 
 
-        {{-- Created At --}}
         <div class="detail-row date-row">
             <div class="detail-label">
                 Create at
@@ -61,8 +56,6 @@
             </div>
         </div>
 
-
-        {{-- Updated At --}}
         <div class="detail-row">
             <div class="detail-label">
                 Update at
@@ -76,7 +69,7 @@
     </div>
 
 
-    {{-- Back Button --}}
+
     <div class="form-buttons">
         <a href="{{ route('admin.categories.index') }}" class="btn-back">
             Back

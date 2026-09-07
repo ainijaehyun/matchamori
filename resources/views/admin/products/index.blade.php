@@ -130,7 +130,7 @@
     }
     .product-table-wrapper {
         background: white;
-        border-radius: 20px;
+        border-radius: 0;
         overflow-x: auto;
         overflow-y: hidden;
         box-shadow: 0 3px 8px rgba(0,0,0,0.10);
