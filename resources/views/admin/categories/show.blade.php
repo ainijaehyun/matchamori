@@ -38,7 +38,7 @@
 
             <div class="detail-value">
                 @if($category->image)
-                    <img src="{{ asset('storage/' . $category->image) }}" alt="{{ $category->name }}" class="category-detail-image">
+                    <img src="{{ asset('img/' . $category->image) }}" alt="{{ $category->name }}" class="category-detail-image">
                 @else
                     <span>-</span>
                 @endif

@@ -52,7 +52,7 @@
                     <td>{{ $product->id }}</td>
                     <td>
                         @if($product->image)
-                            <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="product-image">
+                            <img src="{{ asset('img/' . $product->image) }}" alt="{{ $product->name }}" class="product-image">
                         @else
                             -
                         @endif
@@ -236,6 +236,24 @@
     .pagination-area {
         padding: 18px;
         display: flex;
+        justify-content: center;
+    }
+    .pagination-area svg {
+        width: 20px !important;
+        height: 20px !important;
+        max-width: 20px !important;
+        max-height: 20px !important;
+    }
+
+    /* Rapikan tombol pagination */
+    .pagination-area nav {
+        width: 100%;
+    }
+
+    .pagination-area nav a,
+    .pagination-area nav span {
+        display: inline-flex;
+        align-items: center;
         justify-content: center;
     }
 

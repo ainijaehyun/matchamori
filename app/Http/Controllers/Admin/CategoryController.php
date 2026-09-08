@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -38,8 +38,13 @@ class CategoryController extends Controller
             'image' => 'required|file|mimes:jpg,jpeg,png|max:2048',
         ]);
 
-        $validated['image'] =  $request->file('image')->store('categories', 'public');
-        
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $filename = Str::uuid() . '.' . $image->getClientOriginalExtension();
+
+            $image->move(public_path('img/categories'), $filename);
+            $validated['image'] = 'categories/' . $filename;
+        }
 
         Category::create($validated);
 
@@ -78,7 +83,12 @@ class CategoryController extends Controller
         $category = Category::findOrFail($id);
 
         if ($request->hasFile('image')) {
-            $validated['image'] =  $request->file('image')->store('categories', 'public');
+            $image = $request->file('image');
+            $filename = Str::uuid() . '.' . $image->getClientOriginalExtension();
+
+            $image->move(public_path('img/categories'), $filename);
+
+            $validated['image'] = 'categories/' . $filename;
         }
 
         $category->update($validated);

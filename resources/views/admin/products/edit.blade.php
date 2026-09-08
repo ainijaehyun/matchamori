@@ -107,7 +107,7 @@
                 <label for="image">Image</label>
                 <label for="image" class="image-upload-box" id="image-preview">
                     @if($product->image)
-                        <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}">
+                        <img src="{{ asset('img/' . $product->image) }}" alt="{{ $product->name }}">
                     @else
                         <i class="fas fa-plus"></i>
                         <span>Choose Image</span>

@@ -55,7 +55,7 @@
                 <label for="image" class="image-upload-box" id="image-preview">
 
                     @if($category->image)
-                        <img src="{{ asset('storage/' . $category->image) }}" alt="{{ $category->name }}">
+                        <img src="{{ asset('img/' . $category->image) }}" alt="{{ $category->name }}">
                     @else
                         <i class="fas fa-plus"></i>
                         <span>Choose Image</span>

@@ -37,7 +37,7 @@
             <div class="detail-label">Image</div>
             <div class="detail-value">
                 @if($product->image)
-                    <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="product-detail-image">
+                    <img src="{{ asset('img/' . $product->image) }}" alt="{{ $product->name }}" class="product-detail-image">
                 @else
                     <span>-</span>
                 @endif

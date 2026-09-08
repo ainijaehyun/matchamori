@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 
 class ProductController extends Controller
@@ -15,7 +16,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::with('category')->latest()->paginate(10);
+        $products = Product::with('category')->orderBy('id', 'asc')->paginate(10);
 
         return view('admin.products.index', compact('products'));
     }
@@ -43,9 +44,14 @@ class ProductController extends Controller
             'stock' => 'required|integer|min:0',
             'image' => 'required|file|mimes:jpg,jpeg,png|max:2048',
         ]);
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
 
-        
-        $validated['image'] = $request->file('image')->store('products','public');
+            $filename = Str::uuid() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('img/products'), $filename);
+            $validated['image'] = 'products/' . $filename;
+        }
+
         
         Product::create($validated);
 
@@ -90,7 +96,12 @@ class ProductController extends Controller
         $product = Product::findOrFail($id);
 
         if ($request->hasFile('image')) {
-            $validated['image'] = $request->file('image')->store('products', 'public');
+            $image = $request->file('image');
+
+            $filename = Str::uuid() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('img/products'), $filename);
+
+            $validated['image'] = 'products/' . $filename;
         }
 
         $product->update($validated);
