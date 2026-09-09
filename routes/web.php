@@ -63,6 +63,7 @@ Route::group([
     Route::get('/profile/edit', [App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
     
+    Route::get('/categories', [App\Http\Controllers\Customer\CategoryController::class, 'index'])->name('categories.index');
     Route::get('/products', [App\Http\Controllers\Customer\ProductController::class, 'index'])->name('products.index');
     Route::get('/products/{id}', [App\Http\Controllers\Customer\ProductController::class, 'show'])->name('products.show');
 

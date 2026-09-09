@@ -28,7 +28,7 @@
                     Home
                 </a>
 
-                <a href="#categories">
+                <a href="{{ route('customer.categories.index') }}" class="{{ request()->routeIs('customer.categories.index') ? 'active' : '' }}">
                     Category
                 </a>
 
@@ -280,7 +280,6 @@
         font-size: 20px;
         font-weight: bold;
     }
-
     /* CATEGORY GRID */
     .category-grid {
         display: grid;
@@ -298,28 +297,44 @@
         padding: 12px;
         background: #b8dfa5;
         border-radius: 12px;
-        box-shadow:
-            0 3px 6px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
         overflow: hidden;
         transition: 0.2s ease;
+        text-decoration: none;
+        color: #111;
     }
 
     .category-card:hover {
         transform: translateY(-3px);
-        box-shadow:
-            0 5px 10px rgba(0, 0, 0, 0.18);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.18);
+        text-decoration: none;
+        color: #111;
     }
 
-    /* CATEGORY ICON */
-    .category-icon {
+    /* FOTO CATEGORY */
+    .category-image {
         width: 70px;
         height: 70px;
         flex-shrink: 0;
+        border-radius: 10px;
+        overflow: hidden;
+        background: #e5ffcf;
+    }
+
+    .category-image img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+    }
+
+    /* FALLBACK */
+    .category-image i {
+        width: 100%;
+        height: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
-        background: #e5ffcf;
-        border-radius: 10px;
         font-size: 30px;
         color: #315b25;
     }
@@ -329,7 +344,6 @@
         font-size: 17px;
         font-weight: 500;
     }
-
     /* BEST SELLER */
     .product-grid {
         display: grid;
@@ -484,6 +498,8 @@
         text-align: center;
         color: #527b5b;
     }
+
+    
 
     /* RESPONSIVE */
     @media (max-width: 1100px) {

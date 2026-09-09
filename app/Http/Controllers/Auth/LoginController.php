@@ -35,7 +35,12 @@ class LoginController extends Controller
             return redirect()->route('admin.dashboard');
         }
 
-        return redirect()->route('customer.dashboard');
+        if ($user->role === 'customer') {
+            return redirect()->route('customer.dashboard');
+        }
+
+        return redirect('/');
+        
     }
     /**
      * Create a new controller instance.

@@ -8,7 +8,7 @@
 
         {{-- foto navbar --}}
         <div class="hero-picture">
-            <img src="{{ asset('img/matchanav1.png') }}" alt="Matcha Mori">
+            <img src="{{ asset('img/matchaaaaaaa.png') }}" alt="Matcha Mori">
         </div>
 
         <div class="hero-text">
@@ -33,65 +33,35 @@
 
 
     {{-- caetegory --}}
+<section class="customer-section" id="categories">
 
-    <section class="customer-section" id="categories">
+    <h2 class="customer-section-title">Shop by Category</h2>
 
-        <h2 class="customer-section-title">
-            Shop by Category
-        </h2>
+    <div class="category-grid">
 
-        <div class="category-grid">
+        @foreach($categories as $category)
 
-            <div class="category-card">
+            <a href="{{ route('customer.products.index', ['category_id' => $category->id]) }}"
+               class="category-card">
 
-                <div class="category-icon">
-                    <i class="fas fa-glass-martini-alt"></i>
+                <div class="category-image">
+                    @if($category->image)
+                        <img
+                            src="{{ asset('img/' . $category->image) }}"
+                            alt="{{ $category->name }}"
+                        >
+                    @else
+                        <i class="fas fa-leaf"></i>
+                    @endif
                 </div>
 
                 <div class="category-name">
-                    Matcha Drink
+                    {{ $category->name }}
                 </div>
 
-            </div>
+            </a>
 
-
-            <div class="category-card">
-
-                <div class="category-icon">
-                    <i class="fas fa-layer-group"></i>
-                </div>
-
-                <div class="category-name">
-                    Matcha Dessert
-                </div>
-
-            </div>
-
-
-            <div class="category-card">
-
-                <div class="category-icon">
-                    <i class="fas fa-prescription-bottle"></i>
-                </div>
-
-                <div class="category-name">
-                    Matcha Powder
-                </div>
-
-            </div>
-
-
-            <div class="category-card">
-
-                <div class="category-icon">
-                    <i class="fas fa-briefcase"></i>
-                </div>
-
-                <div class="category-name">
-                    Accessories
-                </div>
-
-            </div>
+        @endforeach
 
         </div>
 
