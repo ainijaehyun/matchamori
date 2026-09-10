@@ -32,7 +32,7 @@
                     Category
                 </a>
 
-                <a href="{{ route('customer.products.index') }}">
+                <a href="{{ route('customer.products.index') }}" class="{{ request()->routeIs('customer.products.index') ? 'active' : '' }}">
                     Product
                 </a>
 

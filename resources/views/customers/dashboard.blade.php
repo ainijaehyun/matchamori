@@ -87,7 +87,7 @@
                         @if($product->image)
 
                             <img
-                                src="{{ asset('storage/' . $product->image) }}"
+                                src="{{ asset('img/' . $product->image) }}"
                                 alt="{{ $product->name }}">
 
                         @else
