@@ -129,22 +129,26 @@
     .category-image-box {
         width: 160px;
         height: 135px;
-        background: #b6dda4;
         border-radius: 13px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        background: #b6dda4;
         margin-bottom: 13px;
         overflow: hidden;
         box-shadow:
             0 3px 5px rgba(0, 0, 0, .15);
     }
     .category-image {
-        width: 100%;
-        height: 100%;
-        display: block;
-        object-fit: cover;
+        width: 160px !important;
+        height: 135px !important;
+
+        display: block !important;
+
+        object-fit: cover !important;
+        object-position: center !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
     }
+    
     .category-fallback-icon {
         font-size: 65px;
         color: #000;

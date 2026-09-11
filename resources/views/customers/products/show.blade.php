@@ -94,19 +94,24 @@
                 {{ $product->description }}
             </div>
 
+            <div class="product-detail-buttons">
 
-            <form action="{{ route('customer.cart.store') }}" method="POST">
+                <a href="{{ url()->previous() }}" class="back-button">
+                    Back
+                </a>
+                <form action="{{ route('customer.cart.store') }}" method="POST">
 
-                @csrf
+                    @csrf
 
-                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                    <input type="hidden" name="product_id" value="{{ $product->id }}">
 
-                <input type="hidden" name="quantity" id="cart-quantity" value="1">
+                    <input type="hidden" name="quantity" id="cart-quantity" value="1">
 
-                <button type="submit" class="add-cart-button">
-                    Add to Cart
-                </button>
-            </form>
+                    <button type="submit" class="add-cart-button">
+                        Add to Cart
+                    </button>
+                </form>
+            </div>
         </div>
     </div>
 </div>
@@ -154,8 +159,8 @@
     flex-shrink: 0;
 }
 .product-detail-image {
-    width: 250px;
-    height: 400px;
+    width: 246px;
+    height: 370px;
     background: #b8dfa5;
     border-radius: 20px;
     overflow: hidden;
@@ -165,8 +170,9 @@
     box-shadow: 2px 4px 7px rgba(0, 0, 0, .20);
 }
 .product-detail-image img {
-    width: 100%;
-    height: 100%;
+    width: 92%;
+    height: 92%;
+    border-radius: 20px;
     display: block;
     object-fit: cover;
     object-position: center;
@@ -243,22 +249,78 @@
     font-size: 16px;
     line-height: 1.35;
 }
-.add-cart-button {
-    width: 230px;
+/* ========================================
+   BUTTONS
+======================================== */
+
+.product-detail-buttons {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+
+/* BACK */
+
+.back-button {
+    width: 90px;
     height: 46px;
-    border: none;
-    border-radius: 5px;
-    background: #008000;
-    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #087f23;
+    border-radius: 6px;
+
+    background: white;
+    color: #087f23;
+
     font-family: Georgia, serif;
     font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, .18);
+
+    text-decoration: none;
+
+    box-sizing: border-box;
+
     transition: .2s ease;
 }
+
+.back-button:hover {
+    background: #edf8e7;
+    color: #087f23;
+    text-decoration: none;
+}
+
+
+/* ADD TO CART */
+
+.product-detail-buttons form {
+    margin: 0;
+}
+
+.add-cart-button {
+    width: 190px;
+    height: 46px;
+
+    border: none;
+    border-radius: 6px;
+
+    background: #087f23;
+    color: white;
+
+    font-family: Georgia, serif;
+    font-size: 16px;
+
+    cursor: pointer;
+
+    box-shadow: 0 3px 6px rgba(0, 0, 0, .18);
+
+    transition: .2s ease;
+}
+
 .add-cart-button:hover {
-    background: #006b00;
+    background: #06691d;
     transform: translateY(-2px);
 }
 

@@ -33,10 +33,15 @@
 
 
     {{-- caetegory --}}
-<section class="customer-section" id="categories">
+<section class="customer-section" >
 
-    <h2 class="customer-section-title">Shop by Category</h2>
+    <div class="customer-section-heading">
 
+        <h2 class="customer-section-title">Shop by Category</h2>
+
+        <a href="{{ route('customer.categories.index') }}" class="see-all-link">See All</a>
+    </div>
+    
     <div class="category-grid">
 
         @foreach($categories as $category)
@@ -46,10 +51,7 @@
 
                 <div class="category-image">
                     @if($category->image)
-                        <img
-                            src="{{ asset('img/' . $category->image) }}"
-                            alt="{{ $category->name }}"
-                        >
+                        <img src="{{ asset('img/' . $category->image) }}" alt="{{ $category->name }}">
                     @else
                         <i class="fas fa-leaf"></i>
                     @endif

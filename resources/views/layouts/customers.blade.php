@@ -19,7 +19,7 @@
         <nav class="customer-navbar">
             {{--logo--}}
             <div class="customer-logo">
-                <img src="{{ asset('img/leaf1.png') }}"alt="Matcha Mori">
+                <img src="{{ asset('img/leaf.png') }}"alt="Matcha Mori">
                 <span>Matcha Mori</span>
             </div>
             {{-- navigasi --}}
@@ -138,30 +138,38 @@
 
     /* NAVBAR */
     .customer-navbar {
-        width: 100%;
-        height: 75px;
+        width: calc(100% + 48px);
+        height: 82px;
         display: flex;
         align-items: center;
-        padding: 0 18px;
-        background: #e5ffcf;
+        margin-left: -24px;
+        padding: 0 46px;
+        background: #d1f7ba;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);   
+        margin-bottom: 25px;
     }
 
     /* LOGO */
     .customer-logo {
         display: flex;
         align-items: center;
-        gap: 8px;
+        gap: 2px;
         margin-right: auto;
     }
 
     .customer-logo img {
-        width: 42px;
-        height: 42px;
+        width: 65px;
+        height: 65px;
         object-fit: contain;
     }
 
     .customer-logo span {
+        font-family: 'Cormorant Garamond', serif;
         font-size: 25px;
+        font-weight: 600;
+        transform: translateY(6px);
+        color: #2b500a;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
     }
 
     /* NAVIGATION */
@@ -244,16 +252,17 @@
         top: 50%;
         left: 55px;
         transform: translateY(-50%);
-        width: 43%;
+        width: 70%;
         z-index: 3;
-        color: white;
+        color: #e1ffc6;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
     }
 
     /* GREETING */
     .hero-greeting {
-        font-size: 18px;
+        font-size: 25px;
         line-height: 1.4;
-        margin-bottom: 14px;
+        margin-bottom: 20px;
     }
 
     /* TITLE */
@@ -280,6 +289,35 @@
         font-size: 20px;
         font-weight: bold;
     }
+
+    /* SECTION HEADING */
+    .customer-section-heading {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 25px;
+    }
+
+    .customer-section-heading .customer-section-title {
+        margin: 0;
+    }
+
+    /* SEE ALL */
+
+    .see-all-link {
+        width: 78px;
+        color: #008000;
+        font-family: Georgia, serif;
+        font-size: 20px;
+        text-decoration: none;
+    }
+
+    .see-all-link:hover {
+        color: #006b00;
+        text-decoration: underline;
+    }
+    
     /* CATEGORY GRID */
     .category-grid {
         display: grid;
@@ -290,11 +328,12 @@
 
     /* CATEGORY CARD */
     .category-card {
-        min-height: 100px;
+        width: 290px;
+        height: 90px;
         display: flex;
         align-items: center;
-        gap: 18px;
-        padding: 12px;
+        gap: 14px;
+        padding: 10px;
         background: #b8dfa5;
         border-radius: 12px;
         box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
@@ -313,8 +352,8 @@
 
     /* FOTO CATEGORY */
     .category-image {
-        width: 70px;
-        height: 70px;
+        width: 120px;
+        height: 75px;
         flex-shrink: 0;
         border-radius: 10px;
         overflow: hidden;
@@ -341,9 +380,10 @@
 
     /* CATEGORY NAME */
     .category-name {
-        font-size: 17px;
+        font-size: 15px;
         font-weight: 500;
     }
+    
     /* BEST SELLER */
     .product-grid {
         display: grid;

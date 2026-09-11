@@ -134,12 +134,8 @@
                 </a>
             @endif
 
-            @for(
-                $page = 1;
-                $page <= $products->lastPage();
-                $page++
-            )
-
+            @for($page = 1; $page <= $products->lastPage();$page++)
+ 
                 @if($page == $products->currentPage())
 
                     <span class="page-number active">
@@ -148,7 +144,7 @@
 
                 @else
 
-                    <ahref="{{ $products->url($page) }}" class="page-number">
+                    <a href="{{ $products->url($page) }}" class="page-number">
                         {{ $page }}
                     </a>
 
