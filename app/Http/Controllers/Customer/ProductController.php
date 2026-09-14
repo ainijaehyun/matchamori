@@ -13,6 +13,25 @@ class ProductController extends Controller
     {
         $query = Product::with('category');
 
+        // Cari berdasarkan nama, deskripsi, dan kategori
+        if ($request->filled('search')) {
+            $search = $request->search;
+
+            $query->where(function ($q) use ($search) {
+
+                $q->where('name', 'like', '%' . $search . '%')
+                    ->orWhere('description', 'like', '%' . $search . '%')
+                    ->orWhereHas('category', function ($categoryQuery) use ($search) {
+                        $categoryQuery->where(
+                            'name',
+                            'like',
+                            '%' . $search . '%'
+                        );
+                    });
+        
+            });
+        }
+
         // Filter berdasarkan kategori
         if ($request->filled('category_id')) {
             $query->where('category_id', $request->category_id);

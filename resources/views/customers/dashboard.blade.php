@@ -39,7 +39,9 @@
 
         <h2 class="customer-section-title">Shop by Category</h2>
 
-        <a href="{{ route('customer.categories.index') }}" class="see-all-link">See All</a>
+        <a href="{{ route('customer.categories.index') }}" class="see-all-link">
+            See All
+        </a>
     </div>
     
     <div class="category-grid">
@@ -72,25 +74,29 @@
 
     {{-- best seller --}}
 
-    <section class="customer-section">
-
-        <h2 class="customer-section-title">
-            Best Seller
-        </h2>
-
-        <div class="product-grid">
+    <section class="customer-section best-seller-section">
+        <div class="customer-section-heading">
+            <div>
+                <h2 class="customer-section-title">
+                    Best Seller
+                </h2>
+            </div>
+            <p class="best-seller-subtitle">
+                Best Seller at Matcha Mori
+            </p>
+        </div>
+        
+        <div class="best-seller-grid">
 
             @forelse($bestSellers as $product)
 
-                <div class="product-card">
+                <a href="{{ route('customer.products.show', $product->id) }}" class="best-seller-card">
 
-                    <div class="product-image">
+                    <div class="best-seller-image">
 
                         @if($product->image)
 
-                            <img
-                                src="{{ asset('img/' . $product->image) }}"
-                                alt="{{ $product->name }}">
+                            <img src="{{ asset('img/' . $product->image) }}" alt="{{ $product->name }}">
 
                         @else
 
@@ -101,42 +107,40 @@
                     </div>
 
 
-                    <div class="product-info">
+                    <div class="best-seller-info">
 
-                        <div class="product-name">
+                        <h3 class="best-seller-name">
                             {{ $product->name }}
-                        </div>
+                        </h3>
+                        <p class="best-seller-description">
+                            {{ $product->description }}
+                        </p>
 
-                        <div class="product-bottom">
+                        <div class="best-seller-bottom">
+                            <div>
+                                <div class="best-seller-price">
+                                    Rp. {{ number_format($product->price, 0, ',', '.') }}
+                                </div>
 
-                            <div class="product-price">
-                                Rp. {{ number_format($product->price, 0, ',', '.') }}
-                            </div>
-
-                            <div class="product-rating">
-
-                                <i class="fas fa-star"></i>
-
-                                4,9
-
+                                <div class="best-seller-meta">
+                                    <span class="stock">
+                                        Stock {{ $product->stock }}
+                                    </span>
+                                </div>
                             </div>
 
                         </div>
 
                     </div>
 
-                </div>
+                </a>
 
             @empty
-
-                <div style="grid-column: 1 / -1; text-align: center;">
-                    Belum ada produk best seller.
-                </div>
-
+                <p class="empty-best-seller">
+                    Belum ada produk pilihan
+                </p>
             @endforelse
-
         </div>
-
     </section>
 
 @endsection
