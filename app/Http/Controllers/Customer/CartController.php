@@ -5,17 +5,22 @@ namespace App\Http\Controllers\Customer;
 use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\CartDetail;
-Use App\Models\Product;
+use App\Models\Product;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facedes\Auth; 
+use Illuminate\Support\Facades\Auth; 
 
 class CartController extends Controller
 {
     public function index()
     {
-        $cart = Cart::with('cartDetails.product')->where('user_id', Auth::id())->first();
+        $cart = Cart::with([
+            'cartDetails' => function ($query) {
+                $query->latest();
+            },
+            'cartDetails.product'
+        ])->where('user_id', Auth::id())->first();
 
-        return view('customer.cart.index', compact('cart'));
+        return view('customers.cart.index', compact('cart'));
     }
 
     public function store(Request $request)
@@ -29,7 +34,7 @@ class CartController extends Controller
         
         //cari/buat cart milik user sendiri
         $cart = Cart::firstOrCreate(
-            ['user-_id' => Auth::id()],
+            ['user_id' => Auth::id()],
             ['total' => 0]
         );
 
@@ -55,7 +60,7 @@ class CartController extends Controller
          //hitung ulang total cart
         $this->recalculateTotal($cart);
 
-        return redirect()->route('customer.cart.index')->with('success', 'Product successfully added to cart.');
+        return redirect()->back()->with('success', 'Product successfully added to cart.');
 
     }
 
@@ -92,6 +97,7 @@ class CartController extends Controller
 
         $cart = $detail->cart;
         $detail->delete();
+        $this->recalculateTotal($cart);
 
         return redirect()->route('customer.cart.index')->with('success', 'Product Deleted Succesfully from Cart.');
     }
