@@ -192,7 +192,7 @@
     }
     /* form card */
     .update-card {
-        width: 780px;
+        width: 750px;
         max-width: calc(100% - 20px);
         margin: 0 auto;
         padding: 25px 38px 28px;

@@ -252,7 +252,7 @@
                 Simpan foto daun di:
                 public/img/matcha-leaf.png
             -->
-            <img src="{{ asset('img/leaf1.png') }}"
+            <img src="{{ asset('img/leaf.png') }}"
                  alt="Matcha Mori">
 
             <div class="brand-name">

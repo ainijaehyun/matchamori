@@ -80,7 +80,7 @@
     .profile-breadcrumb {
         width: 100%;
         padding: 7px 20px;
-        margin-bottom: 80px;
+        margin-bottom: 30px;
         background: #b8dfa5;
         border-radius: 5px;
         box-shadow: 0 3px 6px rgba(0,0,0,.15);
@@ -126,6 +126,7 @@
         display: grid;
         grid-template-columns: 140px 1fr;
         row-gap: 15px;
+        padding-left: 25px;
         text-align: left;
         font-size: 17px;
     }
