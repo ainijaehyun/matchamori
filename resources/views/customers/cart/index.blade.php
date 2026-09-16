@@ -30,7 +30,7 @@
                 @foreach($cart->cartDetails as $detail)
 
                     <div class="cart-item" data-subtotal="{{ $detail->subtotal }}">
-                        <input type="checkbox" class="cart-check">
+                        <input type="checkbox" class="cart-check" value="{{ $detail->id }}">
 
                         <div class="cart-product-image">
 
@@ -112,10 +112,16 @@
                     </span>
                 </div>
 
-                <a href="{{ route('customer.checkout.index') }}" class="checkout-button">
-                    <i class="fas fa-shopping-bag"></i>
-                    Checkout
-                </a>
+                <form action="{{ route('customer.checkout.index') }}" method="GET" id="checkout-form">
+
+                    <div id="selected-items-container"></div>
+
+                    <button type="submit" class="checkout-button">
+                        <i class="fas fa-shopping-bag"></i>
+                        Checkout
+                    </button>
+
+                </form>
 
             </div>
 
@@ -237,7 +243,43 @@
 
     // Hitung total saat halaman pertama kali dibuka
     calculateSelectedTotal();
+    const checkoutForm = document.getElementById('checkout-form');
 
+    if (checkoutForm) {
+
+        checkoutForm.addEventListener('submit', function (event) {
+
+            const checkedItems = document.querySelectorAll('.cart-check:checked');
+
+            // Jangan lanjut kalau belum memilih produk
+            if (checkedItems.length === 0) {
+                event.preventDefault();
+
+                alert('Please select at least one product to checkout.');
+
+                return;
+            }
+
+            const container = document.getElementById('selected-items-container');
+
+            // Bersihkan input sebelumnya
+            container.innerHTML = '';
+
+            // Masukkan ID produk yang dipilih
+            checkedItems.forEach(function (checkbox) {
+
+                const input = document.createElement('input');
+
+                input.type = 'hidden';
+                input.name = 'selected_items[]';
+                input.value = checkbox.value;
+
+                container.appendChild(input);
+            });
+
+        });
+
+    }
 </script>
 
 @endsection

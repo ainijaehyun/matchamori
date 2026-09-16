@@ -72,7 +72,11 @@ Route::group([
     Route::patch('/cart/{id}', [App\Http\Controllers\Customer\CartController::class, 'update'])->name('cart.update');
     Route::delete('/cart/{id}', [App\Http\Controllers\Customer\CartController::class, 'destroy'])->name('cart.destroy');
 
+    // Checkout - Shipping
     Route::get('/checkout', [App\Http\Controllers\Customer\CheckoutController::class, 'index'])->name('checkout.index');
-    Route::post('/checkout', [App\Http\Controllers\Customer\OrderController::class, 'store'])->name('checkout.store');
+    Route::post('/checkout', [App\Http\Controllers\Customer\CheckoutController::class, 'store'])->name('checkout.store');
+    Route::get('/checkout/payment', [App\Http\Controllers\Customer\CheckoutController::class, 'payment'])->name('checkout.payment');
+    Route::get('/checkout/confirm', [App\Http\Controllers\Customer\CheckoutController::class, 'confirm'])->name('checkout.confirm');
+    Route::post('/checkout/place_order', [App\Http\Controllers\Customer\CheckoutController::class, 'placeOrder'])->name('checkout.placeOrder');
 });
 
