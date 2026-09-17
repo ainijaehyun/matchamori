@@ -57,7 +57,7 @@ class CheckoutController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'shipping' => 'required|string|max:20',
+            'name' => 'required|string|max:20',
             'phone' => 'required|string|max:20',
             'address' => 'required|string',
             'postal_code' => 'required|string|max:20',
@@ -68,6 +68,20 @@ class CheckoutController extends Controller
         //kalau cart kosong
         if (!$cart || $cart->cartDetails->isEmpty()) {
             return redirect()->route('customer.cart.index')->with('error', 'Your Cart is still empty.');
+        }
+
+        //ambil produk yang sebelumnya dipilih
+        $selectedIds = session('checkout.selected_items', []);
+
+        if (empty($selectedIds)) {
+            return redirect()->route('customer.cart.index')->with('error', 'Please select at least one product to checkout.');
+        }
+
+        //ambil hanya produk ynag dipilih
+        $selectedItems = $cart->cartDetails->whereIn('id', $selectedIds)->values();
+
+        if ($selectedItems->isEmpty()) {
+            return redirect()->route('customer.cart.index')->with('error', 'Selected product is not valid.');
         }
 
         //simpan data shipping sementara di session
@@ -93,12 +107,34 @@ class CheckoutController extends Controller
             return redirect()->route('customer.cart.index')->with('error', 'Your Cart is still empty.');
         }
 
+        //ambil produk ynag dipilih
+        $selectedIds = session('checkout.selected_items', []);
+
+        if (empty($selectedIds)) {
+            return redirect()->route('customer.cart.index')->with('error', 'Please select at least one product to checkout.');
+        }
+
         // Kalau belum mengisi shipping
         if (!session()->has('checkout.shipping')) {
             return redirect()->route('customer.checkout.index')->with('error', 'Please complete shipping information first.');
         }
 
-        return view('customers.checkout.payment', compact('cart'));
+        //ambil hanya produk ynag dipilih
+        $selectedItems = $cart->cartDetails->whereIn('id', $selectedIds)->values();
+
+        if ($selectedItems->isEmpty()) {
+            return redirect()->route('customer.cart.index')->with('error', 'Selected product is not valid.');
+        }
+
+        //hitung total produk yang dipilih
+        $checkoutTotal = $selectedItems->sum('subtotal');
+
+
+        return view('customers.checkout.payment', [
+            'cart' => $cart,
+            'selectedItems' => $selectedItems,
+            'checkoutTotal' => $checkoutTotal,
+        ]);
     }
 
     public function confirm()
@@ -110,12 +146,34 @@ class CheckoutController extends Controller
             return redirect()->route('customer.cart.index')->with('error', 'Your Cart is still empty');
         }
 
+        $selectedIds = session('checkout.selected_items', []);
+
+        if (empty($selectedIds)) {
+            return redirect()->route('customer.cart.index')->with('error', 'Please select at least one product to checkout.');
+        }
+
         //kalau shipping belum disis
         if (!session()->has('checkout.shipping')) {
             return redirect()->route('customer.checkout.index')->with('error', 'Please complete shipping information first.');
         }
 
-        return view('customers.checkout.confirm', compact('cart'));
+        //ambil hanya produk ynag dipilih
+        $selectedItems = $cart->cartDetails->whereIn('id', $selectedIds)->values();
+
+        if ($selectedItems->isEmpty()) {
+            return redirect()->route('customer.cart.index')->with('error', 'Selected product is not valid.');
+        }
+
+        //hitung total produk yang dipilih
+        $checkoutTotal = $selectedItems->sum('subtotal');
+
+
+        return view('customers.checkout.confirm', [
+            'cart' => $cart,
+            'selectedItems' => $selectedItems,
+            'checkoutTotal' => $checkoutTotal,
+            'shipping' => $shipping,
+        ]);
     }
 
     public function placeOrder()
@@ -127,15 +185,29 @@ class CheckoutController extends Controller
             return redirect()->route('customer.cart.index')->with('error', 'Your Cart is still empty');
         }
 
+        //ambil produk yang dipilih
+        $selectedIds = session('checkout.selected_items', []);
+
         //ambil data shipping dari session
         $shipping = session('checkout.shipping');
 
-        if (!$shipping) {
+        //ambil shipping
+        if (empty($selectedIds) || !$shipping) {
             return redirect()->route('customer.checkout.index')->with('error', 'Please complete shipping information first.');
         }
 
+        //ambil hanya produk ynag dipilih
+        $selectedItems = $cart->cartDetails->whereIn('id', $selectedIds)->values();
+
+        if ($selectedItems->isEmpty()) {
+            return redirect()->route('customer.cart.index')->with('error', 'Selected product is not valid.');
+        }
+
+        //hitung total
+        $checkoutTotal = $selectedItems->sum('subtotal');
+
         //buat order dalam database transaction
-        $order = DB::transaction(function () use ($cart, $shipping) {
+        $order = DB::transaction(function () use ($cart, $shipping, $selectedItems, $checkoutTotal) {
             $order = Order::create([
                 'user_id' => Auth::id(),
                 'invoice' => 'INV-' . strtoupper(Str::random(10)),
@@ -177,7 +249,10 @@ class CheckoutController extends Controller
         });
 
         //hapus data checkout dari session
-        session()->forget('checkout.shipping');
+        session()->forget([
+            'checkout.shipping',
+            'checkout.selected_items',
+        ]);
 
         //pergi ke halaman confirmation
         return redirect()->route('customer.checkout.confirmation', $order->id)->with('success', 'Checkout successful!');

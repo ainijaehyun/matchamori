@@ -78,5 +78,6 @@ Route::group([
     Route::get('/checkout/payment', [App\Http\Controllers\Customer\CheckoutController::class, 'payment'])->name('checkout.payment');
     Route::get('/checkout/confirm', [App\Http\Controllers\Customer\CheckoutController::class, 'confirm'])->name('checkout.confirm');
     Route::post('/checkout/place_order', [App\Http\Controllers\Customer\CheckoutController::class, 'placeOrder'])->name('checkout.placeOrder');
+    Route::get('/checkout/confirmation/{id}', [App\Http\Controllers\Customer\CheckoutController::class, 'confirmation'])->name('checkout.confirmation');
 });
 
