@@ -157,6 +157,9 @@ class CheckoutController extends Controller
             return redirect()->route('customer.checkout.index')->with('error', 'Please complete shipping information first.');
         }
 
+        //ambil data shipping dari session
+        $shipping = session('checkout.shipping');
+
         //ambil hanya produk ynag dipilih
         $selectedItems = $cart->cartDetails->whereIn('id', $selectedIds)->values();
 
@@ -262,7 +265,7 @@ class CheckoutController extends Controller
     // HALAMAN CONFIRMATION
     public function confirmation($id)
     {
-        $order = Order::with('orderDetails.product')>where('user_id', Auth::id())->findOrFail($id);
+        $order = Order::with('orderDetails.product')->where('user_id', Auth::id())->findOrFail($id);
 
         return view('customers.checkout.confirmation', compact('order'));
     }
