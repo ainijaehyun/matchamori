@@ -79,5 +79,10 @@ Route::group([
     Route::get('/checkout/confirm', [App\Http\Controllers\Customer\CheckoutController::class, 'confirm'])->name('checkout.confirm');
     Route::post('/checkout/place_order', [App\Http\Controllers\Customer\CheckoutController::class, 'placeOrder'])->name('checkout.placeOrder');
     Route::get('/checkout/confirmation/{id}', [App\Http\Controllers\Customer\CheckoutController::class, 'confirmation'])->name('checkout.confirmation');
+
+    // Order
+    Route::get('/orders', [App\Http\Controllers\Customer\OrderController::class, 'index'])->name('orders.index');
+    Route::get('/orders/{id}', [App\Http\Controllers\Customer\OrderController::class, 'show'])->name('orders.show');
+    Route::get('/orders/{id}/status', [App\Http\Controllers\Customer\OrderController::class, 'status'])->name('orders.status');
 });
 

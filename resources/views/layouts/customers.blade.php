@@ -36,7 +36,7 @@
                     Product
                 </a>
 
-                <a href="#orders">
+                <a href="{{ route('customer.orders.index') }}" class="{{ request()->routeIs('customer.orders.index') ? 'active' : '' }}">
                     Order
                 </a>
 
