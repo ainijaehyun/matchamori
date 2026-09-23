@@ -56,6 +56,14 @@
                 </strong>
             </div>
             <div class="detail-row">
+                <span>Status</span>
+                <span>=</span>
+                <a href="{{ route('customer.orders.status', $order->id) }}" class="detail-status">
+                    {{ $order->order_status }}
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+            <div class="detail-row">
                 <span>Create At</span>
                 <span>=</span>
                 <strong>
@@ -68,9 +76,6 @@
     <div class="order-detail-actions">
         <a href="{{ route('customer.orders.index') }}" class="back-order">
             Back
-        </a>
-        <a href="{{ route('customer.orders.status', $order->id) }}" class="status-order">
-            View Status
         </a>
     </div>
 </div>
@@ -189,6 +194,30 @@
         color: #315b25;
         text-decoration: none;
         transform: translateY(-2px);
+    }
+    .detail-status {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        width: fit-content;
+        padding: 6px 12px;
+        border: 1px solid #b7d6a8;
+        border-radius: 5px;
+        background: #eef7e8;
+        color: #315b25;
+        font-size: 16px;
+        text-decoration: none;
+        transition: .2s ease;
+    }
+    .detail-status i {
+        font-size: 12px;
+    }
+    .detail-status:hover {
+        background: #d8ebcc;
+        border-color: #8fbc7d;
+        color: #315b25;
+        text-decoration: none;
+        transform: translateX(2px);
     }
 
     @media (max-width: 700px) {

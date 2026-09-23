@@ -44,14 +44,16 @@
                                 COD
                             </td>
                             <td>
-                                <span class="order-status
-                                    {{ strtolower(str_replace(' ', '-', $order->order_status)) }}">
-                                    {{ $order->order_status }}
-                                </span>
+                                <a href="{{ route('customer.orders.status', $order->id) }}" class="order-status-link">
+                                    <span class="order-status
+                                        {{ strtolower(str_replace(' ', '-', $order->order_status)) }}">
+                                        {{ $order->order_status }}
+                                    </span>
+                                </a>
                             </td>
                             <td>
                                 <div class="order-actions">
-                                    <a href="{{ route('customer.orders.show', $order->id) }}" class="order-action" title="View Order Detail">
+                                    <a href="{{ route('customer.orders.show', $order->id) }}" class="order-action" title="Show">
                                         <i class="fas fa-eye"></i>
                                     </a>
                                 </div>
@@ -149,12 +151,26 @@
     .orders-table th:nth-child(6) {
         width: 18%;
     }
+    .order-status-link {
+        display: inline-block;
+        text-decoration: none;
+        color: inherit;
+    }
     .order-status {
         display: inline-block;
         padding: 6px 12px;
         border: 1px solid #b7d6a8;
         background: #eef7e8;
+        color: #315b25;
         font-size: 16px;
+        transition: .2s ease;
+        cursor: pointer;
+    }
+    .order-status-link:hover .order-status {
+        background: #d8ebcc;
+        border-color: #8fbc7d;
+        color: #315b25;
+        transform: translateY(-1px);
     }
     .order-status.processing {
         border-color: #00a000;
