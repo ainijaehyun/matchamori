@@ -21,16 +21,35 @@ class OrderController extends Controller
 
         return view('admin.orders.show', compact('order'));
     }
+    
+    //menampilkan halaman update order status
+    public function status(string $id)
+    {
+        $order = Order::with('user')->findOrFail($id);
+
+        return view('admin.orders.status', compact('order'));
+    }
+
+
     //update status pesanan
     public function update(Request $request, string $id)
     {
         $validated = $request->validate([
-            'order_status' => 'required|in:order placed, processing, on delivery, delivered'
+            'order_status' => 'required|in:Order Placed,Processing,On Delivery,Delivered',
         ]);
 
         $order = Order::findOrFail($id);
-        $order->update($validated);
 
-        return redirect()->route('admin.orders.show', $order->id)->with('success', 'order status updated successfully.');
+        $order->order_status = $validated['order_status'];
+
+        if ($validated['order_status'] === 'Delivered') {
+            $order->payment_status = 'Paid';
+        } else {
+            $order->payment_status = 'Unpaid';
+        }
+        
+        $order->save();
+
+        return redirect()->route('admin.orders.index')->with('success', 'order status updated successfully.');
     }
 }
