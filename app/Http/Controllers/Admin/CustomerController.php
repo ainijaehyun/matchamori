@@ -23,4 +23,14 @@ class CustomerController extends Controller
 
         return view('admin.customers.show', compact('customer'));
     }
+
+    //menghapus customer
+    public function destroy(string $id)
+    {
+        $customer = User::where('role', 'customer')->findOrFail($id);
+
+        $customer->delete();
+
+        return redirect()->route('admin.customers.index')->with('success', 'Customer deleted successfully.');
+    }
 }
