@@ -219,13 +219,13 @@ class CheckoutController extends Controller
                     ", Phone: " . $shipping['phone'] . 
                     ", Address: " . $shipping['address'],
                 'postal_code' => $shipping['postal_code'],
-                'total' => $cart->total,
-                'payment_status' => 'unpaid',
+                'total' => $checkoutTotal,
+                'payment_status' => 'Unpaid',
                 'order_status' => 'Order Placed',
             ]);
 
             //pindahkan cart detail ke order detail
-            foreach ($cart->cartDetails as $item) {
+            foreach ($selectedItems as $item) {
                 
                 OrderDetail::create([
                     'order_id' => $order->id,
@@ -240,12 +240,14 @@ class CheckoutController extends Controller
                     'stock',
                     $item->quantity
                 );
+
+                //hpaus hanya item yang sudah dibeli
+                $item->delete();
             }
 
-            //kosongkan cart
-            $cart->cartDetails()->delete();
+            //hitung ulang total cart
             $cart->update([
-                'total' => 0,
+                'total' => $cart->cartDetails()->sum('subtotal'),
             ]);
 
             return $order;
@@ -270,43 +272,4 @@ class CheckoutController extends Controller
         return view('customers.checkout.confirmation', compact('order'));
     }
 
-        // // Gunakan Database Transaction: semua proses di bawah ini
-        // // dianggap SATU kesatuan. Kalau ada yang gagal di tengah jalan,
-        // // SEMUA perubahan dibatalkan (rollback), tidak ada data setengah jadi.
-        // $order = DB::transaction(function () use ($cart, $validated) {
-        //     //buat order baru
-        //     $order = Order::create([
-        //         'user_id' => Auth::id(),
-        //         'invoice' => 'INV-' . strtoupper(Str::random(10)),
-        //         'shipping' => $validated['shipping'],
-        //         'postal_code' => $validated['postal_code'],
-        //         'total' => $cart->total,
-        //         'payment_status' => 'unpaid',
-        //         'order_status' => 'order placed',
-        //     ]);
-
-        //     //pindahkan setiap CartDetail menjadi Order Detail
-        //     foreach ($cart->cartDetails as $item) {
-        //         OrderDetail::create([
-        //             'order_id' => $order->id,
-        //             'product_id' => $item->product_id,
-        //             'quantity' => $item->quantity,
-        //             'price' => $item->price,
-        //             'subtotal' => $item->subtotal,
-        //         ]);
-            
-
-        //         //kurangi stok produk sesuai quantity yang dibeli
-        //         $item->product->decrement('stock', $item->quantity);
-        //     }
-
-        //     //kosongkan cart(hapus semua cart_details)
-        //     $cart->cartDetails()->delete();
-        //     $cart->update(['total' => 0]);
-
-        //     return $order;
-        // });
-
-        // return redirect()->route('customer.orders.show', $order->id)->with('success', 'Checkout successful! Your order is being processed.');
-    
 }

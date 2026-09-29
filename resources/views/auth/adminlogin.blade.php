@@ -210,7 +210,7 @@
     <div class="login-container admin-login-container">
         <!--Logo-->
         <div class="login-brand">
-            <img src="{{ asset('img/leaf1.png') }}" alt="Matcha Mori">
+            <img src="{{ asset('img/leaf.png') }}" alt="Matcha Mori">
             <span>Matcha Mori</span>
         </div>
 
