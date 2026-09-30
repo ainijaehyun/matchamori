@@ -29,10 +29,11 @@
     }
 
     .custom-sidebar-logo span {
-        color: white;
-        font-size: 25px;
-        font-weight: bold;
-        white-space: nowrap;
+        color: #ffffff;
+        font-family: Georgia, 'Times New Roman', serif;
+        font-size: 20px;
+        font-weight: normal;
+        transform: translateY(6px);
     }
 
     /* MENU */
@@ -96,7 +97,7 @@
     {{-- LOGO --}}
     <div class="custom-sidebar-logo">
         <img src="{{ asset('img/leaf.png') }}" alt="Matcha Mori">
-        <span>Matcha Mori</span>
+        <span>MATCHA MORI</span>
     </div>
 
 

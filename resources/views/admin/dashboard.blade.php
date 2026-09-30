@@ -221,7 +221,7 @@
         box-sizing: border-box;
     }
     .dashboard-title {
-        font-family: Georgia, serif;
+        font-family: Georgia,'Times New Roman' serif;
         font-size: 34px;
         margin-bottom: 25px;
         color: #111;

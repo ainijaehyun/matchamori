@@ -20,7 +20,7 @@
             {{--logo--}}
             <div class="customer-logo">
                 <img src="{{ asset('img/leaf.png') }}"alt="Matcha Mori">
-                <span>Matcha Mori</span>
+                <span>MATCHA MORI</span>
             </div>
             {{-- navigasi --}}
             <div class="customer-nav">
@@ -133,7 +133,7 @@
         min-height: 100%;
         overflow-x: hidden;
         background: #e5ffcf;
-        font-family: Georgia, serif;
+        font-family: Georgia, 'Times New Roman' serif;
         color: #111;
     }
 
@@ -172,7 +172,7 @@
     .customer-logo {
         display: flex;
         align-items: center;
-        gap: 2px;
+        gap: 10px;
         margin-right: auto;
     }
 
@@ -180,12 +180,13 @@
         width: 65px;
         height: 65px;
         object-fit: contain;
+        display: block;
     }
 
     .customer-logo span {
-        font-family: 'Cormorant Garamond', serif;
+        font-family: Georgia, 'Times New Roman', serif;
         font-size: 25px;
-        font-weight: 600;
+        font-weight: normal;
         transform: translateY(6px);
         color: #2b500a;
         text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
