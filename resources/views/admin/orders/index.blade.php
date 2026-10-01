@@ -104,143 +104,141 @@
 @endsection
 
 @push('styles')
+    <style>
 
-<style>
-
-    .order-page {
-        padding: 35px 40px;
-        background: #f7f8fb;
-        min-height: calc(100vh - 70px);
-        box-sizing: border-box;
-    }
-    .order-title {
-        font-family: Georgia, serif;
-        font-size: 34px;
-        margin-bottom: 25px;
-        color: #111;
-    }
-    .order-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 18px;
-    }
-    .order-table-wrapper {
-        background: white;
-        border-radius: 0;
-        overflow: hidden;
-        box-shadow: 0 3px 8px rgba(0,0,0,0.10);
-    }
-    .order-table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-    .order-table th,
-    .order-table td {
-        border: 1px solid #275a2f;
-    }
-    .order-table th {
-        background: #b9df9f;
-        padding: 15px;
-        text-align: center;
-        font-size: 16px;
-        color: #111;
-    }
-    .order-table td {
-        padding: 13px 15px;
-        text-align: center;
-        font-size: 15px;
-        color: #111;
-    }
-    .order-table tr:hover {
-        background: #f5f5f5;
-
-    }
-    .order-status {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 7px;
-        padding: 7px 12px;
-        background: #eef7e8;
-        border: 1px solid #8fbc7d;
-        border-radius: 6px;
-        color: #315b25;
-        font-size: 14px;
-        text-decoration: none;
-        transition: .2s ease;
-    }
-    .order-status:hover {
-        background: #d8ebcc;
-        border-color: #6fa45d;
-        color: #315b25;
-        text-decoration: none;
-        transform: translateY(-1px);
-    }
-    .order-status i {
-        font-size: 11px;
-    }
-    .action-buttons {
-        display: flex;
-        justify-content: center;
-        gap: 8px;
-    }
-    .btn-show {
-        width: 36px;
-        height: 36px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 6px;
-        background: #008000;
-        color: white;
-        text-decoration: none;
-    }
-    .btn-show:hover {
-        background: #006b00;
-        color: white;
-    }
-    .pagination-area {
-        padding: 18px;
-        display: flex;
-        justify-content: center;
-    }
-    .order-table-wrapper .pagination {
-        margin: 0;
-        padding: 18px;
-        display: flex;
-        justify-content: center;
-    }
-    .order-table-wrapper .page-link {
-        color: #008000;
-    }
-    .order-table-wrapper .page-item.active .page-link {
-        background: #008000;
-        border-color: #008000;
-        color: white;
-    }
-    .order-table-wrapper .page-link:hover {
-        color: #006b00;
-        background: #eef7e8;
-    }
-
-
-    @media (max-width: 768px) {
         .order-page {
-            padding: 25px 20px;
+            padding: 35px 40px;
+            background: #f7f8fb;
+            min-height: calc(100vh - 70px);
+            box-sizing: border-box;
+        }
+        .order-title {
+            font-family: Georgia, serif;
+            font-size: 34px;
+            margin-bottom: 25px;
+            color: #111;
         }
         .order-header {
-            align-items: flex-start;
-            gap: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
         }
         .order-table-wrapper {
-            overflow-x: auto;
+            background: white;
+            border-radius: 0;
+            overflow: hidden;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.10);
         }
         .order-table {
-            min-width: 900px;
+            width: 100%;
+            border-collapse: collapse;
         }
-    }
+        .order-table th,
+        .order-table td {
+            border: 1px solid #275a2f;
+        }
+        .order-table th {
+            background: #b9df9f;
+            padding: 15px;
+            text-align: center;
+            font-size: 16px;
+            color: #111;
+        }
+        .order-table td {
+            padding: 13px 15px;
+            text-align: center;
+            font-size: 15px;
+            color: #111;
+        }
+        .order-table tr:hover {
+            background: #f5f5f5;
 
-</style>
+        }
+        .order-status {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            padding: 7px 12px;
+            background: #eef7e8;
+            border: 1px solid #8fbc7d;
+            border-radius: 6px;
+            color: #315b25;
+            font-size: 14px;
+            text-decoration: none;
+            transition: .2s ease;
+        }
+        .order-status:hover {
+            background: #d8ebcc;
+            border-color: #6fa45d;
+            color: #315b25;
+            text-decoration: none;
+            transform: translateY(-1px);
+        }
+        .order-status i {
+            font-size: 11px;
+        }
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+        }
+        .btn-show {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            background: #008000;
+            color: white;
+            text-decoration: none;
+        }
+        .btn-show:hover {
+            background: #006b00;
+            color: white;
+        }
+        .pagination-area {
+            padding: 18px;
+            display: flex;
+            justify-content: center;
+        }
+        .order-table-wrapper .pagination {
+            margin: 0;
+            padding: 18px;
+            display: flex;
+            justify-content: center;
+        }
+        .order-table-wrapper .page-link {
+            color: #008000;
+        }
+        .order-table-wrapper .page-item.active .page-link {
+            background: #008000;
+            border-color: #008000;
+            color: white;
+        }
+        .order-table-wrapper .page-link:hover {
+            color: #006b00;
+            background: #eef7e8;
+        }
 
+
+        @media (max-width: 768px) {
+            .order-page {
+                padding: 25px 20px;
+            }
+            .order-header {
+                align-items: flex-start;
+                gap: 15px;
+            }
+            .order-table-wrapper {
+                overflow-x: auto;
+            }
+            .order-table {
+                min-width: 900px;
+            }
+        }
+
+    </style>
 @endpush

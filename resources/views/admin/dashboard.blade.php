@@ -213,136 +213,136 @@
 @endsection
 
 @push('styles')
-<style>
-    .dashboard-page {
-        padding: 35px 40px;
-        background: #f7f8fb;
-        min-height: calc(100vh - 70px);
-        box-sizing: border-box;
-    }
-    .dashboard-title {
-        font-family: Georgia,'Times New Roman' serif;
-        font-size: 34px;
-        margin-bottom: 25px;
-        color: #111;
-    }
-    .stat-row {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 24px;
-        margin-bottom: 45px;
-    }
-    .stat-card {
-        background: #b9df9f;
-        border-radius: 28px;
-        padding: 40px 15px;
-        min-height: 125px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.12);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        box-sizing: border-box;
-    }
-    .stat-info {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-    }
-    .stat-title {
-        font-size: 18px;
-        color: #111;
-    }
-    .stat-number {
-        font-size: 27px;
-        color: #111;
-    }
-    .stat-icon {
-        font-size: 45px;
-        color: #000;
-        flex-shrink: 0;
-    }
-    .chart-row {
-        display: grid;
-        grid-template-columns: 2fr 1fr;
-        gap: 25px;
-        margin-bottom: 45px;
-    }
-    .chart-card {
-        background: white;
-        border-radius: 25px;
-        padding: 20px 25px;
-        box-shadow: 0 3px 8px rgba(0,0,0,0.10);
-        min-height: 280px;
-    }
-    .chart-title {
-        font-family: Georgia, serif;
-        font-size: 22px;
-        margin-bottom: 15px;
-        color: #111;
-    }
-    .chart-container {
-        position: relative;
-        height: 220px;
-    }
-    .recent-title {
-        font-family: Georgia, serif;
-        font-size: 22px;
-        margin-bottom: 18px;
-    }
-    .order-table-wrapper {
-        background: white;
-        border-radius: 20px;
-        overflow: hidden;
-        box-shadow: 0 3px 8px rgba(0,0,0,0.10);
-    }
-    .order-table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-    .order-table th {
-        background: #b9df9f;
-        padding: 15px;
-        text-align: center;
-        font-size: 16px;
-    }
-    .order-table td {
-        padding: 15px;
-        text-align: center;
-        border-top: 1px solid #ddd;
-        font-size: 15px;
-    }
-    .order-table tr:hover {
-        background: #f5f5f5;
-    }
-
-
-
-    @media (max-width: 1100px) {
-
+    <style>
+        .dashboard-page {
+            padding: 35px 40px;
+            background: #f7f8fb;
+            min-height: calc(100vh - 70px);
+            box-sizing: border-box;
+        }
+        .dashboard-title {
+            font-family: Georgia,'Times New Roman' serif;
+            font-size: 34px;
+            margin-bottom: 25px;
+            color: #111;
+        }
         .stat-row {
-            grid-template-columns: repeat(2, 1fr);
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-bottom: 45px;
+        }
+        .stat-card {
+            background: #b9df9f;
+            border-radius: 28px;
+            padding: 40px 15px;
+            min-height: 125px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.12);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-sizing: border-box;
+        }
+        .stat-info {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .stat-title {
+            font-size: 18px;
+            color: #111;
+        }
+        .stat-number {
+            font-size: 27px;
+            color: #111;
+        }
+        .stat-icon {
+            font-size: 45px;
+            color: #000;
+            flex-shrink: 0;
         }
         .chart-row {
-            grid-template-columns: 1fr;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 25px;
+            margin-bottom: 45px;
+        }
+        .chart-card {
+            background: white;
+            border-radius: 25px;
+            padding: 20px 25px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.10);
+            min-height: 280px;
+        }
+        .chart-title {
+            font-family: Georgia, serif;
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #111;
+        }
+        .chart-container {
+            position: relative;
+            height: 220px;
+        }
+        .recent-title {
+            font-family: Georgia, serif;
+            font-size: 22px;
+            margin-bottom: 18px;
+        }
+        .order-table-wrapper {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.10);
+        }
+        .order-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .order-table th {
+            background: #b9df9f;
+            padding: 15px;
+            text-align: center;
+            font-size: 16px;
+        }
+        .order-table td {
+            padding: 15px;
+            text-align: center;
+            border-top: 1px solid #ddd;
+            font-size: 15px;
+        }
+        .order-table tr:hover {
+            background: #f5f5f5;
         }
 
-    }
 
 
-    @media (max-width: 768px) {
+        @media (max-width: 1100px) {
 
-        .custom-sidebar {
-            width: 200px;
-        }
-        .custom-navbar,
-        .dashboard-page {
-            margin-left: 200px;
-        }
-        .stat-row {
-            grid-template-columns: 1fr;
+            .stat-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .chart-row {
+                grid-template-columns: 1fr;
+            }
+
         }
 
-    }
 
-</style>
+        @media (max-width: 768px) {
+
+            .custom-sidebar {
+                width: 200px;
+            }
+            .custom-navbar,
+            .dashboard-page {
+                margin-left: 200px;
+            }
+            .stat-row {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
 @endpush

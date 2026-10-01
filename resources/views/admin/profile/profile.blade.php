@@ -44,70 +44,73 @@
 
 @endsection
 
-<style>
-    .profile-page {
-        padding: 35px 40px;
-        background: #f7f8fb;
-        min-height: calc(100vh - 70px);
-    }
+@push('styles')
+    <style>
+        .profile-page {
+            padding: 35px 40px;
+            background: #f7f8fb;
+            min-height: calc(100vh - 70px);
+        }
 
-    .profile-title {
-        font-family: Georgia, serif;
-        font-size: 34px;
-        color: #111;
-        margin-bottom: 30px;
-    }
+        .profile-title {
+            font-family: Georgia, serif;
+            font-size: 34px;
+            color: #111;
+            margin-bottom: 30px;
+        }
 
-    .profile-card {
-        width: 450px;
-        background: white;
-        border-radius: 30px;
-        padding: 40px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.10);
-        text-align: center;
-    }
+        .profile-card {
+            width: 450px;
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.10);
+            text-align: center;
+        }
 
-    .profile-icon {
-        font-size: 90px;
-        color: #4da3df;
-        margin-bottom: 15px;
-    }
+        .profile-icon {
+            font-size: 90px;
+            color: #4da3df;
+            margin-bottom: 15px;
+        }
 
-    .profile-name {
-        font-family: Georgia, serif;
-        font-size: 28px;
-        color: #111;
-        margin-bottom: 8px;
-    }
+        .profile-name {
+            font-family: Georgia, serif;
+            font-size: 28px;
+            color: #111;
+            margin-bottom: 8px;
+        }
 
-    .profile-info {
-        font-family: Georgia, serif;
-        font-size: 17px;
-        color: #333;
-        margin-bottom: 5px;
-    }
+        .profile-info {
+            font-family: Georgia, serif;
+            font-size: 17px;
+            color: #333;
+            margin-bottom: 5px;
+        }
 
-    .profile-buttons {
-        display: flex;
-        justify-content: center;
-        gap: 25px;
-        margin-top: 35px;
-    }
+        .profile-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 35px;
+        }
 
-    .profile-button {
-        background: #007500;
-        color: white;
-        padding: 11px 25px;
-        border-radius: 5px;
-        text-decoration: none;
-        font-family: Georgia, serif;
-        font-size: 15px;
-        box-shadow: 0 3px 5px rgba(0,0,0,0.15);
-    }
+        .profile-button {
+            background: #007500;
+            color: white;
+            padding: 11px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-family: Georgia, serif;
+            font-size: 15px;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.15);
+        }
 
-    .profile-button:hover {
-        background: #005c00;
-        color: white;
-        text-decoration: none;
-    }
-</style>  
+        .profile-button:hover {
+            background: #005c00;
+            color: white;
+            text-decoration: none;
+        }
+    </style> 
+@endpush
+ 

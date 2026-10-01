@@ -21,7 +21,6 @@
         }
 
         /*TOP TITLE */
-
         .page-title {
             margin-top: 25px;
             margin-bottom: 30px;
@@ -34,7 +33,6 @@
         }
 
         /*REGISTER CARD*/
-
         .register-card {
             width: 480px;
             max-width: 92%;
@@ -45,7 +43,6 @@
         }
 
         /* LOGO */
-
         .brand {
             height: 85px;
             display: flex;
@@ -72,7 +69,6 @@
         }
 
         /*HEADING*/
-
         .register-heading {
             text-align: center;
             margin-bottom: 6px;
@@ -88,7 +84,6 @@
         }
 
         /*FORM*/
-
         .form-group {
             position: relative;
             margin-bottom: 9px;
@@ -130,28 +125,18 @@
             color: #222;
         }
 
-        /* =========================
-           PASSWORD EYE
-        ========================= */
-
         .password-toggle {
             position: absolute;
             right: 12px;
             top: 50%;
-
             transform: translateY(-50%);
-
             border: none;
             background: transparent;
-
             cursor: pointer;
-
             color: #222;
-
             z-index: 3;
             padding: 5px;
         }
-
         .password-toggle i {
             font-size: 16px;
             color: #222;
@@ -166,7 +151,6 @@
         }
 
         /*ERROR */
-
         .invalid-feedback {
             display: block;
             color: #d00000;
@@ -180,7 +164,6 @@
         }
 
         /*REGISTER BUTTON*/
-
         .btn-register {
             width: 100%;
             height: 42px;
@@ -199,7 +182,6 @@
         }
 
         /*LOGIN*/
-
         .login-text {
             text-align: center;
             margin-top: 18px;
@@ -252,13 +234,10 @@
                 Simpan foto daun di:
                 public/img/matcha-leaf.png
             -->
-            <img src="{{ asset('img/leaf.png') }}"
-                 alt="Matcha Mori">
-
+            <img src="{{ asset('img/leaf1.png') }}" alt="Matcha Mori">
             <div class="brand-name">
                 Matcha Mori
             </div>
-
         </div>
 
 
@@ -277,12 +256,9 @@
 
             @csrf
 
-
             <!-- Name -->
             <div class="form-group">
-
                 <i class="fas fa-user input-icon"></i>
-
                 <input
                     type="text"
                     name="name"
@@ -305,9 +281,7 @@
 
             <!-- Email -->
             <div class="form-group">
-
                 <i class="fas fa-envelope input-icon"></i>
-
                 <input
                     type="email"
                     name="email"
@@ -329,9 +303,7 @@
 
             <!-- Phone -->
             <div class="form-group">
-
                 <i class="fas fa-phone-alt input-icon"></i>
-
                 <input
                     type="text"
                     name="phone"
@@ -353,9 +325,7 @@
 
             <!-- Address -->
             <div class="form-group">
-
                 <i class="fas fa-map-marker-alt input-icon"></i>
-
                 <input
                     type="text"
                     name="address"
@@ -377,9 +347,7 @@
 
             <!-- Password -->
             <div class="form-group password-group">
-
                 <i class="fas fa-lock input-icon"></i>
-
                 <input
                     type="password"
                     name="password"
@@ -389,10 +357,7 @@
                     required
                 >
 
-                <span
-                    class="password-toggle"
-                    onclick="togglePassword('password', this)"
-                >
+                <span class="password-toggle" onclick="togglePassword('password', this)">
                     <i class="fas fa-eye"></i>
                 </span>
 
@@ -407,9 +372,7 @@
 
             <!-- Confirm Password -->
             <div class="form-group password-group">
-
                 <i class="fas fa-lock input-icon"></i>
-
                 <input
                     type="password"
                     name="password_confirmation"
@@ -419,37 +382,26 @@
                     required
                 >
 
-                <span
-                    class="password-toggle"
-                    onclick="togglePassword('password-confirm', this)"
-                >
+                <span class="password-toggle" onclick="togglePassword('password-confirm', this)">
                     <i class="fas fa-eye"></i>
                 </span>
 
             </div>
-
 
             <!-- Register Button -->
             <button type="submit" class="btn-register">
                 Register
             </button>
 
-
             <!-- Login -->
             <div class="login-text">
-
                 Already have an account?
-
                 <a href="{{ route('login') }}">
                     Login
                 </a>
-
             </div>
-
         </form>
-
     </div>
-
 
     <!-- Password Toggle -->
     <script>

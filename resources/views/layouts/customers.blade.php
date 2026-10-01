@@ -19,7 +19,7 @@
         <nav class="customer-navbar">
             {{--logo--}}
             <div class="customer-logo">
-                <img src="{{ asset('img/leaf.png') }}"alt="Matcha Mori">
+                <img src="{{ asset('img/leaf1.png') }}"alt="Matcha Mori">
                 <span>MATCHA MORI</span>
             </div>
             {{-- navigasi --}}
@@ -43,7 +43,6 @@
             </div>
 
             {{-- icon --}}
-
             <div class="customer-icons">
 
                 {{-- cari --}}
@@ -75,10 +74,7 @@
                             <i class="fas fa-sign-out-alt"></i>
                             <span>Logout</span>
                         </a>
-                        <form id="logout-form"
-                            action="{{ route('logout') }}"
-                            method="POST"
-                            style="display:none;">
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display:none;">
                             @csrf
                         </form>
                     </div>

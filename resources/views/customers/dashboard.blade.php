@@ -33,39 +33,39 @@
 
 
     {{-- caetegory --}}
-<section class="customer-section" >
+    <section class="customer-section" >
 
-    <div class="customer-section-heading">
+        <div class="customer-section-heading">
 
-        <h2 class="customer-section-title">Shop by Category</h2>
+            <h2 class="customer-section-title">Shop by Category</h2>
 
-        <a href="{{ route('customer.categories.index') }}" class="see-all-link">
-            See All
-        </a>
-    </div>
-    
-    <div class="category-grid">
-
-        @foreach($categories as $category)
-
-            <a href="{{ route('customer.products.index', ['category_id' => $category->id]) }}"
-               class="category-card">
-
-                <div class="category-image">
-                    @if($category->image)
-                        <img src="{{ asset('img/' . $category->image) }}" alt="{{ $category->name }}">
-                    @else
-                        <i class="fas fa-leaf"></i>
-                    @endif
-                </div>
-
-                <div class="category-name">
-                    {{ $category->name }}
-                </div>
-
+            <a href="{{ route('customer.categories.index') }}" class="see-all-link">
+                See All
             </a>
+        </div>
+        
+        <div class="category-grid">
 
-        @endforeach
+            @foreach($categories as $category)
+
+                <a href="{{ route('customer.products.index', ['category_id' => $category->id]) }}"
+                class="category-card">
+
+                    <div class="category-image">
+                        @if($category->image)
+                            <img src="{{ asset('img/' . $category->image) }}" alt="{{ $category->name }}">
+                        @else
+                            <i class="fas fa-leaf"></i>
+                        @endif
+                    </div>
+
+                    <div class="category-name">
+                        {{ $category->name }}
+                    </div>
+
+                </a>
+
+            @endforeach
 
         </div>
 

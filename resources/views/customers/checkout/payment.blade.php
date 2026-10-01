@@ -111,7 +111,6 @@
 
 
 @push('styles')
-
     <style>
         .checkout-page {
             width: 100%;
@@ -419,5 +418,4 @@
         }
 
     </style>
-
 @endpush

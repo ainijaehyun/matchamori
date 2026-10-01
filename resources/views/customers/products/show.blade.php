@@ -132,56 +132,53 @@
 
 
 @push('scripts')
+    <script>
 
-<script>
+        function increaseQuantity() {
 
-function increaseQuantity() {
+            const quantityInput = document.getElementById('quantity');
+            const cartQuantity = document.getElementById('cart-quantity');
 
-    const quantityInput = document.getElementById('quantity');
-    const cartQuantity = document.getElementById('cart-quantity');
+            let quantity = parseInt(quantityInput.value);
 
-    let quantity = parseInt(quantityInput.value);
+            const stock = {{ $product->stock }};
 
-    const stock = {{ $product->stock }};
+            if (quantity < stock) {
 
-    if (quantity < stock) {
+                quantity++;
 
-        quantity++;
+                quantityInput.value = quantity;
 
-        quantityInput.value = quantity;
+                cartQuantity.value = quantity;
 
-        cartQuantity.value = quantity;
+            }
 
-    }
-
-}
+        }
 
 
-function decreaseQuantity() {
+        function decreaseQuantity() {
 
-    const quantityInput = document.getElementById('quantity');
-    const cartQuantity = document.getElementById('cart-quantity');
+            const quantityInput = document.getElementById('quantity');
+            const cartQuantity = document.getElementById('cart-quantity');
 
-    let quantity = parseInt(quantityInput.value);
+            let quantity = parseInt(quantityInput.value);
 
-    if (quantity > 1) {
+            if (quantity > 1) {
 
-        quantity--;
+                quantity--;
 
-        quantityInput.value = quantity;
+                quantityInput.value = quantity;
 
-        cartQuantity.value = quantity;
+                cartQuantity.value = quantity;
 
-    }
+            }
 
-}
+        }
 
-</script>
-
+    </script>
 @endpush
 
 @push('styles')
-
 <style>
 
     .product-detail-page {
@@ -440,5 +437,4 @@ function decreaseQuantity() {
     }
 
 </style>
-
 @endpush

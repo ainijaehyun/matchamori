@@ -66,6 +66,8 @@
 </div>
 @endsection
 
+@push('styles')
+    
 <style>
     .product-show-page {
         padding: 10px 30px 25px;
@@ -194,3 +196,4 @@
 
     }
 </style>
+@endpush
