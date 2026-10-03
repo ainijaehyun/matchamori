@@ -19,13 +19,30 @@ class DashboardController extends Controller
         $totalProducts = Product::count();
         $totalCustomers = User::where('role', 'customer')->count();
         $totalOrders = Order::count();
-        $totalSales = Order::where('payment_status', 'paid')->sum('total');
+        $totalSales = Order::where('payment_status', 'Paid')->sum('total');
 
         //grafik sales (monthly)
-        $monthlySales = Order::selectRaw('MONTH(created_at) as month, SUM(total) as total')->where('payment_status', 'paid')->whereYear('created_at', now()->year)->groupBy('month')->orderBy('month')->pluck('total', 'month');
+        $monthlySales = Order::selectRaw('MONTH(created_at) as month, SUM(total) as total')->where('payment_status', 'Paid')->whereYear('created_at', now()->year)->groupBy('month')->orderBy('month')->pluck('total', 'month');
 
         //pie chart Sales by Category
-        $salesByCategory = OrderDetail::join('products', 'order_details.product_id', '=', 'products.id')->join('categories', 'products.category_id', '=', 'categories.id')->selectRaw('categories.name as category_name, SUM(order_details.subtotal) as total')->groupBy('categories.name')->pluck('total', 'category_name');
+        $salesByCategory = OrderDetail::join(
+                'products', 
+                'order_details.product_id', 
+                '=', 
+                'products.id'
+            )
+            ->join(
+                'categories', 
+                'products.category_id', 
+                '=', 
+                'categories.id'
+            )
+            ->selectRaw(
+                'categories.name as category_name, SUM(order_details.subtotal) as total'
+            )
+            ->groupBy('categories.id', 'categories.name')
+            ->orderBy('categories.id')
+            ->get();
         
         // recent Orders - 5 pesanan terbaru
         $recentOrders = Order::with('user')->latest()->take(5)->get();

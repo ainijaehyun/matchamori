@@ -183,22 +183,23 @@
         .product-breadcrumb {
             width: 100%;
             padding: 7px 20px;
-            margin-bottom: 45px;
-            background: #b9dda8;
+            margin-bottom: 55px;
+            background: #6b8a5d;
             border-radius: 4px;
-            font-size: 20px;
+            font-size: 22px;
+            color: #f5f4e8;
             box-shadow: 0 2px 5px rgba(0, 0, 0, .18);
         }
         .product-breadcrumb a {
-            color: #111;
+            color: #f5f4e8;
             text-decoration: none;
         }
         .product-breadcrumb a:hover {
-            color: #111;
+            color: #f5f4e8;
             text-decoration: underline;
         }
         .product-breadcrumb span {
-            color: #111;
+            color: #f5f4e8;
         }
         .product-toolbar {
             display: flex;

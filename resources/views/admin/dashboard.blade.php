@@ -9,7 +9,7 @@
     </div>
 
     <div class="stat-row">
-        <div class="stat-card">
+        <a href="{{ route('admin.products.index') }}" class="stat-card">
             <div class="stat-info">
                 <div class="stat-title">
                     Total Product
@@ -21,9 +21,9 @@
             </div>
 
             <i class="fas fa-box stat-icon"></i>
-        </div>
+        </a>
 
-        <div class="stat-card">
+        <a href="{{ route('admin.customers.index') }}" class="stat-card">
             <div class="stat-info">
                 <div class="stat-title">
                     Total Customer
@@ -35,9 +35,9 @@
             </div>
 
             <i class="fas fa-users stat-icon"></i>
-        </div>
+        </a>
 
-        <div class="stat-card">
+        <a href="{{ route('admin.orders.index') }}" class="stat-card">
             <div class="stat-info">
                 <div class="stat-title">
                     Total Order
@@ -49,9 +49,9 @@
             </div>
 
             <i class="fas fa-receipt stat-icon"></i>
-        </div>
+        </a>
 
-        <div class="stat-card">
+        <a href="{{ route('admin.reports.index') }}" class="stat-card">
             <div class="stat-info">
                 <div class="stat-title">
                     Total Sales
@@ -63,7 +63,7 @@
             </div>
 
             <i class="fas fa-shopping-bag stat-icon"></i>
-        </div>
+        </a>
 
     </div>
 
@@ -145,69 +145,117 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const monthlyLabels = [
+            'Jan',
+            'Feb',
+            'Mar',
+            'Apr',
+            'May',
+            'Jun',
+            'Jul',
+            'Aug',
+            'Sept',
+            'Oct',
+            'Nov',
+            'Dec'
+        ];
 
-    const monthlyLabels = [
-        'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-        'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'
-    ];
+        const monthlyData = @json(
+            collect(range(1, 12))->map(function ($monthNumber) use ($monthlySales) {
+                return (float) ($monthlySales[$monthNumber] ?? 0);
+            })->values()
+        );
 
-    const monthlyData = Array(12).fill(0);
+        const monthlyCanvas =
+            document.getElementById('monthlySalesChart');
+        if (monthlyCanvas) {
+            new Chart(monthlyCanvas, {
+                type: 'line',
+                data: {
+                    labels: monthlyLabels,
+                    datasets: [{
+                        label: 'Sales',
+                        data: monthlyData,
+                        borderColor: '#4F7942',
+                        backgroundColor: 'rgba(79, 121, 66, 0.15)',
+                        borderWidth: 3,
+                        tension: 0.35,
+                        fill: true,
+                        pointBackgroundColor: '#AF7942',
+                        pointBorderColor: '#ffffff',
+                        pointBorderWidth: 2,
+                        pointRadius: 5,
+                        pointHoverRadius: 7
+                    }]
+                },
 
-    @foreach($monthlySales as $month => $total)
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return 'Rp. ' + Number(value).toLocaleString('id-ID');
+                                }
+                            }
+                        }
+                    },
 
-        monthlyData[{{ $month - 1 }}] = {{ $total }};
-
-    @endforeach
-
-
-    new Chart(document.getElementById('monthlySalesChart'), {
-        type: 'line',
-        data: {
-            labels: monthlyLabels,
-            datasets: [{
-                label: 'Sales',
-                data: monthlyData,
-                borderWidth: 2,
-                tension: 0.3,
-                fill: false
-            }]
-        },
-
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                y: {
-                    beginAtZero: true
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
                 }
-            }
+            });
+        }
+
+
+        const categoryLabels = @json(
+            $salesByCategory->pluck('category_name')->values()
+        );
+
+        const categoryData = @json(
+            $salesByCategory->pluck('total')->map(fn ($value) => (float) $value)->values()
+        );
+
+        const categoryCanvas =
+            document.getElementById('categorySalesChart');
+
+        if (categoryCanvas) {
+            new Chart(categoryCanvas, {
+                type: 'pie',
+                data: {
+                    labels: categoryLabels,
+                    datasets: [{
+                        data: categoryData,
+                        backgroundColor: [
+                            '#2b5c1c',
+                            '#3a7023',
+                            '#82B366',
+                            '#A1C77A'
+                        ],
+                        borderColor: '#FFFFFF',
+                        borderWidth: 4
+                    }]
+                },
+
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'right'
+                        }
+                    }
+                }
+            });
         }
     });
-
-    const categoryLabels = @json($salesByCategory->keys());
-    const categoryData = @json($salesByCategory->values());
-
-    new Chart(document.getElementById('categorySalesChart'), {
-        type: 'pie',
-        data: {
-            labels: categoryLabels,
-            datasets: [{
-                data: categoryData,
-                borderWidth: 2
-            }]
-        },
-
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    position: 'right'
-                }
-            }
-        }
-    });
-
 </script>
 
 @endsection
@@ -228,12 +276,12 @@
         }
         .stat-row {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: 0.8fr 0.9fr 0.8fr 1.6fr;
             gap: 24px;
             margin-bottom: 45px;
         }
         .stat-card {
-            background: #b9df9f;
+            background: #6b8a5d;
             border-radius: 28px;
             padding: 40px 15px;
             min-height: 125px;
@@ -242,6 +290,16 @@
             justify-content: space-between;
             align-items: center;
             box-sizing: border-box;
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+        .stat-card:hover {
+            text-decoration: none;
+            color: inherit;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.16);
         }
         .stat-info {
             display: flex;
@@ -250,15 +308,15 @@
         }
         .stat-title {
             font-size: 18px;
-            color: #111;
+            color: #f5f4e8;
         }
         .stat-number {
             font-size: 27px;
-            color: #111;
+            color: #f5f4e8;
         }
         .stat-icon {
-            font-size: 45px;
-            color: #000;
+            font-size: 35px;
+            color: #f5f4e8;
             flex-shrink: 0;
         }
         .chart-row {
@@ -288,10 +346,13 @@
             font-family: Georgia, serif;
             font-size: 22px;
             margin-bottom: 18px;
+            color: #111;
+            
         }
         .order-table-wrapper {
             background: white;
             border-radius: 20px;
+            border: 1px solid #6b8a5d;
             overflow: hidden;
             box-shadow: 0 3px 8px rgba(0,0,0,0.10);
         }
@@ -300,16 +361,18 @@
             border-collapse: collapse;
         }
         .order-table th {
-            background: #b9df9f;
+            background: #6b8a5d;
             padding: 15px;
             text-align: center;
             font-size: 16px;
+            color: #f5f4e8;
         }
         .order-table td {
             padding: 15px;
             text-align: center;
-            border-top: 1px solid #ddd;
+            border-top: 1px solid #6b8a5d;
             font-size: 15px;
+            color: #111;
         }
         .order-table tr:hover {
             background: #f5f5f5;

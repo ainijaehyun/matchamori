@@ -87,20 +87,8 @@
             </div>
 
             @if ($salesByCategory->count() > 0)
-                <div class="category-chart-container">
-                    <div class="pie-container">
-                        <canvas id="categorySalesChart"></canvas>
-                    </div>
-                    <div class="category-legend">
-                        @foreach ($salesByCategory as $category)
-                            <div class="legend-item">
-                                <span class="legend-dot legend-{{ $loop->index }}"></span>
-                                <span>
-                                    {{ $category->category_name }}
-                                </span>
-                            </div>
-                        @endforeach
-                    </div>
+                <div class="chart-container">
+                    <canvas id="categorySalesChart"></canvas>
                 </div>
             @else
                 <div class="no-category-data">
@@ -264,7 +252,8 @@
                     maintainAspectRatio: false,
                     plugins: {
                         legend: {
-                            display: false
+                            display: true,
+                            position: 'right'
                         }
                     }
                 }
@@ -360,11 +349,20 @@
         color: #315b25;
         font-weight: bold;
     }
-    .charts-container {
+    .charts-container { 
         display: grid;
         grid-template-columns: 1.4fr 1fr;
         gap: 25px;
         margin-bottom: 25px;
+    }
+    .chart-container {
+        position: relative;
+        width: 100%;
+        height: 310px;
+    }
+    .chart-container canvas {
+        width: 100% !important;
+        height: 100% !important;
     }
     .chart-card {
         background: #ffffff;
@@ -387,55 +385,9 @@
         width: 100% !important;
         height: 100% !important;
     }
-    .category-chart-container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 25px;
-        min-height: 310px;
-    }
-    .pie-container {
-        width: 250px;
-        height: 250px;
-        flex-shrink: 0;
-    }
     .pie-container canvas {
         width: 100% !important;
         height: 100% !important;
-    }
-    .category-legend {
-        display: flex;
-        flex-direction: column;
-        gap: 14px;
-    }
-    .legend-item {
-        display: flex;
-        align-items: center;
-        gap: 9px;
-        font-size: 14px;
-        color: #333;
-    }
-    .legend-dot {
-        width: 13px;
-        height: 13px;
-        border-radius: 50%;
-        display: inline-block;
-        flex-shrink: 0;
-    }
-
-    /* MATCHA COLORS */
-
-    .legend-0 {
-        background: #2b5c1c;
-    }
-    .legend-1 {
-        background: #3a7023;
-    }
-    .legend-2 {
-        background: #82B366;
-    }
-    .legend-3 {
-        background: #A1C77A;
     }
     .no-category-data {
         min-height: 310px;
@@ -468,11 +420,11 @@
         border: 1px solid #275a2f;
     }
     .recap-table th {
-        background: #b9df9f;
+        background: #6b8a5d;
         padding: 13px 15px;
         text-align: center;
         font-size: 15px;
-        color: #111;
+        color: #f5f4e8;
     }
     .recap-table td {
         padding: 12px 15px;

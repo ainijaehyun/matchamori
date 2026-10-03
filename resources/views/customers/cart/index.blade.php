@@ -289,22 +289,22 @@
 
         .cart-page {
             width: 100%;
-            padding: 5px 28px 50px;
-            box-sizing: border-box;
+            min-height: calc(100vh - 100px);
+            padding: 0 30px 50px;
         }
         .cart-breadcrumb {
             width: 100%;
-            background: #b8dfa5;
-            padding: 7px 22px;
-            border-radius: 5px;
+            background: #6b8a5d;
+            padding: 7px 20px;
+            border-radius: 4px;
             box-shadow: 0 3px 7px rgba(0, 0, 0, 0.10);
-            font-size: 18px;
-            color: #111;
+            font-size: 22px;
+            color: #f5f4e8;
             margin-bottom: 35px;
             box-sizing: border-box;
         }
         .cart-breadcrumb a {
-            color: #111;
+            color: #f5f4e8;
             text-decoration: none;
         }
         .cart-breadcrumb a:hover {

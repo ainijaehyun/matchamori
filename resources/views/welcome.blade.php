@@ -11,7 +11,7 @@
         href="{{ asset('bootstrap-5.3.8-dist/css/bootstrap.min.css') }}">
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-<style>
+    <style>
         :root {
             --cream: #f5f4e8;
             --cream-light: #faf9f1;
@@ -1099,7 +1099,7 @@
                         setiap tegukan.
                     </p>
                     <a href="{{ route('login') }}" class="mm-product-button">
-                        Lihat Produk
+                        View product
                         <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>

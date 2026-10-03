@@ -63,17 +63,18 @@
         .category-breadcrumb {
             width: 100%;
             padding: 7px 20px;
-            margin-bottom: 30px;
-            background: #b9dda8;
+            margin-bottom: 55px;
+            background: #6b8a5d;
             border-radius: 4px;
             font-family: Georgia, serif;
             font-size: 22px;
+            color: #f5f4e8;
             box-shadow:
                 0 2px 5px rgba(0, 0, 0, .18);
             box-sizing: border-box;
         }
         .category-breadcrumb a {
-            color: #111;
+            color: #f5f4e8;
             text-decoration: none;
         }
         .category-breadcrumb a:hover {
@@ -81,7 +82,7 @@
             text-decoration: underline;
         }
         .category-breadcrumb span {
-            color: #111;
+            color: #f5f4e8;
         }
         .category-heading {
             margin: 25px 0 40px;

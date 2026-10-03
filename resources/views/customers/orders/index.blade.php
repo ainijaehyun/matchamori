@@ -76,21 +76,22 @@
     <style>
         .orders-page {
             width: 100%;
+            min-height: calc(100vh - 100px);
             padding: 0 30px 50px;
-            box-sizing: border-box;
         }
         .orders-breadcrumb {
             width: 100%;
             padding: 7px 20px;
             margin-bottom: 55px;
-            background: #b8dfa5;
-            border-radius: 5px;
+            background: #6b8a5d;
+            border-radius: 4px;
             box-shadow: 0 3px 6px rgba(0, 0, 0, .15);
-            font-size: 20px;
+            font-size: 22px;
+            color: #f5f4e8;
             box-sizing: border-box;
         }
         .orders-breadcrumb a {
-            color: #111;
+            color: #f5f4e8;
             text-decoration: none;
         }
         .orders-breadcrumb a:hover {

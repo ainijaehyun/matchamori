@@ -159,7 +159,8 @@
         /* update profile */
         .update-profile-page {
             width: 100%;
-            padding: 0 10px 40px;
+            min-height: calc(100vh - 100px);
+            padding: 0 30px 50px;
         }
         /* breadcrumb */
         .update-breadcrumb {
@@ -167,15 +168,16 @@
             height: 36px;
             display: flex;
             align-items: center;
-            padding: 0px 20px;
+            padding: 7px 20px;
             margin-bottom: 25px;
-            background: #b8dfa5;
-            border-radius: 5px;
+            background: #6b8a5d;
+            border-radius: 4px;
             box-shadow: 0 3px 6px rgba(0,0,0,.15);
-            font-size: 18px;
+            font-size: 22px;
+            color: #f5f4e8;
         }
         .update-breadcrumb a {
-            color: #111;
+            color: #f5f4e8;
             text-decoration: none;
         }
 

@@ -71,21 +71,30 @@
     <style>
 
         /* profile psge */
-
         .profile-page {
             width: 100%;
-            padding: 0 10px 50px;
+            min-height: calc(100vh - 100px);
+            padding: 0 30px 50px;
         }
-        /* breadcrumb */
 
+        /* breadcrumb */
         .profile-breadcrumb {
             width: 100%;
             padding: 7px 20px;
-            margin-bottom: 30px;
-            background: #b8dfa5;
-            border-radius: 5px;
+            margin-bottom: 25px;
+            background: #6b8a5d;
+            border-radius: 4px;
             box-shadow: 0 3px 6px rgba(0,0,0,.15);
-            font-size: 20px;
+            font-size: 22px;
+            color: #f5f4e8;
+        }
+        .profile-breadcrumb a {
+            color: #f5f4e8;
+            text-decoration: none;
+        }
+
+        .profile-breadcrumb a:hover {
+            color: #008000;
         }
 
         /* profile card */
@@ -104,7 +113,7 @@
         /* icon profile */
         .profile-large-icon {
             font-size: 105px;
-            color: #42a5e5;
+            color: #6b8a5d;
             margin-bottom: 5px;
         }
 

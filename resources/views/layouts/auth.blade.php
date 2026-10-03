@@ -57,7 +57,6 @@
         overflow-x: hidden;
     }
 
-
     /* FOTO BACKGROUND */
     .auth-background {
         position: fixed;

@@ -3,7 +3,7 @@
         width: 250px;
         min-width: 250px;
         min-height: 100vh;
-        background: rgb(0, 85, 0);
+        background: #304A2F;
         position: relative;
         padding: 25px 12px;
         box-sizing: border-box;
@@ -44,7 +44,7 @@
     }
 
     .custom-menu-title {
-        color: #b9e59c;
+        color: #A7BD82;
         font-size: 12px;
         font-weight: bold;
         margin: 25px 20px 12px;
@@ -68,8 +68,8 @@
 
     .custom-menu a:hover,
     .custom-menu a.active {
-        background: #c5e8a7;
-        color: #111;
+        background: #6b8A5d;
+        color: #ffffff;
     }
 
     .custom-menu i {

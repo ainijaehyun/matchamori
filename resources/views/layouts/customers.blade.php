@@ -128,7 +128,7 @@
         width: 100%;
         min-height: 100%;
         overflow-x: hidden;
-        background: #e5ffcf;
+        background: #e7ead5;
         font-family: Georgia, 'Times New Roman' serif;
         color: #111;
     }
@@ -137,7 +137,7 @@
         width: 100%;
         min-height: 100vh;
         padding: 0 24px 40px;
-        background: #e5ffcf;
+        background: #e7ead5;
     }
 
     .custom-footer {
@@ -145,7 +145,7 @@
         margin-top: 50px;
         padding: 20px 0;
         text-align: center;
-        background: #e5ffcf;
+        background: #e7ead5;
         border-radius: 12px 12px 0 0;
     }
     .custom-footer span {
@@ -160,7 +160,7 @@
         align-items: center;
         margin-left: -24px;
         padding: 0 46px;
-        background: #d1f7ba;
+        background: #6b8a5d;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);   
         margin-bottom: 25px;
     }
@@ -184,7 +184,7 @@
         font-size: 25px;
         font-weight: normal;
         transform: translateY(6px);
-        color: #2b500a;
+        color: #f5f4e8;
         text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
     }
 
@@ -195,17 +195,17 @@
     }
 
     .customer-nav a {
-        color: #111;
+        color: #f5f4e8;
         text-decoration: none;
         font-size: 21px;
     }
 
     .customer-nav a:hover {
-        color: #008000;
+        color: #304a2f;
     }
 
     .customer-nav a.active {
-        color: #008000;
+        color: #304a2f;
         text-decoration: underline;
         text-underline-offset: 5px;
     }
@@ -218,19 +218,19 @@
     }
 
     .customer-icons > a {
-        color: #111;
+        color: #f5f4e8;
         text-decoration: none;
         font-size: 25px;
     }
 
     .customer-icons > a:hover {
-        color: #008000;
+        color: #304a2f;
     }
     .customer-hero {
         position: relative;
         width: 100%;
         height: 350px;
-        background: #111;
+        background: #304a2f;
         border-radius: 22px;
         overflow: hidden;
     }
@@ -249,12 +249,23 @@
         width: 100%;
         height: 100%;
         display: block;
-        object-fit: center;
+        object-fit: cover;
         object-position: center;
     }
-
-    .hero-picture::before {
-        display: none !important;
+    .hero-picture::after {
+        content: " ";
+        position: absolute;
+        inset: 0;
+        background:
+            linear-gradient(
+                90deg,
+                rgba(48, 74, 47, 0.88) 0%,
+                rgba(48, 74, 47, 0.68) 18%,
+                rgba(48, 74, 47, 0.30) 38%,
+                rgba(48, 74, 47, 0.05) 58%,
+                rgba(48, 74, 47, 0) 75%
+            );
+        z-index: 2;
     }
 
     .hero-text {
@@ -262,7 +273,7 @@
         top: 50%;
         left: 55px;
         transform: translateY(-50%);
-        width: 70%;
+        width: 43%;
         z-index: 3;
         color: #e1ffc6;
         text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
@@ -305,13 +316,13 @@
     }
     .see-all-link {
         width: 78px;
-        color: #008000;
+        color: #577738;
         font-family: Georgia, serif;
         font-size: 20px;
         text-decoration: none;
     }
     .see-all-link:hover {
-        color: #006b00;
+        color: #304a2f;
         text-decoration: underline;
     }
     .category-grid {
@@ -328,7 +339,7 @@
         align-items: center;
         gap: 14px;
         padding: 10px;
-        background: #b8dfa5;
+        background: #a7bd82;
         border-radius: 12px;
         box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
         overflow: hidden;
@@ -526,7 +537,9 @@
         }
 
     }
-            /* SEARCH */
+
+
+     /* SEARCH */
     .customer-search {
         display: flex;
         align-items: center;
@@ -579,7 +592,7 @@
         padding: 0;
         border: none;
         background: transparent;
-        color: #111;
+        color: #f5f4e8;
         font-size: 24px;
         display: flex;
         align-items: center;
@@ -590,7 +603,7 @@
     }
 
     .profile-button:hover {
-        color: #008000;
+        color: #304a2f;
     }
 
     /* DROPDOWN TERTUTUP */
@@ -697,7 +710,7 @@
         }
 
         .hero-picture {
-            width: 75%;
+            width: 100%;
         }
 
         .hero-text {

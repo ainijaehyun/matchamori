@@ -42,11 +42,11 @@
                 </nav>
 
 
-@push('styles')
+
     <style>
         .matcha-navbar {
             height: 75px;
-            background: #b9df9f;
+            background: #6b8a5d;
             display: flex;
             align-items: center;
             justify-content: flex-end;
@@ -64,7 +64,7 @@
             padding: 8px 12px;
         }
         .navbar-toggle:hover {
-            color: #006b00;
+            color: #304a2f;
         }
         .navbar-right {
             margin-left: auto;
@@ -107,8 +107,8 @@
             color: #777;
         }
         .profile-dropdown .dropdown-item:hover {
-            background: #e5f3d7;
-            color: #111;
+            background: #d4e0c3;
+            color: #304a2f;
         }
         .profile-dropdown .dropdown-divider {
             margin: 5px 15px;
@@ -121,7 +121,9 @@
         .topbar .nav-link {
             padding: 0.5rem 0.75rem;
         }
-
+        .matcha-navbar .text-gray-600 {
+            color: #f5f4e8 !important;
+        }
 
 
         @media (max-width: 768px) {
@@ -136,4 +138,3 @@
         }
 
     </style>
-@endpush

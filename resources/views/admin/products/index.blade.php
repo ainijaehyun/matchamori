@@ -117,7 +117,7 @@
             align-items: center;
             gap: 8px;
             padding: 10px 18px;
-            background: #008000;
+            background: #6b8a5d;
             color: white;
             border-radius: 6px;
             text-decoration: none;
@@ -125,7 +125,7 @@
             box-shadow: 0 3px 6px rgba(0,0,0,0.15);
         }
         .add-product:hover {
-            background: #006b00;
+            background: #6b8a5d;
             color: white;
             text-decoration: none;
         }
@@ -146,11 +146,11 @@
             border: 1px solid #275a2f;
         }
         .product-table th {
-            background: #b9df9f;
+            background: #6b8a5d;
             padding: 15px;
             text-align: center;
             font-size: 16px;
-            color: #111;
+            color: #f5f4e8;
             white-space: nowrap;
         }
         .product-table td {

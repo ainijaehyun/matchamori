@@ -110,11 +110,11 @@
             border: 1px solid #275a2f;
         }
         .customer-table th {
-            background: #b9df9f;
+            background: #6b8a5d;
             padding: 15px;
             text-align: center;
             font-size: 16px;
-            color: #111;
+            color: #f5f4e8;
         }
         .customer-table td {
             padding: 13px 15px;

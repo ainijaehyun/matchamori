@@ -70,7 +70,7 @@
 
         .profile-icon {
             font-size: 90px;
-            color: #4da3df;
+            color: #6b8a5d;
             margin-bottom: 15px;
         }
 
