@@ -2,6 +2,10 @@
 
 @section('title', 'Dashboard Customer')
 
+@push('styles')
+    <link href="{{ asset('css/customer-dashboard.css') }}" rel="stylesheet">
+@endpush
+
 @section('content')
 
     <div class="customer-hero">

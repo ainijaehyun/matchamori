@@ -2,6 +2,10 @@
 
 @section('title', 'Show Product')
 
+@push('styles')
+    <link href="{{ asset('css/product.css') }}" rel="stylesheet">
+@endpush 
+
 @section('content')
 
 <div class="product-show-page">
@@ -66,134 +70,4 @@
 </div>
 @endsection
 
-@push('styles')
-    
-<style>
-    .product-show-page {
-        padding: 10px 30px 25px;
-        background: #f7f8fb;
-        min-height: calc(100vh - 70px);
-        box-sizing: border-box;
-    }
-    .product-show-title {
-        font-family: Georgia, serif;
-        font-size: 22px;
-        font-weight: normal;
-        color: #111;
-        margin: 15px 0 18px;
-    }
-    .product-detail-card {
-        background: #ffffff;
-        border-radius: 22px;
-        padding: 20px 24px;
-        box-shadow: 0 3px 8px rgba(0,0,0,0.10);
-        max-width: 65%;
-    }
-    .detail-row {
-        display: grid;
-        grid-template-columns: 220px 1fr;
-        column-gap: 10px;
-        align-items: start;
-        margin-bottom: 13px;
-    }
-    .detail-row:last-child {
-        margin-bottom: 0;
-    }
-    .detail-label {
-        font-family: Georgia, serif;
-        font-size: 17px;
-        color: #111;
-        line-height: 1.35;
-    }
-    .detail-value {
-        font-family: Arial, sans-serif;
-        font-size: 14px;
-        color: #111;
-        line-height: 1.35;
-    }
-    .description-row {
-        margin-top: 2px;
-        margin-bottom: 15px;
-    }
-    .description-value {
-        max-width: 380px;
-        text-align: left;
-    }
-    .image-row {
-        margin-bottom: 15px;
-    }
-    .product-detail-image {
-        display: block;
-        width: 105px;
-        height: 82px;
-        object-fit: contain;
-        background: #eeeeee;
-        border-radius: 11px;
-        padding: 5px;
-        box-sizing: border-box;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.12);
-    }
-    .date-row {
-        margin-top: 2px;
-    }
-    .form-buttons {
-        display: flex;
-        margin-top: 18px;
-    }
-    .btn-back {
-        width: 15%;
-        height: 40px;
-        border-radius: 18px;
-        background: #008000;
-        color: white;
-        font-family: Georgia, serif;
-        font-size: 17px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-decoration: none;
-        box-shadow: 0 3px 6px rgba(0,0,0,0.18);
-        box-sizing: border-box;
-    }
-    .btn-back:hover {
-        background: #006b00;
-        color: white;
-        text-decoration: none;
-    }
 
-    @media (max-width: 768px) {
-        .product-show-page {
-            padding: 15px 15px 25px;
-        }
-        .product-show-title {
-            font-size: 21px;
-            margin-bottom: 17px;
-        }
-        .product-detail-card {
-            border-radius: 20px;
-            padding: 20px 18px;
-            max-width: 100%;
-        }
-        .detail-row {
-            grid-template-columns: 1fr;
-            row-gap: 4px;
-            margin-bottom: 16px;
-        }
-        .detail-label {
-            font-size: 17px;
-        }
-        .detail-value {
-            font-size: 14px;
-        }
-        .product-detail-image {
-            width: 105px;
-            height: 82px;
-        }
-        .btn-back {
-            width: 100%;
-            height: 42px;
-        }
-
-    }
-</style>
-@endpush

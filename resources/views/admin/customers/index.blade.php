@@ -2,6 +2,10 @@
 
 @section('title', 'Customer Page')
 
+@push('styles')
+    <link href="{{ asset('css/customer.css') }}" rel="stylesheet">
+@endpush
+
 @section('content')
 <div class="customer-page">
     <div class="customer-header">
@@ -75,131 +79,3 @@
 </div>
 @endsection
 
-@push('styles')
-    <style>
-        .customer-page {
-            padding: 35px 40px;
-            background: #f7f8fb;
-            min-height: calc(100vh - 70px);
-            box-sizing: border-box;
-        }
-        .customer-title {
-            font-family: Georgia, serif;
-            font-size: 34px;
-            margin-bottom: 25px;
-            color: #111;
-        }
-        .customer-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 18px;
-        }
-        .customer-table-wrapper {
-            background: white;
-            border-radius: 0;
-            overflow: hidden;
-            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.10);
-        }
-        .customer-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        .customer-table th,
-        .customer-table td {
-            border: 1px solid #275a2f;
-        }
-        .customer-table th {
-            background: #6b8a5d;
-            padding: 15px;
-            text-align: center;
-            font-size: 16px;
-            color: #f5f4e8;
-        }
-        .customer-table td {
-            padding: 13px 15px;
-            text-align: center;
-            font-size: 15px;
-            color: #111;
-        }
-        .customer-table tr:hover {
-            background: #f5f5f5;
-        }
-        .action-buttons {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 8px;
-        }
-        .btn-show {
-            width: 36px;
-            height: 36px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 6px;
-            background: #008000;
-            color: white;
-            text-decoration: none;
-            transition: 0.2s ease;
-        }
-        .btn-show:hover {
-            background: #006b00;
-            color: white;
-            text-decoration: none;
-            transform: translateY(-1px);
-        }
-        .btn-delete {
-            width: 36px;
-            height: 36px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 6px;
-            border: none;
-            background: #e74a3b;
-            color: white;
-            cursor: pointer;
-            transition: 0.2s ease;
-        }
-        .btn-delete:hover {
-            background: #c9362a;
-            color: white;
-            transform: translateY(-1px);
-        }
-        .customer-table-wrapper .pagination {
-            margin: 0;
-            padding: 18px;
-            display: flex;
-            justify-content: center;
-        }
-        .customer-table-wrapper .page-link {
-            color: #008000;
-        }
-        .customer-table-wrapper .page-item.active .page-link {
-            background: #008000;
-            border-color: #008000;
-            color: white;
-        }
-        .customer-table-wrapper .page-link:hover {
-            color: #006b00;
-            background: #eef7e8;
-        }
-
-        @media (max-width: 768px) {
-            .customer-page {
-                padding: 25px 20px;
-            }
-            .customer-header {
-                align-items: flex-start;
-                gap: 15px;
-            }
-            .customer-table-wrapper {
-                overflow-x: auto;
-            }
-            .customer-table {
-                min-width: 900px;
-            }
-        }
-    </style>
-@endpush
