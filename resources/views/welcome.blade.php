@@ -12,7 +12,8 @@
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet"
-        href="{{ asset('css/welcome.css') }}">
+        href="{{ asset('css/welcome.css') }}?v={{ time() }}">
+        <link href="{{ asset('css/customer-layout.css') }}?v={{ time() }}" rel="stylesheet">    
 
 </head>
 
@@ -252,7 +253,7 @@
                 <div class="carousel-item active">
                     <div class="mm-collection-grid">
                         {{-- MATCHA DRINK --}}
-                        <a href="{{ route('login') }}" class="mm-collection-item">
+                        <button type="button" class="mm-collection-item" data-bs-toggle="modal" data-bs-target="#loginProductModal">
                             <img src="{{ asset('img/categories/matcha-drink.jpg') }}" alt="Matcha Drink">
                             <div class="mm-collection-overlay">
                                 <h3>
@@ -263,10 +264,10 @@
                                     Explore collection →
                                 </span>
                             </div>
-                        </a>
+                        </button>
 
                         {{-- MATCHA DESSERT --}}
-                        <a href="{{ route('login') }}" class="mm-collection-item">
+                        <button type="button" class="mm-collection-item" data-bs-toggle="modal" data-bs-target="#loginProductModal">
                             <img src="{{ asset('img/categories/matcha-dessert.jpg') }}" alt="Matcha Dessert">
                             <div class="mm-collection-overlay">
                                 <h3>
@@ -277,10 +278,10 @@
                                     Explore collection →
                                 </span>
                             </div>
-                        </a>
+                        </button>
 
                         {{-- MATCHA POWDER --}}
-                        <a href="{{ route('login') }}" class="mm-collection-item">
+                        <button type="button" class="mm-collection-item" data-bs-toggle="modal" data-bs-target="#loginProductModal">
                             <img src="{{ asset('img/categories/matcha-powder.jpg') }}" alt="Matcha Powder">
                             <div class="mm-collection-overlay">
                                 <h3>
@@ -291,10 +292,10 @@
                                     Explore collection →
                                 </span>
                             </div>
-                        </a>
+                        </button>
 
                         {{-- ACCESSORIES --}}
-                        <a href="{{ route('login') }}" class="mm-collection-item">
+                        <button type="button" class="mm-collection-item" data-bs-toggle="modal" data-bs-target="#loginProductModal">
                             <img src="{{ asset('img/categories/accessories.jpg') }}" alt="Accessories">
                             <div class="mm-collection-overlay">
                                 <h3>
@@ -305,14 +306,14 @@
                                     Explore collection →
                                 </span>
                             </div>
-                        </a>
+                        </button>
                     </div>
                 </div>
 
                 {{-- SLIDE 2 --}}
                 <div class="carousel-item">
                     <div class="mm-collection-grid">
-                        <a href="{{ route('login') }}" class="mm-collection-item">
+                        <button type="button" class="mm-collection-item" data-bs-toggle="modal" data-bs-target="#loginProductModal">
                             <img src="{{ asset('img/categories/matcha-powder.jpg') }}" alt="Matcha Powder">
                             <div class="mm-collection-overlay">
                                 <h3>
@@ -323,9 +324,9 @@
                                     Explore collection →
                                 </span>
                             </div>
-                        </a>
+                        </button>
 
-                        <a href="{{ route('login') }}" class="mm-collection-item">
+                        <button type="button" class="mm-collection-item" data-bs-toggle="modal" data-bs-target="#loginProductModal">
                             <img src="{{ asset('img/categories/accessories.jpg') }}" alt="Accessories">
                             <div class="mm-collection-overlay">
                                 <h3>
@@ -336,9 +337,9 @@
                                     Explore collection →
                                 </span>
                             </div>
-                        </a>
+                        </button>
 
-                        <a href="{{ route('login') }}" class="mm-collection-item">
+                        <button type="button" class="mm-collection-item" data-bs-toggle="modal" data-bs-target="#loginProductModal">
                             <img src="{{ asset('img/categories/matcha-drink.jpg') }}" alt="Matcha Drink">
                             <div class="mm-collection-overlay">
                                 <h3>
@@ -349,9 +350,9 @@
                                     Explore collection →
                                 </span>
                             </div>
-                        </a>
+                        </button>
 
-                        <a href="{{ route('login') }}" class="mm-collection-item">
+                        <button type="button" class="mm-collection-item" data-bs-toggle="modal" data-bs-target="#loginProductModal">
                             <img src="{{ asset('img/categories/matcha-dessert.jpg') }}" alt="Matcha Dessert">
                             <div class="mm-collection-overlay">
                                 <h3>
@@ -362,7 +363,7 @@
                                     Explore collection →
                                 </span>
                             </div>
-                        </a>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -381,6 +382,183 @@
     </div>
 </section>
 
+<section id="products" class="mm-section mm-products">
+    <div class="container">
+
+        {{-- HEADING --}}
+        <div class="mm-products-heading">
+            <div class="mm-section-title-small">
+                Our Products
+            </div>
+
+            <h2 class="mm-section-title">
+                Explore Our Matcha
+            </h2>
+
+            <div class="mm-title-line"></div>
+
+            <p class="mm-products-description">
+                Temukan berbagai pilihan produk matcha
+                untuk menemani setiap momenmu.
+            </p>
+        </div>
+
+
+        {{-- PRODUCTS BY CATEGORY --}}
+        @php
+            $groupedProducts = $products->groupBy(function ($product) {
+                return $product->category?->name ?? 'Other Products';
+            });
+        @endphp
+
+
+        @forelse ($groupedProducts as $categoryName => $categoryProducts)
+
+            {{-- CATEGORY TITLE --}}
+            <div class="mm-product-category-section">
+
+                <div class="mm-product-category-heading">
+                    <span>{{ $categoryName }}</span>
+                </div>
+
+
+                {{-- PRODUCTS --}}
+                <div class="mm-product-grid">
+
+                    @foreach ($categoryProducts as $product)
+
+                        <div class="mm-product-grid-item">
+
+                            <div class="mm-product-card">
+
+                                {{-- PRODUCT IMAGE --}}
+                                <div class="mm-product-image">
+
+                                    <img
+                                        src="{{ asset('img/' . $product->image) }}"
+                                        alt="{{ $product->name }}"
+                                    >
+
+                                </div>
+
+
+                                {{-- PRODUCT INFO --}}
+                                <div class="mm-product-info">
+
+                                    <div class="mm-product-category">
+                                        {{ $categoryName }}
+                                    </div>
+
+                                    <h3>
+                                        {{ $product->name }}
+                                    </h3>
+
+                                    <div class="mm-product-price">
+                                        Rp {{ number_format($product->price, 0, ',', '.') }}
+                                    </div>
+
+
+                                    {{-- LOGIN FIRST --}}
+                                    <button
+                                        type="button"
+                                        class="mm-product-view"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#loginProductModal">
+
+                                        View Product
+
+                                        <i class="fas fa-arrow-right"></i>
+
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    @endforeach
+
+                </div>
+
+            </div>
+
+        @empty
+
+            <div class="col-12">
+
+                <div class="mm-product-empty">
+                    Belum ada produk yang tersedia.
+                </div>
+
+            </div>
+
+        @endforelse
+
+
+        {{-- VIEW ALL --}}
+        <div class="mm-products-footer">
+
+            <button type="button" class="mm-view-all" data-bs-toggle="modal" data-bs-target="#loginProductModal">
+                View All Products
+                <i class="fas fa-arrow-right"></i>
+            </button>
+
+        </div>
+
+    </div>
+</section>
+
+{{-- LOGIN REQUIRED MODAL --}}
+<div class="modal fade mm-login-modal"
+     id="loginProductModal"
+     tabindex="-1"
+     aria-labelledby="loginProductModalLabel"
+     aria-hidden="true">
+
+    <div class="modal-dialog modal-dialog-centered">
+
+        <div class="modal-content">
+
+            <div class="modal-body">
+
+                <div class="mm-login-modal-icon">
+                    <i class="fas fa-lock"></i>
+                </div>
+
+                <h3 id="loginProductModalLabel">
+                    Login Terlebih Dahulu
+                </h3>
+
+                <p>
+                    Silakan login terlebih dahulu untuk
+                    melihat detail produk Matcha Mori.
+                </p>
+
+                <div class="mm-login-modal-buttons">
+
+                    <button
+                        type="button"
+                        class="mm-modal-cancel"
+                        data-bs-dismiss="modal">
+                        Cancel
+                    </button>
+
+                    <a
+                        href="{{ route('login') }}"
+                        class="mm-modal-login">
+                        Login
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
 
 <section id="best" class="mm-section mm-best">
     <div class="container">
@@ -410,10 +588,10 @@
                         Rasakan cita rasa khas matcha dalam
                         setiap tegukan.
                     </p>
-                    <a href="{{ route('login') }}" class="mm-product-button">
+                    <button type="button" class="mm-product-button" data-bs-toggle="modal" data-bs-target="#loginProductModal">
                         View product
                         <i class="fas fa-arrow-right"></i>
-                    </a>
+                    </button>
                 </div>
             </div>
         </div>
@@ -490,14 +668,34 @@
 </section>
 
 
-<footer class="mm-footer">
-    Copyright &copy;
-    <strong>
-        Matcha Mori
-    </strong>
-    {{ date('Y') }}
-</footer>
+<footer class="custom-footer">
 
+            <div class="footer-brand">
+                <h3>MATCHA MORI</h3>
+                <p>Japanese Matcha & Tea Store</p>
+            </div>
+
+            <div class="footer-contact">
+
+                <a href="https://wa.me/6281234567890" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>0812-3456-7890</span>
+                </a>
+
+                <a href="https://instagram.com/matchamori" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                    <span>@matchamori</span>
+                </a>
+
+            </div>
+
+            <div class="footer-copyright">
+                <span>
+                    Copyright &copy; Matcha Mori {{ date('Y') }}
+                </span>
+            </div>
+
+        </footer>
 {{-- Bootstrap JS --}}
 <script src="{{ asset('bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js') }}"></script>
 

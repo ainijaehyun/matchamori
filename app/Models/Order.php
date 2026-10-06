@@ -16,6 +16,9 @@ class Order extends Model
         'shipping',
         'postal_code',
         'total',
+        'courier',
+        'delivery_service',
+        'payment_method',
         'payment_status',
         'order_status',
     ];

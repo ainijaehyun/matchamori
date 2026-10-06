@@ -9,12 +9,17 @@
 @section('content')
 
 <div class="confirmation-page">
+
+    {{-- Breadcrumb --}}
     <div class="confirmation-breadcrumb">
         <a href="{{ route('customer.dashboard') }}">Home</a>
-        <span>&gt;</span> Confirmation
+        <span>&gt;</span>
+        Confirmation
     </div>
 
+    {{-- Success Message --}}
     <div class="confirmation-success">
+
         <div class="success-icon">
             <i class="fas fa-check"></i>
         </div>
@@ -24,15 +29,21 @@
         <p>
             Your order has been successfully placed.
         </p>
+
     </div>
 
+    {{-- Confirmation Content --}}
     <div class="confirmation-content">
+
+        {{-- ORDER INFORMATION --}}
         <div class="confirmation-card">
+
             <div class="confirmation-card-title">
                 <h2>Order Information</h2>
             </div>
 
             <div class="order-info">
+
                 <div class="order-info-row">
                     <span>Invoice</span>
                     <strong>{{ $order->invoice }}</strong>
@@ -45,7 +56,7 @@
 
                 <div class="order-info-row">
                     <span>Payment</span>
-                    <strong>Bayar di tempat (COD)</strong>
+                    <strong>Cash on Delivery (COD)</strong>
                 </div>
 
                 <div class="order-info-row">
@@ -53,16 +64,30 @@
                     <strong>{{ $order->payment_status }}</strong>
                 </div>
 
+                <div class="order-info-row">
+                    <span>Courier</span>
+                    <strong>{{ $order->courier }}</strong>
+                </div>
+
+                <div class="order-info-row">
+                    <span>Delivery Service</span>
+                    <strong>{{ $order->delivery_service }}</strong>
+                </div>
+
             </div>
 
         </div>
 
+
+        {{-- SHIPPING INFORMATION --}}
         <div class="confirmation-card">
+
             <div class="confirmation-card-title">
                 <h2>Shipping Information</h2>
             </div>
 
-            <div class="shipping-info">
+            <div class="order-form-info">
+
                 <p>
                     {{ $order->shipping }}
                 </p>
@@ -70,11 +95,15 @@
                 <p>
                     Postal Code: {{ $order->postal_code }}
                 </p>
+
             </div>
 
         </div>
 
+
+        {{-- ORDER DETAILS --}}
         <div class="confirmation-card">
+
             <div class="confirmation-card-title">
                 <h2>Order Details</h2>
             </div>
@@ -84,6 +113,7 @@
                 @foreach($order->orderDetails as $detail)
 
                     <div class="confirmation-product">
+
                         <div class="product-detail">
 
                             <div class="product-name">
@@ -93,34 +123,45 @@
                             <div class="product-quantity">
                                 x{{ $detail->quantity }}
                             </div>
+
                         </div>
 
                         <div class="product-price">
                             Rp {{ number_format($detail->subtotal, 0, ',', '.') }}
                         </div>
+
                     </div>
+
                 @endforeach
 
             </div>
 
             <div class="confirmation-total">
+
                 <span>Total</span>
 
                 <strong>
                     Rp {{ number_format($order->total, 0, ',', '.') }}
                 </strong>
+
             </div>
+
         </div>
 
+
+        {{-- BUTTONS --}}
         <div class="confirmation-buttons">
-            <a href="{{ route('customer.orders.show', $order->id) }}" 
-                class="view-order-button">
+
+            <a href="{{ route('customer.orders.show', $order->id) }}"
+               class="view-order-button">
                 View Order
             </a>
+
             <a href="{{ route('customer.dashboard') }}"
-                class="back-home-button">
+               class="back-home-button">
                 Back to Home
             </a>
+
         </div>
 
     </div>
@@ -128,5 +169,3 @@
 </div>
 
 @endsection
-
-

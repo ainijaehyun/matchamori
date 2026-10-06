@@ -320,10 +320,18 @@ a {
 }
 .mm-collection-item {
     position: relative;
-    height: 300px;
+    width: 100%;
+    height: 280px;
+    padding: 0;
+    border: none;
+    background: none;
+    color: inherit;
+    text-align: left;
+    cursor: pointer;
+    display: block;
     overflow: hidden;
-    background: #879b78;
-    border-radius: 3px;
+    text-decoration: none;
+    
 }
 .mm-collection-item img {
     display: block;
@@ -404,6 +412,331 @@ a {
 .mm-carousel .carousel-indicators .active {
     background: #f4f3e8;
 }
+/* =====================================================
+   PRODUCTS
+===================================================== */
+
+.mm-products {
+    background: var(--cream-light);
+}
+
+.mm-products-heading {
+    margin-bottom: 45px;
+    text-align: center;
+}
+
+.mm-products-heading .mm-section-title-small {
+    color: #6b7c62;
+}
+
+.mm-products-heading .mm-section-title {
+    color: #354b32;
+}
+
+.mm-products-heading .mm-title-line {
+    margin: 18px auto;
+}
+
+.mm-products-description {
+    max-width: 500px;
+    margin: 0 auto;
+    color: #697267;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    line-height: 1.8;
+}
+/* PRODUCT CATEGORY */
+
+.mm-product-category-section {
+    margin-bottom: 55px;
+}
+
+.mm-product-category-section:last-child {
+    margin-bottom: 0;
+}
+
+.mm-product-category-heading {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 25px;
+}
+
+.mm-product-category-heading::before,
+.mm-product-category-heading::after {
+    content: "";
+    height: 1px;
+    flex: 1;
+    background: var(--line);
+}
+
+.mm-product-category-heading span {
+    color: #52664b;
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+/* PRODUCT CARD */
+
+.mm-product-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid rgba(48, 74, 47, .10);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: all .25s ease;
+}
+.mm-product-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 18px;
+}
+
+.mm-product-grid-item {
+    min-width: 0;
+}
+
+.mm-product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(48, 74, 47, .10);
+}
+
+
+/* IMAGE */
+
+.mm-product-image {
+    width: 100%;
+    height: 245px;
+    overflow: hidden;
+    background: #edf1e8;
+}
+
+.mm-product-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .4s ease;
+}
+
+.mm-product-card:hover .mm-product-image img {
+    transform: scale(1.04);
+}
+
+
+/* INFO */
+
+.mm-product-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 20px 22px;
+}
+
+.mm-product-category {
+    margin-bottom: 7px;
+    color: #7b8972;
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.mm-product-info h3 {
+    margin: 0 0 10px;
+    color: #354b32;
+    font-size: 19px;
+    font-weight: normal;
+    line-height: 1.3;
+}
+
+.mm-product-price {
+    margin-bottom: 18px;
+    color: #52664b;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+
+/* VIEW PRODUCT */
+
+.mm-product-view {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    width: 100%;
+    margin-top: auto;
+    padding: 9px 15px;
+
+    border: 1px solid #9faf96;
+    border-radius: 3px;
+
+    background: transparent;
+    color: #4f6945;
+
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+
+    transition: all .2s ease;
+}
+
+.mm-product-view:hover {
+    background: #6b8a5d;
+    border-color: #6b8a5d;
+    color: #fff;
+}
+
+
+/* VIEW ALL */
+
+.mm-products-footer {
+    margin-top: 45px;
+    text-align: center;
+}
+
+.mm-view-all {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 25px 50px;
+    border: 1px solid #6b8a5d;
+    border-radius: 3px;
+    background: #6b8a5d;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all .2s ease;
+}
+
+.mm-view-all:hover {
+    background: #4f6945;
+    border-color: #4f6945;
+    color: #fff;
+}
+/* EMPTY */
+
+.mm-product-empty {
+    padding: 50px 20px;
+    background: rgba(255,255,255,.5);
+    color: #697267;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+}
+/* =========================
+   LOGIN PRODUCT MODAL
+========================= */
+
+.mm-login-modal .modal-dialog {
+    max-width: 390px;
+}
+
+.mm-login-modal .modal-content {
+    border: none;
+    border-radius: 6px;
+    background: #faf9f1;
+    box-shadow: 0 15px 40px rgba(48, 74, 47, 0.18);
+    overflow: hidden;
+}
+
+.mm-login-modal .modal-body {
+    padding: 38px 35px 32px;
+    text-align: center;
+}
+
+/* Icon */
+.mm-login-modal-icon {
+    width: 58px;
+    height: 58px;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #dce5d3;
+    color: #4f6945;
+    font-size: 21px;
+}
+
+/* Title */
+.mm-login-modal h3 {
+    margin: 0 0 10px;
+    color: #354b32;
+    font-size: 21px;
+    font-weight: 500;
+}
+
+/* Description */
+.mm-login-modal p {
+    margin: 0 auto 25px;
+    max-width: 280px;
+    color: #697267;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+/* Buttons */
+.mm-login-modal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.mm-modal-cancel,
+.mm-modal-login {
+    min-width: 105px;
+    padding: 10px 18px;
+    border-radius: 3px;
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all .2s ease;
+}
+
+/* Cancel */
+.mm-modal-cancel {
+    border: 1px solid #aebd99;
+    background: transparent;
+    color: #52664b;
+}
+
+.mm-modal-cancel:hover {
+    background: #dce5d3;
+    color: #354b32;
+}
+
+/* Login */
+.mm-modal-login {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #6b8a5d;
+    background: #6b8a5d;
+    color: #fff;
+}
+
+.mm-modal-login:hover {
+    border-color: #4f6945;
+    background: #4f6945;
+    color: #fff;
+}
+
+/* Modal background */
+.mm-login-modal.modal {
+    background: rgba(48, 74, 47, 0.18);
+}
+
 
 .mm-best {
     background: var(--cream);
@@ -428,21 +761,23 @@ a {
 .mm-product-button {
     display: inline-flex;
     align-items: center;
-    gap: 12px;
-    margin-top: 8px;
-    padding: 10px 21px;
-    border: 1px solid #b4c4a8;
-    border-radius: 4px;
-    background: #c8d3bb;
-    color: #42553c;
+    justify-content: center;
+    gap: 9px;
+    padding: 11px 22px;
+    border: 1px solid #6b8a5d;
+    border-radius: 3px;
+    background: #6b8a5d;
+    color: #fff;
     font-family: Arial, sans-serif;
     font-size: 12px;
-    transition: .2s ease;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all .2s ease;
 }
 .mm-product-button:hover {
-    background: #afbea0;
-    border-color: #9eaf91;
-    color: #34482f;
+    background: #4f6945;
+    border-color: #4f6945;
+    color: #fff;
 }
 
 .mm-testimonials {
@@ -537,6 +872,9 @@ a {
     .mm-quote {
         padding: 0 20px;
     }
+    .mm-product-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
 
 }
 
@@ -630,7 +968,22 @@ a {
     .mm-carousel-next {
         right: -5px;
     }
+    /* PRODUCTS */
 
+    .mm-product-image {
+        height: 220px;
+    }
+
+    .mm-product-info {
+        padding: 17px;
+    }
+
+    .mm-products-heading {
+        margin-bottom: 35px;
+    }
+    .mm-product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 
     /* BEST */
     .mm-best-image {
@@ -678,12 +1031,17 @@ a {
     .mm-collection-item {
         height: 250px;
     }
+    .mm-product-grid {
+        grid-template-columns: 1fr;
+    }
     .mm-hero h1 {
         font-size: 45px;
     }
     .mm-hero-tagline {
         font-size: 19px;
     }
-
+    .mm-product-image {
+        height: 250px;
+    }
 }
 

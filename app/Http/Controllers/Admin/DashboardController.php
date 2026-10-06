@@ -45,7 +45,7 @@ class DashboardController extends Controller
             ->get();
         
         // recent Orders - 5 pesanan terbaru
-        $recentOrders = Order::with('user')->latest()->take(5)->get();
+        $recentOrders = Order::with('user')->where('order_status', 'Delivered')->latest()->take(5)->get();
 
         return view('admin.dashboard', compact('totalProducts','totalCustomers','totalOrders','totalSales','monthlySales','salesByCategory','recentOrders'));
        

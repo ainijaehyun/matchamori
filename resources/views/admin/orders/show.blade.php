@@ -33,6 +33,15 @@
                 {{ $order->invoice }}
             </div>
         </div>
+        <div class="detail-row">
+            <div class="detail-label">
+                Address
+            </div>
+
+            <div class="detail-value">
+                {{ $order->user->address ?? '-' }}
+            </div>
+        </div>
 
         <div class="detail-row">
             <div class="detail-label">

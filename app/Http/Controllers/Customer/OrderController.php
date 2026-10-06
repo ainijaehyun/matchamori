@@ -28,4 +28,27 @@ class OrderController extends Controller
 
         return view('customers.orders.status', compact('order'));
     }
+
+     public function confirmReceived(string $id)
+    {
+        $order = Order::where('user_id', Auth::id())
+            ->findOrFail($id);
+
+        // Hanya pesanan yang sedang dikirim yang bisa dikonfirmasi
+        if ($order->order_status !== 'On Delivery') {
+            return back()->with(
+                'error',
+                'Pesanan belum dapat dikonfirmasi sebagai pesanan yang diterima.'
+            );
+        }
+
+        $order->update([
+            'order_status' => 'Delivered',
+            'payment_status' => 'Paid',
+        ]);
+
+        return redirect()
+            ->route('customer.orders.show', $order->id)
+            ->with('success', 'Pesanan berhasil dikonfirmasi sudah diterima.');
+    }
 }

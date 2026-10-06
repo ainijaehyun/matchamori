@@ -8,10 +8,12 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Customer\DashboardController as CustomerDashboardController;
 use App\Http\Controllers\Customer\CartController;
+use App\Models\Product;
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    $products = Product::with('category')->where('stock', '>', 0)->latest()->get();
+    return view('welcome', compact('products'));
+})->name('welcome');
 
 Auth::routes();
 
@@ -77,10 +79,9 @@ Route::group([
     Route::patch('/cart/{id}', [App\Http\Controllers\Customer\CartController::class, 'update'])->name('cart.update');
     Route::delete('/cart/{id}', [App\Http\Controllers\Customer\CartController::class, 'destroy'])->name('cart.destroy');
 
-    // Checkout - Shipping
-    Route::get('/checkout', [App\Http\Controllers\Customer\CheckoutController::class, 'index'])->name('checkout.index');
-    Route::post('/checkout', [App\Http\Controllers\Customer\CheckoutController::class, 'store'])->name('checkout.store');
-    Route::get('/checkout/payment', [App\Http\Controllers\Customer\CheckoutController::class, 'payment'])->name('checkout.payment');
+    // Checkout - Order Form
+    Route::get('/checkout/order_form', [App\Http\Controllers\Customer\CheckoutController::class, 'index'])->name('checkout.index');
+    Route::post('/checkout/order_form', [App\Http\Controllers\Customer\CheckoutController::class, 'store'])->name('checkout.store');
     Route::get('/checkout/confirm', [App\Http\Controllers\Customer\CheckoutController::class, 'confirm'])->name('checkout.confirm');
     Route::post('/checkout/place_order', [App\Http\Controllers\Customer\CheckoutController::class, 'placeOrder'])->name('checkout.placeOrder');
     Route::get('/checkout/confirmation/{id}', [App\Http\Controllers\Customer\CheckoutController::class, 'confirmation'])->name('checkout.confirmation');
@@ -89,5 +90,6 @@ Route::group([
     Route::get('/orders', [App\Http\Controllers\Customer\OrderController::class, 'index'])->name('orders.index');
     Route::get('/orders/{id}', [App\Http\Controllers\Customer\OrderController::class, 'show'])->name('orders.show');
     Route::get('/orders/{id}/status', [App\Http\Controllers\Customer\OrderController::class, 'status'])->name('orders.status');
+    Route::patch('/orders/{id}/confirm-received', [App\Http\Controllers\Customer\OrderController::class, 'confirmReceived'])->name('orders.confirmReceived');
 });
 

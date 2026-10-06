@@ -15,14 +15,13 @@ class DashboardController extends Controller
         //menampilkan best seller dengan total quantity terjual terbanyak
         $bestSellers = Product::select('products.*')
             ->join('order_details', 'products.id', '=', 'order_details.product_id')
+            ->join('orders', 'order_details.order_id', '=', 'orders.id')
+            ->where('orders.order_status', 'Delivered')
             ->selectRaw('SUM(order_details.quantity) as total_sold')
             ->groupBy('products.id')
             ->orderByDesc('total_sold')
-            ->take(4)->get();
-
-        if ($bestSellers->isEmpty()) {
-            $bestSellers = Product::latest()->take(4)->get();
-        }
+            ->take(4)
+            ->get();
     
 
         return view('customers.dashboard', compact('categories', 'bestSellers'));

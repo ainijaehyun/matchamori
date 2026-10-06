@@ -45,7 +45,7 @@
                                 Rp. {{ number_format($order->total, 0, ',', '.') }}
                             </td>
                             <td>
-                                COD
+                                {{ $order->payment_method }}
                             </td>
                             <td>
                                 <a href="{{ route('customer.orders.status', $order->id) }}" class="order-status-link">

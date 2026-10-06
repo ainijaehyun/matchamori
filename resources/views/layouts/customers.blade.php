@@ -10,7 +10,7 @@
 
     <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
 
-    <link href="{{ asset('css/customer-layout.css') }}" rel="stylesheet">    
+    <link href="{{ asset('css/customer-layout.css') }}?v={{ time() }}" rel="stylesheet">    
 
     @stack('styles')
 
@@ -87,11 +87,8 @@
         
         @yield('content')
 
-        <footer class="custom-footer">
-            <span>
-                Copyright &copy; Matcha Mori {{ date('Y') }}
-            </span>
-        </footer>
+        
+        @include('layouts.inc.footer')
 
     </div>
 
@@ -105,8 +102,9 @@
         Swal.fire({
             icon: 'success',
             title: 'Success!',
-            text: '{{ session('success') }}',
-            confirmButtonText: 'OK'
+            text: @json(session('success')),
+            confirmButtonText: 'OK',
+            scrollbarPadding: false
         });
     </script>
     @endif

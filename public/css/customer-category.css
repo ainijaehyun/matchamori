@@ -1,122 +1,398 @@
+/* =========================================================
+   CUSTOMER CATEGORY
+   MATCHA MORI
+========================================================= */
 
 .category-page {
     width: 100%;
     min-height: calc(100vh - 100px);
-    padding: 0 30px 50px;
+    padding: 0 30px 60px;
+    box-sizing: border-box;
 }
+
+/* =========================
+   BREADCRUMB
+========================= */
+
 .category-breadcrumb {
     width: 100%;
     padding: 7px 20px;
     margin-bottom: 55px;
+
     background: #6b8a5d;
     border-radius: 4px;
-    font-family: Georgia, serif;
+
+    box-shadow: 0 3px 6px rgba(0, 0, 0, .15);
+
+    font-family: Georgia, 'Times New Roman', serif;
     font-size: 22px;
     color: #f5f4e8;
-    box-shadow:
-        0 2px 5px rgba(0, 0, 0, .18);
+
     box-sizing: border-box;
 }
+
 .category-breadcrumb a {
     color: #f5f4e8;
     text-decoration: none;
 }
+
 .category-breadcrumb a:hover {
-    color: #008000;
-    text-decoration: underline;
+    color: #d8ebcc;
 }
+
 .category-breadcrumb span {
-    color: #f5f4e8;
+    margin: 0 5px;
 }
+
+/* =========================
+   HEADING
+========================= */
+
 .category-heading {
-    margin: 25px 0 40px;
+    width: 88%;
+    margin: 0 auto 40px;
+
     text-align: center;
-    font-family: Georgia, serif;
-    font-size: 25px;
+}
+
+.category-small-title {
+    margin: 0 0 8px;
+
+    color: #6b8a5d;
+
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 14px;
+    font-weight: bold;
+
+    letter-spacing: 3px;
+}
+
+.category-heading h1 {
+    margin: 0;
+
+    color: #263824;
+
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 34px;
     font-weight: normal;
-    color: #111;
 }
-.view-category-grid {
-    width: 560px;
+
+.category-description {
+    margin: 10px auto 0;
+
+    max-width: 550px;
+
+    color: #666;
+
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* =========================
+   GRID
+========================= */
+
+.category-grid {
+    width: 88%;
     margin: 0 auto;
+
     display: grid;
-    grid-template-columns: repeat(2, 220px);
-    column-gap: 100px;
-    row-gap: 55px;
-    justify-content: center;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 30px;
 }
-.view-category-card {
-    width: 180px;
-    height: 200px;
-    padding: 10px;
-    box-sizing: border-box;
+
+/* =========================
+   CARD
+========================= */
+
+.category-card {
+    min-height: 190px;
+
     display: flex;
-    flex-direction: column;
     align-items: center;
-    background: #fffed8;
-    border: 1.5px solid #222;
-    border-radius: 14px;
-    color: #111;
-    text-decoration: none;
-    box-shadow:
-        0 3px 5px rgba(0, 0, 0, .18);
-    transition:
-        .2s ease;
-}
-.view-category-card:hover {
-    transform: translateY(-4px);
-    box-shadow:
-        0 6px 10px rgba(0, 0, 0, .22);
-    text-decoration: none;
-    color: #111;
-}
-.category-image-box {
-    width: 160px;
-    height: 135px;
-    border-radius: 13px;
-    background: #b6dda4;
-    margin-bottom: 13px;
+
     overflow: hidden;
-    box-shadow:
-        0 3px 5px rgba(0, 0, 0, .15);
+
+    background: #ffffff;
+
+    border: 1px solid #d7e2d0;
+    border-radius: 22px;
+
+    box-shadow: 0 4px 12px rgba(48, 74, 47, .10);
+
+    text-decoration: none !important;
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        border-color .25s ease;
 }
+
+.category-card:hover {
+    transform: translateY(-5px);
+
+    border-color: #a9c39c;
+
+    box-shadow: 0 9px 20px rgba(48, 74, 47, .16);
+
+    text-decoration: none !important;
+}
+
+/* =========================
+   IMAGE
+========================= */
+
 .category-image {
-    width: 160px !important;
-    height: 135px !important;
+    width: 47%;
+    height: 190px;
 
-    display: block !important;
+    flex-shrink: 0;
 
-    object-fit: cover !important;
-    object-position: center !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    margin: 0 !important;
-    padding: 0 !important;
+    overflow: hidden;
+
+    background: #e7ead5;
 }
 
-.category-fallback-icon {
-    font-size: 65px;
-    color: #000;
+.category-image img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+    object-position: center;
+
+    transition: transform .35s ease;
 }
-.category-card-name {
-    font-family: Georgia, serif;
-    font-size: 15px;
-    text-align: center;
-    margin-top: 2px;
+
+.category-card:hover .category-image img {
+    transform: scale(1.05);
+}
+
+/* =========================
+   INFO
+========================= */
+
+.category-info {
+    flex: 1;
+
+    padding: 25px 28px;
+}
+
+.category-info h2 {
+    margin: 0 0 14px;
+
+    color: #263824;
+
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 23px;
+    font-weight: normal;
+
     line-height: 1.3;
 }
 
-@media (max-width: 650px) {
+.category-info span {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    color: #6b8a5d;
+
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 14px;
+}
+
+.category-info span i {
+    font-size: 12px;
+
+    transition: transform .2s ease;
+}
+
+.category-card:hover .category-info span i {
+    transform: translateX(4px);
+}
+
+/* =========================
+   FALLBACK
+========================= */
+
+.category-fallback-icon {
+    color: #6b8a5d;
+    font-size: 50px;
+}
+
+/* =========================
+   EMPTY
+========================= */
+
+.category-empty {
+    grid-column: 1 / -1;
+
+    padding: 70px 20px;
+
+    text-align: center;
+
+    background: #ffffff;
+
+    border: 1px solid #d7e2d0;
+    border-radius: 22px;
+
+    box-shadow: 0 4px 12px rgba(48, 74, 47, .08);
+}
+
+.category-empty i {
+    margin-bottom: 15px;
+
+    color: #6b8a5d;
+    font-size: 38px;
+}
+
+.category-empty h2 {
+    margin: 0 0 8px;
+
+    color: #263824;
+
+    font-size: 22px;
+    font-weight: normal;
+}
+
+.category-empty p {
+    margin: 0;
+
+    color: #777;
+    font-size: 15px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+
+    .category-grid {
+        width: 94%;
+        gap: 22px;
+    }
+
+    .category-heading {
+        width: 94%;
+    }
+
+    .category-card {
+        min-height: 175px;
+    }
+
+    .category-image {
+        height: 175px;
+    }
+
+    .category-info {
+        padding: 22px;
+    }
+
+    .category-info h2 {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 700px) {
 
     .category-page {
-        padding: 0 15px 40px;
-    }
-    .category-breadcrumb {
-        font-size: 18px;
-    }
-    .view-category-grid {
-        width: 100%;
-        grid-template-columns: 220px;
-        row-gap: 30px;
+        padding: 0 15px 45px;
     }
 
+    .category-breadcrumb {
+        margin-bottom: 38px;
+        font-size: 17px;
+    }
+
+    .category-heading {
+        width: 100%;
+        margin-bottom: 30px;
+    }
+
+    .category-heading h1 {
+        font-size: 28px;
+    }
+
+    .category-description {
+        font-size: 14px;
+    }
+
+    .category-grid {
+        width: 100%;
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .category-card {
+        min-height: 160px;
+    }
+
+    .category-image {
+        width: 45%;
+        height: 160px;
+    }
+
+    .category-info h2 {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .category-page {
+        padding: 0 10px 40px;
+    }
+
+    .category-breadcrumb {
+        padding: 7px 15px;
+        font-size: 16px;
+    }
+
+    .category-small-title {
+        font-size: 12px;
+        letter-spacing: 2px;
+    }
+
+    .category-heading h1 {
+        font-size: 25px;
+    }
+
+    .category-description {
+        font-size: 13px;
+    }
+
+    .category-grid {
+        gap: 16px;
+    }
+
+    .category-card {
+        min-height: 140px;
+        border-radius: 18px;
+    }
+
+    .category-image {
+        width: 43%;
+        height: 140px;
+    }
+
+    .category-info {
+        padding: 18px;
+    }
+
+    .category-info h2 {
+        margin-bottom: 10px;
+        font-size: 18px;
+    }
+
+    .category-info span {
+        font-size: 13px;
+    }
 }

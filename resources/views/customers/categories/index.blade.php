@@ -1,59 +1,96 @@
 @extends('layouts.customers')
 
-@section('title', 'View Category')
+@section('title', 'Category')
 
 @push('styles')
-    <link href="{{ asset('css/customer-category.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/customer-category.css') }}?v={{ time() }}" rel="stylesheet">
 @endpush
 
 @section('content')
+
 <div class="category-page">
+
+    {{-- Breadcrumb --}}
     <div class="category-breadcrumb">
-        <a href="{{ route('customer.dashboard') }}">
-            Home
-        </a>
-        <span>&gt;</span> Category
+        <a href="{{ route('customer.dashboard') }}">Home</a>
+        <span>&gt;</span>
+        Category
     </div>
 
-    <h2 class="category-heading">
-        All Category
-    </h2>
+    {{-- Heading --}}
+    <div class="category-heading">
+        <p class="category-small-title">MATCHA MORI</p>
 
-    <div class="view-category-grid">
-        @foreach($categories as $category)
+        <h1>Our Categories</h1>
+
+        <p class="category-description">
+            Explore our selection of Japanese matcha and tea products.
+        </p>
+    </div>
+
+    {{-- Category --}}
+    <div class="category-grid">
+
+        @forelse($categories as $category)
 
             @php
-                $categoryName = strtolower($category->name);
+                $categoryImages = [
+                    'Matcha Drink' => 'categories/matcha-drink.jpg',
+                    'Matcha Dessert' => 'categories/matcha-dessert.jpg',
+                    'Matcha Powder' => 'categories/matcha-powder.jpg',
+                    'Accessories' => 'categories/accessories.jpg',
+                ];
 
-                if ($categoryName == 'matcha drink') {
-                    $icon = 'fas fa-glass-martini-alt';
-                } elseif ($categoryName == 'matcha dessert') {
-                    $icon = 'fas fa-birthday-cake';
-                } elseif ($categoryName == 'matcha powder') {
-                    $icon = 'fas fa-prescription-bottle';
-                } elseif ($categoryName == 'accessories') {
-                    $icon = 'fas fa-gift';
-                } else {
-                    $icon = 'fas fa-leaf';
-                }
+                $image = $categoryImages[$category->name] ?? null;
             @endphp
 
-            <a href="{{ route('customer.products.index', ['category_id' => $category->id]) }}" class="view-category-card">
+            <a href="{{ route('customer.products.index', ['category_id' => $category->id]) }}"
+               class="category-card">
 
-                <div class="category-image-box">
-                    @if($category->image)
-                        <img src="{{ asset('img/' . $category->image) }}" alt="{{ $category->image }}" class="category-image">
+                <div class="category-image">
+
+                    @if($image)
+                        <img
+                            src="{{ asset('img/' . $image) }}"
+                            alt="{{ $category->name }}"
+                        >
                     @else
-                        <i class="{{ $icon }} category-fallback-icon"></i>
+                        <i class="fas fa-leaf category-fallback-icon"></i>
                     @endif
+
                 </div>
 
-                <div class="category-card-name">
-                    {{ $category->name }}
+                <div class="category-info">
+
+                    <h2>{{ $category->name }}</h2>
+
+                    <span>
+                        Explore
+                        <i class="fas fa-arrow-right"></i>
+                    </span>
+
                 </div>
+
             </a>
-        @endforeach
-    </div>
-</div>
-@endsection
 
+        @empty
+
+            <div class="category-empty">
+
+                <i class="fas fa-leaf"></i>
+
+                <h2>No Category Available</h2>
+
+                <p>
+                    There are currently no categories available.
+                </p>
+
+            </div>
+
+        @endforelse
+
+    </div>
+
+</div>
+
+@endsection
