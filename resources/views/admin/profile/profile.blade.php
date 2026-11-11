@@ -3,15 +3,12 @@
 @section('title', 'Profile Admin')
 
 @push('styles')
-    <link href="{{ asset('css/profile.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/profile.css') }}?v={{ time() }}" rel="stylesheet">
 @endpush
 
 @section('content')
 
 <div class="profile-page">
-    <div class="profile-title">
-        Profile Admin
-    </div>
 
     <div class="profile-card">
         <div class="profile-icon">

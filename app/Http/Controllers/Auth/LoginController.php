@@ -8,45 +8,50 @@ use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
-
     use AuthenticatesUsers;
 
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
     protected $redirectTo = '/customer/dashboard';
 
+    public function showLoginForm(Request $request)
+    {
+        $redirect = $request->query('redirect_to');
+
+        if (
+            $redirect &&
+            str_starts_with($redirect, '/') &&
+            !str_starts_with($redirect, '//')
+        ) {
+            $request->session()->put('login.redirect', $redirect);
+        }
+
+        return view('auth.login');
+    }
 
     protected function authenticated(Request $request, $user)
     {
         if ($user->role === 'admin') {
+            $request->session()->forget('login.redirect');
+
             return redirect()->route('admin.dashboard');
         }
 
         if ($user->role === 'customer') {
+            $redirect = $request->session()->pull('login.redirect');
+
+            if (
+                $redirect &&
+                str_starts_with($redirect, '/') &&
+                !str_starts_with($redirect, '//')
+            ) {
+                return redirect()->to($redirect);
+            }
+
             return redirect()->route('customer.dashboard');
         }
 
         return redirect('/');
-        
     }
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+
     public function __construct()
     {
         $this->middleware('guest')->except('logout');

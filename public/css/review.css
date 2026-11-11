@@ -1,0 +1,152 @@
+
+/* MANAGE ULASAN */
+
+.review-page {
+    width: 100%;
+    padding: 25px 30px 40px;
+    box-sizing: border-box;
+}
+
+.review-header {
+    margin-bottom: 25px;
+}
+
+.review-title {
+    color: #304a2f;
+    font-size: 28px;
+    font-weight: 700;
+}
+/* TABLE */
+
+.review-table-wrapper {
+    width: 100%;
+    background: white;
+    border-radius: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.10);
+}
+
+.review-table {
+    width: 100%;
+    min-width: 1050px;
+    border-collapse: collapse;
+}
+
+.review-table th,
+.review-table td {
+    border: 1px solid #275a2f;
+}
+
+.review-table th {
+    background: #6b8a5d;
+    padding: 15px;
+    text-align: center;
+    font-size: 16px;
+    color: #f5f4e8;
+    white-space: nowrap;
+}
+
+.review-table td {
+    padding: 13px 15px;
+    text-align: center;
+    border-top: 1px solid #ddd;
+    font-size: 15px;
+    color: #111;
+    vertical-align: middle;
+}
+
+.review-table tbody tr:hover {
+    background: #f5f5f5;
+}
+
+/* Comment */
+.review-comment {
+    min-width: 220px;
+    max-width: 350px;
+    text-align: left !important;
+    overflow-wrap: anywhere;
+    line-height: 1.4;
+}
+
+/* Rating */
+
+.review-rating {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    color: #e5a900;
+    white-space: nowrap;
+}
+
+.review-rating span {
+    color: #555;
+    margin-left: 5px;
+    font-size: 13px;
+}
+
+/* Comment */
+
+.review-comment {
+    min-width: 220px;
+    max-width: 350px;
+    overflow-wrap: anywhere;
+}
+
+/* Action */
+
+.review-action {
+    display: flex;
+    justify-content: center;
+}
+
+.review-delete-button {
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 8px;
+    background: #fbe9e7;
+    color: #c0392b;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.review-delete-button:hover {
+    background: #c0392b;
+    color: #fff;
+}
+
+.review-page .pagination-area {
+    padding: 18px;
+    display: flex;
+    justify-content: center;
+}
+
+.review-page .pagination-area svg {
+    width: 20px !important;
+    height: 20px !important;
+    max-width: 20px !important;
+    max-height: 20px !important;
+}
+
+.review-page .pagination-area nav {
+    width: 100%;
+}
+
+.review-page .pagination-area nav a,
+.review-page .pagination-area nav span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+/* Responsive */
+
+@media (max-width: 768px) {
+    .review-page {
+        padding: 20px 15px 30px;
+    }
+
+    .review-title {
+        font-size: 24px;
+    }
+}

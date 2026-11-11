@@ -3,7 +3,7 @@
 @section('title', 'Edit Category')
 
 @push('styles')
-    <link href="{{ asset('css/category.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/category.css') }}?v={{ time() }}" rel="stylesheet">
 @endpush
 
 @section('content')

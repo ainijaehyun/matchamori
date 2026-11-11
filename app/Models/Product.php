@@ -2,6 +2,7 @@
 
 namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
@@ -32,5 +33,10 @@ class Product extends Model
    public function cartDetails()
    {
         return $this->hasMany(CartDetail::class, 'product_id');
+   }
+   
+   public function reviews()
+   {
+     return $this->hasMany(Review::class, 'product_id');
    }
 }

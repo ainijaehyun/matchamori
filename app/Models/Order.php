@@ -2,6 +2,7 @@
 
 namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
@@ -14,13 +15,12 @@ class Order extends Model
         'user_id',
         'invoice',
         'shipping',
-        'postal_code',
-        'total',
-        'courier',
-        'delivery_service',
         'payment_method',
+        'total',
         'payment_status',
         'order_status',
+        'latitude',
+        'longitude',
     ];
 
     public function user()
@@ -32,4 +32,15 @@ class Order extends Model
     {
         return $this->hasMany(OrderDetail::class, 'order_id');
     }
+
+    public function payments()
+    {
+        return $this->hasMany(Payment::class, 'order_id');
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class, 'order_id'); 
+    }
+
 }

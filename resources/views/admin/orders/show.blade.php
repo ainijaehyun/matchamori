@@ -3,7 +3,7 @@
 @section('title', 'Show Order')
 
 @push('styles')
-    <link href="{{ asset('css/order.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/order.css') }}?v={{ time() }}" rel="stylesheet">
 @endpush
 
 @section('content')
@@ -33,13 +33,102 @@
                 {{ $order->invoice }}
             </div>
         </div>
+       
+        @php
+            $shippingInfo = $order->shipping ?? '';
+
+            // Deteksi metode penerimaan
+            $isPickup = str_contains(
+                $shippingInfo,
+                'Method: Pickup at Matcha Mori Store'
+            );
+
+            // Mengambil nama penerima sampai sebelum Phone
+            preg_match(
+                '/(?:^|,\s*)Name:\s*(.*?)(?=,\s*Phone:|$)/i',
+                $shippingInfo,
+                $nameMatch
+            );
+
+            // Mengambil nomor telepon sampai sebelum Address
+            preg_match(
+                '/(?:^|,\s*)Phone:\s*(.*?)(?=,\s*Address:|,\s*Method:|$)/i',
+                $shippingInfo,
+                $phoneMatch
+            );
+
+            // Mengambil alamat sampai sebelum Method
+            preg_match(
+                '/(?:^|,\s*)Address:\s*(.*?)(?=,\s*Method:|$)/i',
+                $shippingInfo,
+                $addressMatch
+            );
+
+            // Hasil data
+            $recipientName = trim($nameMatch[1] ?? '');
+            $recipientPhone = trim($phoneMatch[1] ?? '');
+            $recipientAddress = trim($addressMatch[1] ?? '');
+
+            // Fallback jika data tidak ditemukan
+            $recipientName = $recipientName ?: ($order->user->name ?? '-');
+            $recipientPhone = $recipientPhone ?: ($order->user->phone ?? '-');
+            $recipientAddress = $recipientAddress ?: ($order->user->address ?? '-');
+        @endphp
+
+
         <div class="detail-row">
             <div class="detail-label">
-                Address
+                Metode Penerimaan
             </div>
 
             <div class="detail-value">
-                {{ $order->user->address ?? '-' }}
+                @if($isPickup)
+                    <span class="reception-status pickup">
+                        Ambil di Tempat
+                    </span>
+                @else
+                    <span class="reception-status delivery">
+                        Pengiriman ke Alamat
+                    </span>
+                @endif
+            </div>
+        </div>
+
+        <div class="detail-row">
+            <div class="detail-label">
+                Nama Penerima
+            </div>
+
+            <div class="detail-value">
+                {{ $recipientName }}
+            </div>
+        </div>
+
+        <div class="detail-row">
+            <div class="detail-label">
+                Nomor Telepon
+            </div>
+
+            <div class="detail-value">
+                {{ $recipientPhone }}
+            </div>
+        </div>
+
+        <div class="detail-row">
+            <div class="detail-label">
+                {{ $isPickup ? 'Lokasi Pengambilan' : 'Alamat Pengiriman' }}
+            </div>
+
+            <div class="detail-value">
+                @if($isPickup)
+                    Matcha Mori Store
+                    <br>
+                    Palumbungan Wetan, Bobotsari, Purbalingga, Jawa Tengah
+                    <br>
+                    <small>Customer mengambil pesanan langsung di toko.</small>
+                @else
+                    {{ $recipientAddress }}
+                @endif
             </div>
         </div>
 
@@ -96,61 +185,97 @@
             </div>
         </div>
     </div>
-
-    {{-- produk order --}}
+    
+    {{-- Produk Order --}}
     <div class="order-items-card">
-        <h2 class="order-items-title">
-            Product
-        </h2>
+        <div class="order-items-header">
+            <div>
+                <h2 class="order-items-title">Order Items</h2>
+                <p class="order-items-subtitle">
+                    Daftar produk dalam pesanan ini
+                </p>
+            </div>
 
-        <table class="order-items-table">
-            <thead>
-                <tr>
-                    <th>No.</th>
-                    <th>Product Name</th>
-                    <th>Quantity</th>
-                    <th>Price</th>
-                    <th>Subtotal</th>
-                </tr>
-            </thead>
+            <span class="order-items-count">
+                {{ $order->orderDetails->count() }}
+                {{ $order->orderDetails->count() == 1 ? 'Product' : 'Products' }}
+            </span>
+        </div>
 
-            <tbody>
-                @forelse($order->orderDetails as $index => $detail)
+        <div class="order-items-wrapper">
+            <table class="order-items-table">
+                <thead>
                     <tr>
-                        <td>
-                            {{ $index + 1 }}.
-                        </td>
-
-                        <td>
-                            {{ $detail->product->name ?? '-' }}
-                        </td>
-
-                        <td>
-                            {{ $detail->quantity }}
-                        </td>
-
-                        <td>
-                            Rp. {{ number_format($detail->price, 0, ',', '.') }}
-                        </td>
-
-                        <td>
-                            Rp. {{ number_format($detail->subtotal, 0, ',', '.') }}
-                        </td>
+                        <th>No.</th>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Subtotal</th>
                     </tr>
-                @empty
-                    <tr>
-                        <td colspan="5">
-                            Belum ada produk dalam order ini.
-                        </td>
-                    </tr>
-                @endforelse
-            </tbody>
-        </table>
+                </thead>
+
+                <tbody>
+                    @forelse ($order->orderDetails as $index => $detail)
+                        <tr>
+                            <td>{{ $index + 1 }}</td>
+
+                            <td>
+                                <div class="order-product-info">
+                                    <div class="order-product-image">
+                                        @if ($detail->product && $detail->product->image)
+                                            <img src="{{ asset('img/' . $detail->product->image) }}" alt="{{ $detail->product->name }}">
+                                        @else
+                                            <div class="order-product-placeholder">
+                                                <i class="fas fa-leaf"></i>
+                                            </div>
+                                        @endif
+                                    </div>
+
+                                    <div class="order-product-text">
+                                        <span class="order-product-name">
+                                            {{ $detail->product->name ?? 'Product unavailable' }}
+                                        </span>
+                                        <small>Matcha Mori</small>
+                                    </div>
+                                </div>
+                            </td>
+
+                            <td class="order-item-price">
+                                Rp {{ number_format($detail->price, 0, ',', '.') }}
+                            </td>
+
+                            <td>
+                                <span class="order-item-quantity">
+                                    {{ $detail->quantity }}
+                                </span>
+                            </td>
+
+                            <td class="order-item-subtotal">
+                                Rp {{ number_format($detail->subtotal, 0, ',', '.') }}
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="5" class="order-items-empty">
+                                Belum ada produk dalam pesanan ini.
+                            </td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+
+        <div class="order-items-total">
+            <span>Total Pesanan</span>
+            <strong>
+                Rp {{ number_format($order->total, 0, ',', '.') }}
+            </strong>
+        </div>
     </div>
 
+
     <div class="form-buttons">
-        <a href="{{ route('admin.orders.index') }}"
-           class="btn-back">
+        <a href="{{ route('admin.orders.index') }}" class="btn-back">
             Back
         </a>
     </div>

@@ -22,7 +22,6 @@
             </div>
         </div>
 
-
         <div class="detail-row description-row">
             <div class="detail-label">
                 Description
@@ -32,7 +31,6 @@
                 {{ $category->description ?? '-' }}
             </div>
         </div>
-
 
         <div class="detail-row image-row">
             <div class="detail-label">
@@ -47,7 +45,6 @@
                 @endif
             </div>
         </div>
-
 
         <div class="detail-row date-row">
             <div class="detail-label">
@@ -68,9 +65,7 @@
                 {{ $category->updated_at->format('d M Y H:i:s A') }}
             </div>
         </div>
-
     </div>
-
 
 
     <div class="form-buttons">

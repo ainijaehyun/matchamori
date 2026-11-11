@@ -57,7 +57,7 @@ class CartController extends Controller
             ]);
         }
 
-         //hitung ulang total cart
+        //hitung ulang total cart
         $this->recalculateTotal($cart);
 
         return redirect()->back()->with('success', 'Product successfully added to cart.');
@@ -83,8 +83,7 @@ class CartController extends Controller
 
         $this->recalculateTotal($detail->cart);
 
-        return redirect()->route('customer.cart.index')
-            ->with('success', 'Cart Updated Successfully.');
+        return redirect()->route('customer.cart.index')->with('success', 'Cart Updated Successfully.');
     }
 
     public function destroy(string $id)

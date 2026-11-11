@@ -11,7 +11,7 @@ class ProductController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Product::with('category');
+        $query = Product::with(['category', 'reviews.user']);
 
         // Cari berdasarkan nama, deskripsi, dan kategori
         if ($request->filled('search')) {
@@ -52,13 +52,17 @@ class ProductController extends Controller
                 $query->orderBy('name', 'asc');
                 break;
 
+            case 'sold_out':
+                $query->where('stock', '<=', 0);
+                break;
+
             default:
                 $query->latest();
                 break;
         }
 
-        // Pagination
-        $products = $query->paginate(12)->withQueryString();
+        // Ambil semua produk
+        $products = $query->get();
 
         // Semua kategori untuk Filter
         $categories = Category::orderBy('name')->get();
@@ -71,7 +75,15 @@ class ProductController extends Controller
         $product = Product::with('category')->findOrFail($id);
 
         $relatedProducts = Product::where('category_id', $product->category_id)->where('id', '!=', $product->id)->latest()->take(4)->get();
+        
+         $reviews = $product->reviews()
+            ->with('user')
+            ->latest()
+            ->get();
 
-        return view('customers.products.show', compact('product', 'relatedProducts'));
+        $averageRating = $reviews->avg('rating') ?? 0;
+        $reviewCount = $reviews->count();
+
+        return view('customers.products.show', compact('product', 'relatedProducts', 'reviews', 'averageRating', 'reviewCount'));
     }
 }

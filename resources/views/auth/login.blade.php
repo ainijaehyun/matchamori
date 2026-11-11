@@ -35,29 +35,13 @@
         {{-- Email --}}
         <div class="login-input">
             <i class="fas fa-envelope"></i>
-            <input
-                id="email"
-                type="email"
-                name="email"
-                value="{{ old('email') }}"
-                placeholder="Email"
-                required
-                autocomplete="email"
-                autofocus
-            >
+            <input id="email" type="email" name="email" value="{{ old('email') }}" placeholder="Email" required autocomplete="email" autofocus>
         </div>
 
         {{-- Password --}}
         <div class="login-input password-input">
             <i class="fas fa-lock"></i>
-            <input
-                id="password"
-                type="password"
-                name="password"
-                placeholder="Password"
-                required
-                autocomplete="current-password"
-            >
+            <input id="password" type="password" name="password" placeholder="Password" required autocomplete="current-password">
 
             <button type="button" class="password-toggle" onclick="togglePassword()">
                 <i class="fas fa-eye" id="eyeIcon"></i>

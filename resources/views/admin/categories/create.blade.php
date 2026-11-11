@@ -3,7 +3,7 @@
 @section('title', 'Create Category')
 
 @push('styles')
-    <link href="{{ asset('css/category.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/category.css') }}?v={{ time() }}" rel="stylesheet">
 @endpush
 
 @section('content')
@@ -26,7 +26,6 @@
                         {{ $message }}
                     </span>
                 @enderror
-
             </div>
 
             <div class="form-group description-group">

@@ -3,7 +3,7 @@
 @section('title', 'Category Page')
 
 @push('styles')
-    <link href="{{ asset('css/category.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/category.css') }}?v={{ time() }}" rel="stylesheet">
 @endpush
 
 @section('content')
@@ -13,6 +13,7 @@
         <div class="category-title">
             Category Page
         </div>
+        
         @if (Session::has('success'))
             {{-- <div class="alert alert-success">
                 {{ Session::get('success') }}

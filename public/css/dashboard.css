@@ -77,6 +77,7 @@
     }
     .chart-container {
         position: relative;
+        width: 100%;
         height: 220px;
     }
     .recent-title {
@@ -144,3 +145,45 @@
 
     }
 
+
+    
+.dashboard-sales-filter {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: end;
+    gap: 10px;
+    margin: 16px 0 20px;
+}
+
+.dashboard-sales-filter .filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.dashboard-sales-filter label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #304a2f;
+}
+
+.dashboard-sales-filter select {
+    padding: 8px 10px;
+    border: 1px solid #dce4d5;
+    border-radius: 7px;
+    background: #fff;
+    color: #304a2f;
+}
+
+.dashboard-sales-filter .filter-button {
+    padding: 9px 16px;
+    border: none;
+    border-radius: 7px;
+    background: #6b8a5d;
+    color: #fff;
+    cursor: pointer;
+}
+
+.dashboard-sales-filter .filter-button:hover {
+    background: #4f7942;
+}

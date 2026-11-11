@@ -9,46 +9,63 @@ use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $orders = Order::where('user_id', Auth::id())->latest()->get();
+        $query = Order::where('user_id', Auth::id());
 
-        return view('customers.orders.index', compact('orders'));
+        $statusMap = [
+            'placed' => 'Order Placed',
+            'processing' => 'Processing',
+            'delivery' => 'On Delivery',
+            'delivered' => 'Delivered',
+        ];
+
+        $status = $request->query('status');
+
+        if (isset($statusMap[$status])) {
+            $query->where('order_status', $statusMap[$status]);
+        }
+
+        $orders = $query->latest()->get();
+
+        return view('customers.orders.index', compact('orders', 'status'));
     }
-    //tampilkan satu detail pesanan
+
+    // Tampilkan satu detail pesanan
     public function show(string $id)
     {
-        $order = Order::with('orderDetails.product')->where('user_id', Auth::id())->findOrFail($id);
+        $order = Order::with('orderDetails.product')
+            ->where('user_id', Auth::id())
+            ->findOrFail($id);
 
         return view('customers.orders.show', compact('order'));
     }
-    public function status(string $id)
+
+    // Konfirmasi pesanan sudah diterima atau diambil
+    public function confirmReceived(string $id)
     {
         $order = Order::where('user_id', Auth::id())->findOrFail($id);
 
-        return view('customers.orders.status', compact('order'));
-    }
-
-     public function confirmReceived(string $id)
-    {
-        $order = Order::where('user_id', Auth::id())
-            ->findOrFail($id);
-
-        // Hanya pesanan yang sedang dikirim yang bisa dikonfirmasi
-        if ($order->order_status !== 'On Delivery') {
-            return back()->with(
-                'error',
-                'Pesanan belum dapat dikonfirmasi sebagai pesanan yang diterima.'
-            );
+        if (trim($order->order_status ?? '') !== 'On Delivery') {
+            return back()->with('error', 'Pesanan belum dapat dikonfirmasi.');
         }
+
+        $isPickup = str_contains(
+            $order->shipping ?? '',
+            'Method: Pickup at Matcha Mori Store'
+        );
 
         $order->update([
             'order_status' => 'Delivered',
             'payment_status' => 'Paid',
         ]);
 
-        return redirect()
-            ->route('customer.orders.show', $order->id)
-            ->with('success', 'Pesanan berhasil dikonfirmasi sudah diterima.');
+        return redirect()->route('customer.orders.index')
+            ->with(
+                'success',
+                $isPickup
+                    ? 'Pesanan berhasil dikonfirmasi sudah diambil.'
+                    : 'Pesanan berhasil dikonfirmasi sudah diterima.'
+            );
     }
 }

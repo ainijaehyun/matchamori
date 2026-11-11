@@ -58,9 +58,9 @@
             </div>
             <!-- End of Main Content -->
 
-            <!-- Footer -->
+            {{-- <!-- Footer -->
             @include('layouts.inc.footer')
-            <!-- End of Footer -->
+            <!-- End of Footer --> --}}
 
         </div>
         <!-- End of Content Wrapper -->

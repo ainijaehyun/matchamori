@@ -3,7 +3,7 @@
 @section('title', 'Edit Product')
 
 @push('styles')
-    <link href="{{ asset('css/product.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/product.css') }}?v={{ time() }}" rel="stylesheet">
 @endpush
 
 @section('content')
@@ -55,7 +55,6 @@
                         </span>
                     @enderror
                 </div>
-
             </div>
 
             <div class="form-group description-group">
@@ -70,7 +69,6 @@
                         {{ $message }}
                     </span>
                 @enderror
-
             </div>
 
             <div class="form-row price-stock-row">
@@ -86,7 +84,6 @@
                             {{ $message }}
                         </span>
                     @enderror
-
                 </div>
 
 
@@ -102,9 +99,7 @@
                             {{ $message }}
                         </span>
                     @enderror
-
                 </div>
-
             </div>
 
             <div class="form-group image-form-group">
@@ -125,9 +120,7 @@
                         {{ $message }}
                     </span>
                 @enderror
-
             </div>
-
 
             <div class="form-buttons">
                 <button type="submit" class="btn-save">
@@ -137,7 +130,6 @@
                 <a href="{{ route('admin.products.index') }}" class="btn-cancel">
                     Cancel
                 </a>
-
             </div>
         </form>
     </div>

@@ -1,8 +1,4 @@
-/* =========================================================
-   CUSTOMER CATEGORY
-   MATCHA MORI
-========================================================= */
-
+/* CUSTOMER CATEGORY */
 .category-page {
     width: 100%;
     min-height: calc(100vh - 100px);
@@ -10,68 +6,25 @@
     box-sizing: border-box;
 }
 
-/* =========================
-   BREADCRUMB
-========================= */
-
-.category-breadcrumb {
-    width: 100%;
-    padding: 7px 20px;
-    margin-bottom: 55px;
-
-    background: #6b8a5d;
-    border-radius: 4px;
-
-    box-shadow: 0 3px 6px rgba(0, 0, 0, .15);
-
-    font-family: Georgia, 'Times New Roman', serif;
-    font-size: 22px;
-    color: #f5f4e8;
-
-    box-sizing: border-box;
-}
-
-.category-breadcrumb a {
-    color: #f5f4e8;
-    text-decoration: none;
-}
-
-.category-breadcrumb a:hover {
-    color: #d8ebcc;
-}
-
-.category-breadcrumb span {
-    margin: 0 5px;
-}
-
-/* =========================
-   HEADING
-========================= */
-
+/* HEADING */
 .category-heading {
     width: 88%;
     margin: 0 auto 40px;
-
     text-align: center;
 }
 
 .category-small-title {
     margin: 0 0 8px;
-
     color: #6b8a5d;
-
     font-family: Georgia, 'Times New Roman', serif;
     font-size: 14px;
     font-weight: bold;
-
     letter-spacing: 3px;
 }
 
 .category-heading h1 {
     margin: 0;
-
     color: #263824;
-
     font-family: Georgia, 'Times New Roman', serif;
     font-size: 34px;
     font-weight: normal;
@@ -79,19 +32,14 @@
 
 .category-description {
     margin: 10px auto 0;
-
     max-width: 550px;
-
     color: #666;
-
     font-family: Georgia, 'Times New Roman', serif;
     font-size: 16px;
     line-height: 1.6;
 }
 
-/* =========================
-   GRID
-========================= */
+/* GRID */
 
 .category-grid {
     width: 88%;
@@ -103,9 +51,7 @@
     gap: 30px;
 }
 
-/* =========================
-   CARD
-========================= */
+/* CARD */
 
 .category-card {
     min-height: 190px;
@@ -140,9 +86,7 @@
     text-decoration: none !important;
 }
 
-/* =========================
-   IMAGE
-========================= */
+/* IMAGE */
 
 .category-image {
     width: 47%;
@@ -175,9 +119,7 @@
     transform: scale(1.05);
 }
 
-/* =========================
-   INFO
-========================= */
+/* INFO */
 
 .category-info {
     flex: 1;
@@ -218,18 +160,14 @@
     transform: translateX(4px);
 }
 
-/* =========================
-   FALLBACK
-========================= */
+/* FALLBACK */
 
 .category-fallback-icon {
     color: #6b8a5d;
     font-size: 50px;
 }
 
-/* =========================
-   EMPTY
-========================= */
+/* EMPTY */
 
 .category-empty {
     grid-column: 1 / -1;

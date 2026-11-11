@@ -10,13 +10,6 @@
 
 <div class="category-page">
 
-    {{-- Breadcrumb --}}
-    <div class="category-breadcrumb">
-        <a href="{{ route('customer.dashboard') }}">Home</a>
-        <span>&gt;</span>
-        Category
-    </div>
-
     {{-- Heading --}}
     <div class="category-heading">
         <p class="category-small-title">MATCHA MORI</p>
@@ -44,16 +37,12 @@
                 $image = $categoryImages[$category->name] ?? null;
             @endphp
 
-            <a href="{{ route('customer.products.index', ['category_id' => $category->id]) }}"
-               class="category-card">
+            <a href="{{ route('products.index', ['category_id' => $category->id]) }}" class="category-card">
 
                 <div class="category-image">
 
                     @if($image)
-                        <img
-                            src="{{ asset('img/' . $image) }}"
-                            alt="{{ $category->name }}"
-                        >
+                        <img src="{{ asset('img/' . $image) }}" alt="{{ $category->name }}">
                     @else
                         <i class="fas fa-leaf category-fallback-icon"></i>
                     @endif
@@ -61,14 +50,11 @@
                 </div>
 
                 <div class="category-info">
-
                     <h2>{{ $category->name }}</h2>
-
                     <span>
                         Explore
                         <i class="fas fa-arrow-right"></i>
                     </span>
-
                 </div>
 
             </a>
@@ -76,15 +62,11 @@
         @empty
 
             <div class="category-empty">
-
                 <i class="fas fa-leaf"></i>
-
                 <h2>No Category Available</h2>
-
                 <p>
                     There are currently no categories available.
                 </p>
-
             </div>
 
         @endforelse

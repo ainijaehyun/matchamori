@@ -181,18 +181,22 @@
 
 /* CREATE */
 .product-create-page {
-    padding: 10px 20px;
+    width: 100%;
+    max-width: none;
+    padding: 30px 35px 50px;
     background: #f7f8fb;
     min-height: calc(100vh - 70px);
     box-sizing: border-box;
 }
 .product-create-card {
-    width: 50%;
-    max-width: 800px;
+    width: 100%;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
     background: #ffffff;
     border-radius: 12px;
-    padding: 15px 22px 22px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.10);
+    padding: 30px 40px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.10);
     box-sizing: border-box;
 }
 .product-create-title {
@@ -373,19 +377,23 @@
 
 /* EDIT */
 .product-edit-page {
-    padding: 10px 20px;
+    width: 100%;
+    max-width: none;
+    padding: 30px 35px 50px;
     background: #f7f8fb;
     min-height: calc(100vh - 70px);
     box-sizing: border-box;
 }
 
 .product-edit-card {
-    width: 50%;
-    max-width: 800px;
+    width: 100%;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
     background: #ffffff;
     border-radius: 12px;
-    padding: 15px 22px 22px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.10);
+    padding: 30px 40px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.10);
     box-sizing: border-box;
 }
 .product-edit-title {
@@ -694,4 +702,79 @@
         height: 42px;
     }
 
+}
+/* BEST SELLER PRODUCT MODAL */
+.product-modal {
+    background: rgba(0, 0, 0, 0.45);
+}
+
+.product-modal .modal-dialog {
+    max-width: 850px;
+    margin: 1.75rem auto;
+}
+
+.product-modal .modal-content {
+    position: relative;
+    overflow: hidden;
+    border: none;
+    border-radius: 18px;
+    background: #f7f8ef;
+}
+
+/* Hindari animasi opacity tambahan dari CSS custom */
+.product-modal .modal-content {
+    animation: none !important;
+}
+
+.product-modal .product-modal-body {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    padding: 30px;
+}
+
+.product-modal .product-modal-image {
+    flex: 0 0 42%;
+    min-width: 0;
+}
+
+.product-modal .product-modal-image img {
+    display: block;
+    width: 100%;
+    height: 300px;
+    object-fit: contain;
+}
+
+.product-modal .product-modal-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.product-modal .product-modal-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    z-index: 5;
+    border: none;
+    background: transparent;
+    font-size: 30px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+@media (max-width: 576px) {
+    .product-modal .product-modal-body {
+        flex-direction: column;
+        gap: 15px;
+        padding: 25px 20px;
+    }
+
+    .product-modal .product-modal-image {
+        flex-basis: auto;
+        width: 100%;
+    }
+
+    .product-modal .product-modal-image img {
+        height: 200px;
+    }
 }

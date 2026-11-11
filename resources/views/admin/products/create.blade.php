@@ -3,7 +3,7 @@
 @section('title', 'Create Product')
 
 @push('styles')
-    <link href="{{ asset('css/product.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/product.css') }}?v={{ time() }}" rel="stylesheet">
 @endpush
 
 @section('content')
@@ -75,6 +75,7 @@
                         </span>
                     @enderror
                 </div>
+                
                 <div class="form-group">
                     <label for="stock">Stock</label>
                     <div class="input-wrapper">

@@ -3,10 +3,11 @@
 @section('title', 'Dashboard Admin')
 
 @push('styles')
-    <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/dashboard.css') }}?v={{ time() }}" rel="stylesheet">
 @endpush
 
 @section('content')
+
 <div class="dashboard-page">
     <div class="dashboard-title">
         Dashboard Page
@@ -68,13 +69,12 @@
 
             <i class="fas fa-shopping-bag stat-icon"></i>
         </a>
-
     </div>
 
     <div class="chart-row">
         <div class="chart-card">
             <div class="chart-title">
-                Sales (Monthly)
+                Sales (Daily)
             </div>
 
             <div class="chart-container">
@@ -96,7 +96,6 @@
     <div class="recent-title">
         Recent Orders
     </div>
-
 
     <div class="order-table-wrapper">
         <table class="order-table">
@@ -150,80 +149,93 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        const monthlyLabels = [
-            'Jan',
-            'Feb',
-            'Mar',
-            'Apr',
-            'May',
-            'Jun',
-            'Jul',
-            'Aug',
-            'Sept',
-            'Oct',
-            'Nov',
-            'Dec'
-        ];
 
-        const monthlyData = @json(
-            collect(range(1, 12))->map(function ($monthNumber) use ($monthlySales) {
-                return (float) ($monthlySales[$monthNumber] ?? 0);
-            })->values()
-        );
+            
+        const monthlyLabels = @json($salesChartLabels);
+        const monthlyData = @json($salesChartData);
 
-        const monthlyCanvas =
-            document.getElementById('monthlySalesChart');
+        const monthlyCanvas = document.getElementById('monthlySalesChart');
+
         if (monthlyCanvas) {
             new Chart(monthlyCanvas, {
                 type: 'line',
                 data: {
                     labels: monthlyLabels,
                     datasets: [{
-                        label: 'Sales',
+                        label: 'Total Penjualan',
                         data: monthlyData,
-                        borderColor: '#4F7942',
-                        backgroundColor: 'rgba(79, 121, 66, 0.15)',
-                        borderWidth: 3,
-                        tension: 0.35,
-                        fill: true,
-                        pointBackgroundColor: '#AF7942',
-                        pointBorderColor: '#ffffff',
+                        borderColor: '#27AE60',
+                        backgroundColor: 'rgba(39, 174, 96, 0.12)',
+                        pointBackgroundColor: '#FFFFFF',
+                        pointBorderColor: '#27AE60',
                         pointBorderWidth: 2,
-                        pointRadius: 5,
-                        pointHoverRadius: 7
+                        pointRadius: 4,
+                        pointHoverRadius: 6,
+                        borderWidth: 2,
+                        tension: 0,
+                        fill: false,
+                        spanGaps: false
                     }]
                 },
-
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            ticks: {
-                                callback: function(value) {
-                                    return 'Rp. ' + Number(value).toLocaleString('id-ID');
+                    interaction: {
+                        intersect: false,
+                        mode: 'index'
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return 'Penjualan: Rp ' +
+                                        new Intl.NumberFormat('id-ID')
+                                            .format(context.parsed.y || 0);
                                 }
                             }
                         }
                     },
-
-                    plugins: {
-                        legend: {
-                            display: false
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Tanggal'
+                            },
+                            grid: {
+                                display: false
+                            }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Total Penjualan (Rp)'
+                            },
+                            ticks: {
+                                callback: function(value) {
+                                    return new Intl.NumberFormat('id-ID', {
+                                        notation: 'compact',
+                                        maximumFractionDigits: 1
+                                    }).format(value);
+                                }
+                            }
                         }
                     }
                 }
             });
         }
 
-
         const categoryLabels = @json(
             $salesByCategory->pluck('category_name')->values()
         );
 
         const categoryData = @json(
-            $salesByCategory->pluck('total')->map(fn ($value) => (float) $value)->values()
+            $salesByCategory->pluck('total')
+                ->map(fn ($value) => (float) $value)
+                ->values()
         );
 
         const categoryCanvas =
@@ -231,34 +243,72 @@
 
         if (categoryCanvas) {
             new Chart(categoryCanvas, {
-                type: 'pie',
+                type: 'doughnut',
+
                 data: {
                     labels: categoryLabels,
                     datasets: [{
+                        label: 'Total Sales',
                         data: categoryData,
+
                         backgroundColor: [
-                            '#2b5c1c',
-                            '#3a7023',
-                            '#82B366',
-                            '#A1C77A'
+                            '#6F925C',
+                            '#A8BE91',
+                            '#D3DFC5',
+                            '#8BA99A',
+                            '#C5B89A',
+                            '#54734A',
+                            '#E3E9DC'
                         ],
+
                         borderColor: '#FFFFFF',
-                        borderWidth: 4
+                        borderWidth: 3,
+                        hoverOffset: 8,
+                        borderRadius: 4,
+                        spacing: 2
                     }]
                 },
 
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
+                    cutout: '62%',
+
                     plugins: {
                         legend: {
-                            display: true,
-                            position: 'right'
+                            position: 'bottom',
+                            labels: {
+                                color: '#687663',
+                                padding: 18,
+                                usePointStyle: true,
+                                pointStyle: 'circle',
+                                boxWidth: 9,
+                                boxHeight: 9,
+                                font: {
+                                    size: 11
+                                }
+                            }
+                        },
+
+                        tooltip: {
+                            backgroundColor: '#304A2F',
+                            padding: 12,
+                            displayColors: true,
+
+                            callbacks: {
+                                label: function(context) {
+                                    return context.label + ': Rp ' +
+                                        Number(context.raw)
+                                            .toLocaleString('id-ID');
+                                }
+                            }
                         }
                     }
                 }
             });
         }
+
+        
     });
 </script>
 

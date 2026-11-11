@@ -3,7 +3,7 @@
 @section('title', 'Product Page')
 
 @push('styles')
-    <link href="{{ asset('css/product.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/product.css')  }}?v={{ time() }}" rel="stylesheet">
 @endpush
 
 @section('content')
@@ -13,6 +13,7 @@
         <div class="product-title">
             Product Page
         </div>
+        
         @if (Session::has('success'))
             {{-- <div class="alert alert-success">
                 {{ Session::get('success') }}

@@ -337,3 +337,264 @@
         grid-template-columns: 1fr;
     }
 }
+
+/* QUICK MENU */
+
+.quick-menu-section {
+    margin-top: 40px;
+}
+
+.quick-menu-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
+
+.quick-menu-card {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    padding: 22px 25px;
+
+    background: #f7f8ef;
+    border: 1px solid #d8ddc2;
+    border-radius: 12px;
+
+    text-decoration: none;
+    color: #111;
+
+    transition: 0.25s ease;
+}
+
+.quick-menu-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.quick-menu-icon {
+    width: 52px;
+    height: 52px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #dfe5c5;
+    border-radius: 50%;
+
+    color: #526334;
+    font-size: 21px;
+
+    flex-shrink: 0;
+}
+
+.quick-menu-text {
+    flex: 1;
+}
+
+.quick-menu-text h3 {
+    margin: 0 0 5px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.quick-menu-text p {
+    margin: 0;
+    font-size: 14px;
+    color: #777;
+}
+
+.quick-menu-arrow {
+    font-size: 15px;
+    color: #7b8760;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+
+    .quick-menu-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .quick-menu-card {
+        padding: 18px 20px;
+    }
+
+}
+
+/* RECENT ORDER */
+
+.recent-order-section {
+    margin-top: 50px;
+}
+
+.recent-order-subtitle {
+    margin: 5px 0 0;
+    color: #777;
+    font-size: 14px;
+}
+
+.recent-order-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.recent-order-card {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+
+    padding: 18px 22px;
+
+    background: #f7f8ef;
+    border: 1px solid #d8ddc2;
+    border-radius: 12px;
+
+    transition: 0.25s ease;
+}
+
+.recent-order-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.07);
+}
+
+.recent-order-info {
+    flex: 1;
+}
+
+.recent-order-invoice {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.recent-order-date {
+    margin-top: 4px;
+    font-size: 13px;
+    color: #888;
+}
+
+.recent-order-total {
+    min-width: 120px;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.recent-order-payment {
+    min-width: 60px;
+    font-size: 14px;
+    color: #666;
+}
+
+.recent-order-status {
+    min-width: 110px;
+    padding: 7px 12px;
+
+    border-radius: 20px;
+    text-align: center;
+
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.recent-order-status.order-placed {
+    background: #eee9d0;
+    color: #756b32;
+}
+
+.recent-order-status.processing {
+    background: #dfe8d2;
+    color: #53683c;
+}
+
+.recent-order-status.on-delivery {
+    background: #dce8df;
+    color: #42634d;
+}
+
+.recent-order-status.delivered {
+    background: #d5e1c5;
+    color: #48602f;
+}
+
+.recent-order-action {
+    width: 35px;
+    height: 35px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #526334;
+    text-decoration: none;
+
+    border-radius: 50%;
+    transition: 0.2s ease;
+}
+
+.recent-order-action:hover {
+    background: #e2e7cf;
+}
+
+.recent-order-empty {
+    padding: 35px;
+    text-align: center;
+
+    background: #f7f8ef;
+    border: 1px solid #d8ddc2;
+    border-radius: 12px;
+
+    color: #888;
+}
+
+.recent-order-empty i {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.recent-order-empty p {
+    margin: 0;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+
+    .recent-order-card {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .recent-order-info {
+        width: 100%;
+        flex: none;
+    }
+
+    .recent-order-total,
+    .recent-order-payment,
+    .recent-order-status {
+        min-width: auto;
+    }
+
+}
+
+/* Popup detail produk */
+.product-modal {
+    max-height: 90vh;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+}
+
+/* Cegah halaman belakang ikut scroll saat popup dibuka */
+body.modal-open {
+    overflow: hidden;
+}
+

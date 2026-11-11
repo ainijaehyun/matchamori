@@ -7,697 +7,617 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Matcha Mori</title>
 
-    <link rel="stylesheet"
-        href="{{ asset('bootstrap-5.3.8-dist/css/bootstrap.min.css') }}">
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet"
-        href="{{ asset('css/welcome.css') }}?v={{ time() }}">
-        <link href="{{ asset('css/customer-layout.css') }}?v={{ time() }}" rel="stylesheet">    
+    <link rel="stylesheet" href="{{ asset('bootstrap-5.3.8-dist/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="{{ asset('css/welcome.css') }}?v={{ time() }}">
+    <link href="{{ asset('css/customer-layout.css') }}?v={{ time() }}" rel="stylesheet">    
+    <link href="{{ asset('css/customer-product.css') }}?v={{ time() }}" rel="stylesheet">   
 
 </head>
 
-
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark mm-navbar">
-    <div class="container-fluid">
-        {{-- BRAND --}}
-        <a class="mm-brand" href="{{ url('/') }}">
-            <img src="{{ asset('img/leaf1.png') }}" alt="Matcha Mori">
 
-            <span class="mm-brand-title">
-                MATCHA MORI
-            </span>
+    {{-- NAVBAR --}}
+    <nav class="mm-navbar">
+        {{-- Logo --}}
+        <a href="{{ route('welcome') }}" class="mm-brand">
+            <img src="{{ asset('img/leaf1.png') }}" alt="Matcha Mori">
+            <span>MATCHA MORI</span>
         </a>
 
+        {{-- Menu --}}
+        <div class="mm-nav-links">
+            <a href="{{ route('welcome') }}" class="active">
+                Home
+            </a>
 
-        {{-- MOBILE TOGGLE --}}
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#matchaNavbar" aria-controls="matchaNavbar" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+            <a href="{{ route('about') }}">
+                About Us
+            </a>
 
-
-        {{-- NAVIGATION --}}
-        <div class="collapse navbar-collapse" id="matchaNavbar">
-            <ul class="navbar-nav ms-auto align-items-lg-center">
-                <li class="nav-item">
-                    <a class="nav-link" href="#home">
-                        Home
-                    </a> 
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="#about" >
-                        About
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="#collection">
-                        Collection
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="#best">
-                        Best of Matcha
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="#testimonial">
-                        Testimonial
-                    </a> 
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link mm-nav-button mm-login" href="{{ route('login') }}">
-                        Login
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link mm-nav-button mm-register" href="{{ route('register') }}">
-                        Register
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
-
-
-<section id="home" class="mm-hero">
-    <div class="container-fluid mm-hero-content">
-        <div class="mm-hero-inner">
-            <div class="mm-hero-small">
-                Japanese Matcha & Tea Store
-            </div>
-
-            <h1>
-                MATCHA MORI
-            </h1>
-
-            <div class="mm-hero-tagline">
-                your little moment of calm.
-            </div>
-
-            <div class="mm-hero-line"></div>
-
-            <p>
-                Discover matcha drinks, desserts, matcha powder,
-                and accessories inspired by the simplicity and
-                warmth of Japanese tea culture.
-            </p>
-
-            <a href="{{ route('login') }}" class="mm-hero-button">
-                Start Shopping
+            <a href="{{ route('products.index') }}">
+                Menu
             </a>
         </div>
-    </div>
-</section>
 
-<section id="about" class="mm-section mm-about">
-    <div class="container">
-        <div class="row align-items-center">
+        {{-- Search + Login + Register --}}
+        <div class="mm-nav-right">
+            <form action="{{ route('search') }}" method="GET" class="mm-search-form">
+                <input type="text" name="search" class="mm-search-input" placeholder="Search..." value="{{ request('search') }}">
 
-            {{-- LEFT --}}
-            <div class="col-lg-5">
-                <div class="mm-about-text">
-                    <div class="mm-section-title-small">
-                        Why Matcha Mori?
-                    </div>
-                    <h2 class="mm-section-title">
-                        Why Matcha Mori?
-                    </h2>
-                    <div class="mm-title-line"></div>
-                    <p>
-                        Lebih dari sekadar minuman, Matcha Mori
-                        adalah pengalaman sederhana untuk menikmati
-                        hal-hal baik dalam hidup.
-                    </p>
-                </div>
-            </div>
+                <button type="submit" class="mm-search-button">
+                    <i class="fas fa-search"></i>
+                </button>
+            </form>
 
+            <div class="auth-links">
+                <a href="{{ route('login') }}" class="auth-btn login-btn">
+                    Login
+                </a>
 
-            {{-- RIGHT --}}
-            <div class="col-lg-6 offset-lg-1">
-                <div class="accordion mm-accordion" id="matchaAccordion">
-
-                    {{-- ITEM 1 --}}
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#matchaOne" aria-expanded="true">
-                                Matcha Quality
-                            </button>
-                        </h2>
-
-                        <div id="matchaOne" class="accordion-collapse collapse show" data-bs-parent="#matchaAccordion">
-                            <div class="accordion-body">
-                                Matcha Mori menghadirkan pilihan
-                                produk matcha yang terinspirasi
-                                dari karakter dan budaya teh Jepang.
-                            </div>
-                        </div>
-                    </div>
-
-
-                    {{-- ITEM 2 --}}
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#matchaTwo">
-                                Matcha Drinks
-                            </button>
-                        </h2>
-
-                        <div id="matchaTwo" class="accordion-collapse collapse" data-bs-parent="#matchaAccordion">
-                            <div class="accordion-body">
-                                Nikmati berbagai pilihan minuman
-                                matcha yang cocok untuk menemani
-                                waktu santai sehari-hari.
-                            </div>
-                        </div>
-                    </div>
-
-
-                    {{-- ITEM 3 --}}
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#matchaThree">
-                                Matcha Desserts
-                            </button>
-                        </h2>
-
-                        <div id="matchaThree" class="accordion-collapse collapse" data-bs-parent="#matchaAccordion">
-                            <div class="accordion-body">
-                                Temukan dessert dengan perpaduan
-                                rasa manis dan karakter khas matcha.
-                            </div>
-                        </div>
-                    </div>
-
-
-                    {{-- ITEM 4 --}}
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#matchaFour">
-                                Japanese Tea Experience
-                            </button>
-                        </h2>
-
-                        <div id="matchaFour" class="accordion-collapse collapse" data-bs-parent="#matchaAccordion">
-                            <div class="accordion-body">
-                                Lengkapi pengalaman minum matcha
-                                dengan powder dan accessories
-                                untuk ritual teh sederhana di rumah.
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <a href="{{ route('register') }}" class="auth-btn register-btn">
+                    Register
+                </a>
             </div>
         </div>
-    </div>
-</section>
+    </nav>
 
 
 
-<section id="collection" class="mm-section mm-collection">
-    <div class="container">
-        <div class="mm-collection-heading">
-            <div class="mm-section-title-small">
-                Our Matcha Collection
-            </div>
-            <h2 class="mm-section-title">
-                Temukan Favoritmu
-            </h2>
-            <div class="mm-title-line"></div>
-            <p class="mm-collection-description">
-                Empat kategori pilihan untuk menemani setiap
-                momen matchamu.
-            </p>
-        </div>
-
-        <div id="matchaCarousel" class="carousel slide mm-carousel" data-bs-ride="carousel">
-
-            {{-- INDICATORS --}}
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#matchaCarousel" data-bs-slide-to="0" class="active" aria-current="true"></button>
-
-                <button type="button" data-bs-target="#matchaCarousel" data-bs-slide-to="1"></button>
-            </div>
-
-            <div class="carousel-inner">
-
-                {{-- SLIDE 1 --}}
-                <div class="carousel-item active">
-                    <div class="mm-collection-grid">
-                        {{-- MATCHA DRINK --}}
-                        <button type="button" class="mm-collection-item" data-bs-toggle="modal" data-bs-target="#loginProductModal">
-                            <img src="{{ asset('img/categories/matcha-drink.jpg') }}" alt="Matcha Drink">
-                            <div class="mm-collection-overlay">
-                                <h3>
-                                    Matcha Drink
-                                </h3>
-
-                                <span>
-                                    Explore collection →
-                                </span>
-                            </div>
-                        </button>
-
-                        {{-- MATCHA DESSERT --}}
-                        <button type="button" class="mm-collection-item" data-bs-toggle="modal" data-bs-target="#loginProductModal">
-                            <img src="{{ asset('img/categories/matcha-dessert.jpg') }}" alt="Matcha Dessert">
-                            <div class="mm-collection-overlay">
-                                <h3>
-                                    Matcha Dessert
-                                </h3>
-
-                                <span>
-                                    Explore collection →
-                                </span>
-                            </div>
-                        </button>
-
-                        {{-- MATCHA POWDER --}}
-                        <button type="button" class="mm-collection-item" data-bs-toggle="modal" data-bs-target="#loginProductModal">
-                            <img src="{{ asset('img/categories/matcha-powder.jpg') }}" alt="Matcha Powder">
-                            <div class="mm-collection-overlay">
-                                <h3>
-                                    Matcha Powder
-                                </h3>
-
-                                <span>
-                                    Explore collection →
-                                </span>
-                            </div>
-                        </button>
-
-                        {{-- ACCESSORIES --}}
-                        <button type="button" class="mm-collection-item" data-bs-toggle="modal" data-bs-target="#loginProductModal">
-                            <img src="{{ asset('img/categories/accessories.jpg') }}" alt="Accessories">
-                            <div class="mm-collection-overlay">
-                                <h3>
-                                    Accessories
-                                </h3>
-
-                                <span>
-                                    Explore collection →
-                                </span>
-                            </div>
-                        </button>
-                    </div>
+    <section id="home" class="mm-hero">
+        <div class="container-fluid mm-hero-content">
+            <div class="mm-hero-inner">
+                <div class="mm-hero-small">
+                    Japanese Matcha & Tea Store
                 </div>
 
-                {{-- SLIDE 2 --}}
-                <div class="carousel-item">
-                    <div class="mm-collection-grid">
-                        <button type="button" class="mm-collection-item" data-bs-toggle="modal" data-bs-target="#loginProductModal">
-                            <img src="{{ asset('img/categories/matcha-powder.jpg') }}" alt="Matcha Powder">
-                            <div class="mm-collection-overlay">
-                                <h3>
-                                    Matcha Powder
-                                </h3>
+                <h1>
+                    MATCHA MORI
+                </h1>
 
-                                <span>
-                                    Explore collection →
-                                </span>
-                            </div>
-                        </button>
-
-                        <button type="button" class="mm-collection-item" data-bs-toggle="modal" data-bs-target="#loginProductModal">
-                            <img src="{{ asset('img/categories/accessories.jpg') }}" alt="Accessories">
-                            <div class="mm-collection-overlay">
-                                <h3>
-                                    Accessories
-                                </h3>
-
-                                <span>
-                                    Explore collection →
-                                </span>
-                            </div>
-                        </button>
-
-                        <button type="button" class="mm-collection-item" data-bs-toggle="modal" data-bs-target="#loginProductModal">
-                            <img src="{{ asset('img/categories/matcha-drink.jpg') }}" alt="Matcha Drink">
-                            <div class="mm-collection-overlay">
-                                <h3>
-                                    Matcha Drink
-                                </h3>
-
-                                <span>
-                                    Explore collection →
-                                </span>
-                            </div>
-                        </button>
-
-                        <button type="button" class="mm-collection-item" data-bs-toggle="modal" data-bs-target="#loginProductModal">
-                            <img src="{{ asset('img/categories/matcha-dessert.jpg') }}" alt="Matcha Dessert">
-                            <div class="mm-collection-overlay">
-                                <h3>
-                                    Matcha Dessert
-                                </h3>
-
-                                <span>
-                                    Explore collection →
-                                </span>
-                            </div>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-
-            {{-- PREVIOUS --}}
-            <button class="mm-carousel-control mm-carousel-prev" type="button" data-bs-target="#matchaCarousel" data-bs-slide="prev">
-                <i class="fas fa-chevron-left"></i>
-            </button>
-
-            {{-- NEXT --}}
-            <button class="mm-carousel-control mm-carousel-next" type="button" data-bs-target="#matchaCarousel" data-bs-slide="next">
-                <i class="fas fa-chevron-right"></i>
-            </button>
-        </div>
-    </div>
-</section>
-
-<section id="products" class="mm-section mm-products">
-    <div class="container">
-
-        {{-- HEADING --}}
-        <div class="mm-products-heading">
-            <div class="mm-section-title-small">
-                Our Products
-            </div>
-
-            <h2 class="mm-section-title">
-                Explore Our Matcha
-            </h2>
-
-            <div class="mm-title-line"></div>
-
-            <p class="mm-products-description">
-                Temukan berbagai pilihan produk matcha
-                untuk menemani setiap momenmu.
-            </p>
-        </div>
-
-
-        {{-- PRODUCTS BY CATEGORY --}}
-        @php
-            $groupedProducts = $products->groupBy(function ($product) {
-                return $product->category?->name ?? 'Other Products';
-            });
-        @endphp
-
-
-        @forelse ($groupedProducts as $categoryName => $categoryProducts)
-
-            {{-- CATEGORY TITLE --}}
-            <div class="mm-product-category-section">
-
-                <div class="mm-product-category-heading">
-                    <span>{{ $categoryName }}</span>
+                <div class="mm-hero-tagline">
+                    your little moment of calm.
                 </div>
 
-
-                {{-- PRODUCTS --}}
-                <div class="mm-product-grid">
-
-                    @foreach ($categoryProducts as $product)
-
-                        <div class="mm-product-grid-item">
-
-                            <div class="mm-product-card">
-
-                                {{-- PRODUCT IMAGE --}}
-                                <div class="mm-product-image">
-
-                                    <img
-                                        src="{{ asset('img/' . $product->image) }}"
-                                        alt="{{ $product->name }}"
-                                    >
-
-                                </div>
-
-
-                                {{-- PRODUCT INFO --}}
-                                <div class="mm-product-info">
-
-                                    <div class="mm-product-category">
-                                        {{ $categoryName }}
-                                    </div>
-
-                                    <h3>
-                                        {{ $product->name }}
-                                    </h3>
-
-                                    <div class="mm-product-price">
-                                        Rp {{ number_format($product->price, 0, ',', '.') }}
-                                    </div>
-
-
-                                    {{-- LOGIN FIRST --}}
-                                    <button
-                                        type="button"
-                                        class="mm-product-view"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#loginProductModal">
-
-                                        View Product
-
-                                        <i class="fas fa-arrow-right"></i>
-
-                                    </button>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    @endforeach
-
-                </div>
-
-            </div>
-
-        @empty
-
-            <div class="col-12">
-
-                <div class="mm-product-empty">
-                    Belum ada produk yang tersedia.
-                </div>
-
-            </div>
-
-        @endforelse
-
-
-        {{-- VIEW ALL --}}
-        <div class="mm-products-footer">
-
-            <button type="button" class="mm-view-all" data-bs-toggle="modal" data-bs-target="#loginProductModal">
-                View All Products
-                <i class="fas fa-arrow-right"></i>
-            </button>
-
-        </div>
-
-    </div>
-</section>
-
-{{-- LOGIN REQUIRED MODAL --}}
-<div class="modal fade mm-login-modal"
-     id="loginProductModal"
-     tabindex="-1"
-     aria-labelledby="loginProductModalLabel"
-     aria-hidden="true">
-
-    <div class="modal-dialog modal-dialog-centered">
-
-        <div class="modal-content">
-
-            <div class="modal-body">
-
-                <div class="mm-login-modal-icon">
-                    <i class="fas fa-lock"></i>
-                </div>
-
-                <h3 id="loginProductModalLabel">
-                    Login Terlebih Dahulu
-                </h3>
+                <div class="mm-hero-line"></div>
 
                 <p>
-                    Silakan login terlebih dahulu untuk
-                    melihat detail produk Matcha Mori.
+                    Discover matcha drinks, desserts, matcha powder,
+                    and accessories inspired by the simplicity and
+                    warmth of Japanese tea culture.
                 </p>
 
-                <div class="mm-login-modal-buttons">
-
-                    <button
-                        type="button"
-                        class="mm-modal-cancel"
-                        data-bs-dismiss="modal">
-                        Cancel
-                    </button>
-
-                    <a
-                        href="{{ route('login') }}"
-                        class="mm-modal-login">
-                        Login
-                    </a>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-<section id="best" class="mm-section mm-best">
-    <div class="container">
-        <div class="row align-items-center g-0">
-
-            {{-- IMAGE --}}
-            <div class="col-lg-6">
-                <img src="{{ asset('img/matchapow.jpg') }}" alt="Matcha Powder" class="mm-best-image">
-            </div>
-
-            {{-- CONTENT --}}
-            <div class="col-lg-6">
-                <div class="mm-best-content">
-                    <div class="mm-section-title-small">
-                        Best of Matcha
-                    </div>
-                    <h2 class="mm-section-title">
-                        Matcha Powder
-                    </h2>
-                    <div class="mm-title-line"></div>
-                    <p>
-                        Pilihan sederhana untuk menciptakan
-                        minuman matcha dan momen teh versimu
-                        sendiri di rumah.
-                    </p>
-                    <p>
-                        Rasakan cita rasa khas matcha dalam
-                        setiap tegukan.
-                    </p>
-                    <button type="button" class="mm-product-button" data-bs-toggle="modal" data-bs-target="#loginProductModal">
-                        View product
-                        <i class="fas fa-arrow-right"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-
-<section id="testimonial" class="mm-section mm-testimonials">
-    <div class="container">
-        <div class="mm-testimonial-heading">
-            <div class="mm-section-title-small">
-                What People Think About Matcha
-            </div>
-            <h2 class="mm-section-title">
-                Kata Mereka Tentang Matcha
-            </h2>
-            <div class="mm-title-line"></div>
-        </div>
-
-        <div class="row g-0">
-
-            {{-- TESTIMONIAL 1 --}}
-            <div class="col-lg-4">
-                <div class="mm-quote">
-                    <div class="mm-quote-icon">
-                        “
-                    </div>
-                    <p>
-                        Secangkir matcha bisa membuat
-                        hari biasa terasa sedikit lebih tenang.
-                    </p>
-
-                    <div class="mm-quote-author">
-                        — Matcha Mori Customer
-                    </div>
-                </div>
-            </div>
-
-            {{-- TESTIMONIAL 2 --}}
-            <div class="col-lg-4">
-                <div class="mm-quote">
-                    <div class="mm-quote-icon">
-                        “
-                    </div>
-                    <p>
-                        Perpaduan minuman matcha dan
-                        dessert-nya benar-benar menyenangkan.
-                    </p>
-                    <div class="mm-quote-author">
-                        — Matcha Mori Customer
-                    </div>
-                </div>
-            </div>
-
-            {{-- TESTIMONIAL 3 --}}
-            <div class="col-lg-4">
-                <div class="mm-quote">
-                    <div class="mm-quote-icon">
-                        “
-                    </div>
-                    <p>
-                        Matcha Mori menghadirkan sensasi
-                        ritual teh Jepang yang sederhana
-                        dalam kehidupan sehari-hari.
-                    </p>
-                    <div class="mm-quote-author">
-                        — Matcha Mori Customer
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-<footer class="custom-footer">
-
-            <div class="footer-brand">
-                <h3>MATCHA MORI</h3>
-                <p>Japanese Matcha & Tea Store</p>
-            </div>
-
-            <div class="footer-contact">
-
-                <a href="https://wa.me/6281234567890" target="_blank">
-                    <i class="fab fa-whatsapp"></i>
-                    <span>0812-3456-7890</span>
+                <a href="{{ route('products.index') }}" class="mm-hero-button">
+                    Start Shopping
                 </a>
+            </div>
+        </div>
+    </section>
 
-                <a href="https://instagram.com/matchamori" target="_blank">
-                    <i class="fab fa-instagram"></i>
-                    <span>@matchamori</span>
-                </a>
-
+    <section id="collection" class="mm-section mm-collection">
+        <div class="container">
+            <div class="mm-collection-heading">
+                <div class="mm-section-title-small">
+                    Our Matcha Collection
+                </div>
+                <h2 class="mm-section-title">
+                    Temukan Favoritmu
+                </h2>
+                <div class="mm-title-line"></div>
+                <p class="mm-collection-description">
+                    Empat kategori pilihan untuk menemani setiap
+                    momen matchamu.
+                </p>
             </div>
 
-            <div class="footer-copyright">
-                <span>
-                    Copyright &copy; Matcha Mori {{ date('Y') }}
-                </span>
+            <div id="matchaCarousel" class="carousel slide mm-carousel" data-bs-ride="carousel">
+
+                {{-- INDICATORS --}}
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#matchaCarousel" data-bs-slide-to="0" class="active" aria-current="true"></button>
+
+                    <button type="button" data-bs-target="#matchaCarousel" data-bs-slide-to="1"></button>
+                </div>
+
+                <div class="carousel-inner">
+
+                    {{-- SLIDE 1 --}}
+                    <div class="carousel-item active">
+                        <div class="mm-collection-grid">
+                            {{-- MATCHA DRINK --}}
+                            <a href="{{ route('products.index') }}" class="mm-collection-item">
+                                <img src="{{ asset('img/categories/matcha-drink.jpg') }}" alt="Matcha Drink">
+                                <div class="mm-collection-overlay">
+                                    <h3>
+                                        Matcha Drink
+                                    </h3>
+
+                                    <span>
+                                        Explore collection →
+                                    </span>
+                                </div>
+                            </a>
+
+                            {{-- MATCHA DESSERT --}}
+                            <a href="{{ route('products.index') }}" class="mm-collection-item">
+                                <img src="{{ asset('img/categories/matcha-dessert.jpg') }}" alt="Matcha Dessert">
+                                <div class="mm-collection-overlay">
+                                    <h3>
+                                        Matcha Dessert
+                                    </h3>
+
+                                    <span>
+                                        Explore collection →
+                                    </span>
+                                </div>
+                            </a>
+
+                            {{-- MATCHA POWDER --}}
+                        
+                            <a href="{{ route('products.index') }}" class="mm-collection-item">
+                                <img src="{{ asset('img/categories/matcha-powder.jpg') }}" alt="Matcha Powder">
+                                <div class="mm-collection-overlay">
+                                    <h3>
+                                        Matcha Powder
+                                    </h3>
+
+                                    <span>
+                                        Explore collection →
+                                    </span>
+                                </div>
+                            </a>
+
+                            {{-- ACCESSORIES --}}
+                            
+                            <a href="{{ route('products.index') }}" class="mm-collection-item">
+                                <img src="{{ asset('img/categories/accessories.jpg') }}" alt="Accessories">
+                                <div class="mm-collection-overlay">
+                                    <h3>
+                                        Accessories
+                                    </h3>
+
+                                    <span>
+                                        Explore collection →
+                                    </span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    {{-- SLIDE 2 --}}
+                    <div class="carousel-item">
+                        <div class="mm-collection-grid">
+                            
+                            <a href="{{ route('products.index') }}" class="mm-collection-item">
+                                <img src="{{ asset('img/categories/matcha-powder.jpg') }}" alt="Matcha Powder">
+                                <div class="mm-collection-overlay">
+                                    <h3>
+                                        Matcha Powder
+                                    </h3>
+
+                                    <span>
+                                        Explore collection →
+                                    </span>
+                                </div>
+                            </a>
+                            
+                            <a href="{{ route('products.index') }}" class="mm-collection-item">
+                                <img src="{{ asset('img/categories/accessories.jpg') }}" alt="Accessories">
+                                <div class="mm-collection-overlay">
+                                    <h3>
+                                        Accessories
+                                    </h3>
+
+                                    <span>
+                                        Explore collection →
+                                    </span>
+                                </div>
+                            </a>
+
+                            
+                            <a href="{{ route('products.index') }}" class="mm-collection-item">
+                                <img src="{{ asset('img/categories/matcha-drink.jpg') }}" alt="Matcha Drink">
+                                <div class="mm-collection-overlay">
+                                    <h3>
+                                        Matcha Drink
+                                    </h3>
+
+                                    <span>
+                                        Explore collection →
+                                    </span>
+                                </div>
+                            </a>
+
+                            
+                            <a href="{{ route('products.index') }}" class="mm-collection-item">
+                                <img src="{{ asset('img/categories/matcha-dessert.jpg') }}" alt="Matcha Dessert">
+                                <div class="mm-collection-overlay">
+                                    <h3>
+                                        Matcha Dessert
+                                    </h3>
+
+                                    <span>
+                                        Explore collection →
+                                    </span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+                {{-- PREVIOUS --}}
+                <button class="mm-carousel-control mm-carousel-prev" type="button" data-bs-target="#matchaCarousel" data-bs-slide="prev">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+
+                {{-- NEXT --}}
+                <button class="mm-carousel-control mm-carousel-next" type="button" data-bs-target="#matchaCarousel" data-bs-slide="next">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section id="best-seller" class="mm-section mm-best">
+        <div class="container">
+
+            {{-- HEADING --}}
+            <div class="mm-testimonial-heading">
+                <div class="mm-section-title-small">
+                    Best of Matcha
+                </div>
+
+                <h2 class="mm-section-title">
+                    Most Loved Products
+                </h2>
+
+                <div class="mm-title-line"></div>
+
+                <p>
+                    Empat produk matcha yang paling banyak terjual
+                    dan menjadi favorit pelanggan Matcha Mori.
+                </p>
             </div>
 
-        </footer>
+
+            {{-- BEST SELLING PRODUCTS --}}
+            <div class="row g-4 mt-4">
+
+                @forelse($bestProducts as $product)
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="mm-best-card">
+
+                            {{-- IMAGE --}}
+                            <div class="mm-best-card-image">
+                                <img src="{{ asset('img/' . $product->image) }}" alt="{{ $product->name }}">
+                            </div>
+
+                            {{-- CONTENT --}}
+                            <div class="mm-best-card-content">
+                                <div class="mm-best-category">
+                                    {{ $product->category->name ?? 'Matcha' }}
+                                </div>
+
+                                <h3>
+                                    {{ $product->name }}
+                                </h3>
+
+                                <p>
+                                    Rp {{ number_format($product->price, 0, ',', '.') }}
+                                </p>
+
+                                <div class="mm-best-sold">
+                                    {{ $product->total_sold }} sold
+                                </div>
+
+                                <button type="button" class="mm-best-button" data-bs-toggle="modal" data-bs-target="#welcomeProductModal{{ $product->id }}">
+                                    View Product
+                                    <i class="fas fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        {{-- PRODUCT DETAIL MODAL --}}
+                        <div class="modal fade product-modal" id="welcomeProductModal{{ $product->id }}" tabindex="-1" aria-labelledby="welcomeProductLabel{{ $product->id }}" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <button type="button" class="product-modal-close" data-bs-dismiss="modal" aria-label="Close">
+                                        &times;
+                                    </button>
+
+                                    <div class="product-modal-body">
+
+                                        {{-- PRODUCT IMAGE --}}
+                                        <div class="product-modal-image">
+
+                                            @if($product->image)
+                                                <img src="{{ asset('img/' . $product->image) }}" alt="{{ $product->name }}">
+                                            @else
+                                                <i class="fas fa-leaf"></i>
+                                            @endif
+
+                                            {{-- QUANTITY --}}
+                                            @if($product->stock > 0)
+                                                <div class="modal-quantity-box">
+                                                    <button type="button" class="quantity-btn" data-product-id="{{ $product->id }}" data-stock="{{ $product->stock }}" data-change="-1">
+                                                        −
+                                                    </button>
+
+                                                    <input type="text" id="modal-quantity-{{ $product->id }}" value="1" readonly>
+
+                                                    <button type="button" class="quantity-btn" data-product-id="{{ $product->id }}" data-stock="{{ $product->stock }}" data-change="1">
+                                                        +
+                                                    </button>
+                                                </div>
+                                            @endif
+
+                                        </div>
+
+                                        {{-- PRODUCT INFORMATION --}}
+                                        <div class="product-modal-info">
+                                            <div class="product-modal-category">
+                                                {{ $product->category->name ?? 'Matcha' }}
+                                            </div>
+
+                                            <h2 id="welcomeProductLabel{{ $product->id }}">
+                                                {{ $product->name }}
+                                            </h2>
+
+                                            <div class="product-modal-price">
+                                                Rp. {{ number_format($product->price, 0, ',', '.') }}
+                                            </div>
+
+                                            @if($product->stock > 0)
+                                                <div class="product-modal-stock">
+                                                    Stock {{ $product->stock }}
+                                                </div>
+                                            @else
+                                                <div class="product-modal-sold">
+                                                    Sold Out
+                                                </div>
+                                            @endif
+
+                                            <p class="product-modal-description">
+                                                {{ $product->description ?? 'Nikmati pilihan produk Matcha Mori.' }}
+                                            </p>
+
+                                            {{-- CUSTOMER REVIEWS --}}
+                                            <div class="product-modal-reviews">
+
+                                                @php
+                                                    $reviews = $product->reviews;
+                                                    $reviewCount = $reviews->count();
+                                                    $averageRating = $reviews->avg('rating') ?? 0;
+                                                @endphp
+
+                                                <h3>Ulasan Customer</h3>
+
+                                                <div class="product-modal-review-summary">
+
+                                                    <strong>
+                                                        {{ number_format($averageRating, 1, ',', '.') }}
+                                                    </strong>
+
+                                                    <span class="product-modal-review-stars">
+                                                        @for($i = 1; $i <= 5; $i++)
+                                                            @if($i <= round($averageRating))
+                                                                <i class="fas fa-star"></i>
+                                                            @else
+                                                                <i class="far fa-star"></i>
+                                                            @endif
+                                                        @endfor
+                                                    </span>
+
+                                                    <span>{{ $reviewCount }} ulasan</span>
+
+                                                </div>
+
+                                                @forelse($reviews->sortByDesc('created_at')->take(3) as $review)
+
+                                                    <div class="product-modal-review-item">
+
+                                                        <div class="product-modal-review-user">
+
+                                                            <strong>
+                                                                {{ $review->user->name ?? 'Customer' }}
+                                                            </strong>
+
+                                                            <span class="product-modal-review-stars">
+                                                                @for($i = 1; $i <= 5; $i++)
+                                                                    @if($i <= $review->rating)
+                                                                        <i class="fas fa-star"></i>
+                                                                    @else
+                                                                        <i class="far fa-star"></i>
+                                                                    @endif
+                                                                @endfor
+                                                            </span>
+
+                                                        </div>
+
+                                                        @if($review->comment)
+                                                            <p>{{ $review->comment }}</p>
+                                                        @endif
+
+                                                        <small>
+                                                            {{ $review->created_at->format('d M Y') }}
+                                                        </small>
+
+                                                    </div>
+
+                                                @empty
+
+                                                    <p class="product-modal-review-empty">
+                                                        Belum ada ulasan untuk produk ini.
+                                                    </p>
+
+                                                @endforelse
+
+                                            </div>
+
+                                            {{-- ADD TO CART / LOGIN TO ORDER --}}
+                                            @if(Auth::check() && $product->stock > 0)
+
+                                                <form action="{{ route('customer.cart.store') }}" method="POST">
+
+                                                    @csrf
+
+                                                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                                    <input type="hidden" name="quantity" id="cart-quantity-{{ $product->id }}" value="1">
+                                                    <button type="submit" class="modal-add-cart">
+                                                        Add to Cart
+                                                    </button>
+                                                </form>
+
+                                            @elseif(!Auth::check() && $product->stock > 0)
+
+                                                <a href="{{ route('login') }}" class="modal-add-cart">
+                                                    Login to Order
+                                                </a>
+
+                                            @else
+
+                                                <button type="button" class="modal-add-cart modal-disabled" disabled>
+                                                    Sold Out
+                                                </button>
+
+                                            @endif
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                @empty
+
+                    <div class="col-12 text-center">
+                        <p>
+                            Belum ada produk terlaris.
+                        </p>
+                    </div>
+
+                @endforelse
+
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonial" class="mm-section mm-testimonials">
+        <div class="container">
+            <div class="mm-testimonial-heading">
+                <div class="mm-section-title-small">
+                    What People Think About Matcha
+                </div>
+                <h2 class="mm-section-title">
+                    Kata Mereka Tentang Matcha
+                </h2>
+                <div class="mm-title-line"></div>
+            </div>
+
+            <div class="row g-0">
+
+                {{-- TESTIMONIAL 1 --}}
+                <div class="col-lg-4">
+                    <div class="mm-quote">
+                        <div class="mm-quote-icon">
+                            “
+                        </div>
+                        <p>
+                            Secangkir matcha bisa membuat
+                            hari biasa terasa sedikit lebih tenang.
+                        </p>
+
+                        <div class="mm-quote-author">
+                            — Matcha Mori Customer
+                        </div>
+                    </div>
+                </div>
+
+                {{-- TESTIMONIAL 2 --}}
+                <div class="col-lg-4">
+                    <div class="mm-quote">
+                        <div class="mm-quote-icon">
+                            “
+                        </div>
+                        <p>
+                            Perpaduan minuman matcha dan
+                            dessert-nya benar-benar menyenangkan.
+                        </p>
+                        <div class="mm-quote-author">
+                            — Matcha Mori Customer
+                        </div>
+                    </div>
+                </div>
+
+                {{-- TESTIMONIAL 3 --}}
+                <div class="col-lg-4">
+                    <div class="mm-quote">
+                        <div class="mm-quote-icon">
+                            “
+                        </div>
+                        <p>
+                            Matcha Mori menghadirkan sensasi
+                            ritual teh Jepang yang sederhana
+                            dalam kehidupan sehari-hari.
+                        </p>
+                        <div class="mm-quote-author">
+                            — Matcha Mori Customer
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+@include('layouts.inc.footer')
+
 {{-- Bootstrap JS --}}
 <script src="{{ asset('bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js') }}"></script>
 
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    document.addEventListener('click', function (event) {
+
+        const button = event.target.closest('.quantity-btn');
+
+        if (!button) return;
+
+        const productId = button.dataset.productId;
+        const stock = parseInt(button.dataset.stock);
+        const change = parseInt(button.dataset.change);
+
+        const quantityInput = document.getElementById(
+            'modal-quantity-' + productId
+        );
+
+        const cartQuantity = document.getElementById(
+            'cart-quantity-' + productId
+        );
+
+        if (!quantityInput) return;
+
+        let quantity = parseInt(quantityInput.value) || 1;
+
+        quantity += change;
+
+        quantity = Math.max(1, Math.min(quantity, stock));
+
+        quantityInput.value = quantity;
+
+        if (cartQuantity) {
+            cartQuantity.value = quantity;
+        }
+        
+
+    });
+
+});
+</script>
 </body>
 </html>

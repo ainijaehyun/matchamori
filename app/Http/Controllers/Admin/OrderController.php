@@ -14,7 +14,8 @@ class OrderController extends Controller
 
         return view('admin.orders.index', compact('orders'));
     }
-    //tampilkan detail satu pesana dan rincianyya
+
+    
     public function show(string $id)
     {
         $order = Order::with('user', 'orderDetails.product')->findOrFail($id);
@@ -22,7 +23,6 @@ class OrderController extends Controller
         return view('admin.orders.show', compact('order'));
     }
     
-    //menampilkan halaman update order status
     public function status(string $id)
     {
         $order = Order::with('user')->findOrFail($id);
@@ -30,8 +30,6 @@ class OrderController extends Controller
         return view('admin.orders.status', compact('order'));
     }
 
-
-    //update status pesanan
     public function update(Request $request, string $id)
     {
         $validated = $request->validate([
@@ -51,5 +49,15 @@ class OrderController extends Controller
         $order->save();
 
         return redirect()->route('admin.orders.index')->with('success', 'order status updated successfully.');
+    }
+
+    public function printNota(string $id)
+    {
+        $order = Order::with([
+            'user',
+            'orderDetails.product'
+        ])->findOrFail($id);
+
+        return view('admin.orders.nota', compact('order'));
     }
 }

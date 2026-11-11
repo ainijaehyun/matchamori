@@ -3,6 +3,7 @@
     padding: 35px 40px;
     background: #f7f8fb;
     min-height: calc(100vh - 70px);
+    box-sizing: border-box;
 }
 
 .profile-title {
@@ -13,12 +14,15 @@
 }
 
 .profile-card {
-    width: 450px;
+    width: 100%;
+    max-width: none;
+    min-height: 400px;
     background: white;
-    border-radius: 30px;
+    border-radius: 20px;
     padding: 40px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.10);
     text-align: center;
+    box-sizing: border-box;
 }
 
 .profile-icon {
@@ -81,11 +85,12 @@
 }
 
 .profile-edit-card {
-    width: 500px;
-    max-width: 100%;
+    width: 100%;
+    max-width: none;
+    min-height: 400px;
     background: white;
     border-radius: 22px;
-    padding: 25px 32px 28px;
+    padding: 30px 40px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.10);
     box-sizing: border-box;
 }
@@ -227,5 +232,24 @@
     .form-row-custom {
         grid-template-columns: 1fr;
         gap: 0;
+    }
+}
+
+@media (max-width: 700px) {
+    .profile-page {
+        padding: 20px 15px;
+    }
+
+    .profile-card {
+        padding: 25px 15px;
+        min-height: 350px;
+    }
+
+    .profile-edit-page {
+        padding: 20px 15px;
+    }
+
+    .profile-edit-card {
+        padding: 22px 20px 25px;
     }
 }
