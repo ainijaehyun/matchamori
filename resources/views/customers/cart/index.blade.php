@@ -7,16 +7,11 @@
     <title>Cart - Matcha Mori</title>
 
     <link rel="stylesheet" href="{{ asset('bootstrap-5.3.8-dist/css/bootstrap.min.css') }}">
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-    <link rel="stylesheet"
-          href="{{ asset('css/welcome.css') }}?v={{ time() }}">
-
-    <link rel="stylesheet"
-          href="{{ asset('css/customer-cart.css') }}?v={{ time() }}">
-          <link rel="stylesheet"
-          href="{{ asset('css/customer-layout.css') }}?v={{ time() }}">
+    <link rel="stylesheet" href="{{ asset('css/welcome.css') }}?v={{ time() }}">
+    <link rel="stylesheet" href="{{ asset('css/customer-cart.css') }}?v={{ time() }}">
+    <link rel="stylesheet" href="{{ asset('css/customer-layout.css') }}?v={{ time() }}">
 </head>
 
 <body>
@@ -65,7 +60,7 @@
                     })->sum('quantity');
                 @endphp
 
-                <a class="mm-auth-link mm-cart-link" href="{{ route('customer.cart.index') }}" title="Cart">
+                <a class="mm-auth-link mm-cart-link" href="{{ route('customer.cart.index') }}" title="Cart" class="active">
                     <i class="fas fa-shopping-cart"></i>
 
                     @if ($cartCount > 0)

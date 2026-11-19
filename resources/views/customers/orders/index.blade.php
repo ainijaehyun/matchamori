@@ -29,7 +29,7 @@
 
         {{-- Menu --}}
         <div class="mm-nav-links">
-            <a href="{{ route('welcome') }}" class="active">Home</a>
+            <a href="{{ route('welcome') }}">Home</a>
             <a href="{{ route('about') }}">About Us</a>
             <a href="{{ route('products.index') }}">Menu</a>
         </div>
