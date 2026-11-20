@@ -83,11 +83,6 @@
                             {{ $isPickup ? 'Ready for Pick Up' : 'On Delivery' }}
                         </option>
 
-                        <option value="Delivered"
-                            {{ $order->order_status === 'Delivered' ? 'selected' : '' }}>
-                            {{ $isPickup ? 'Picked Up' : 'Delivered' }}
-                        </option>
-
                     </select>
                 </div>
             </div>

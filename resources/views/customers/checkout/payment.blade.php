@@ -125,8 +125,8 @@
                     <h2 class="payment-section-title">
                         <span class="payment-step">1</span>
                         <span>
-                            Payment Instructions
-                            <small>Ikuti petunjuk pembayaran berikut.</small>
+                            Payment Information
+                            <small>Lihat Informasi Pembayaran Berikut.</small>
                         </span>
                     </h2>
 
@@ -270,7 +270,6 @@
                         <span class="payment-step">2</span>
                         <span>
                             Payment Confirmation
-                            <small>Unggah bukti transfer untuk menyelesaikan pesanan.</small>
                         </span>
                     </h2>
 
